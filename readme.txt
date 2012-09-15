@@ -11,5 +11,5 @@ Library Overview: http://haseydesign.com/flexi-auth/
 Library Demo: http://haseydesign.com/flexi-auth/demo/
 Library User Guide: http://haseydesign.com/flexi-auth/user_guide/
 
-Support : http://codeigniter.com/forums/viewthread/xxx
+Support : http://codeigniter.com/forums/viewthread/224351/
 Contact : flexiauth@haseydesign.com

@@ -57,7 +57,7 @@
 				<hr style="margin-top:10px; margin-bottom:10px; border:none; border-top:1px dotted #999;"/>
 				<p>
 					The flexi auth library initially started out as a modified version of the popular <a href="http://benedmunds.com/ion_auth/" target="_blank">Ion Auth</a> library. 
-					As the original library was tweaked with feature after feature being added, the original code base become hardly recognisable.
+					As the original library was tweaked with feature after feature being added, the original code base had transformed into a new library all of its own.
 				</p>
 				<p>
 					For those that have used the Ion Auth library, the general structure of the library may be familiar, but to help anyone wanting to get a running start with using flexi auth, 
@@ -77,7 +77,7 @@
 				<p>If you find an example of what you're after, then open up the <a href="https://github.com/haseydesign/flexi-auth">downloadable</a> demo files and have a look at the underlying code.</p>
 				<hr/>
 				
-				<p>Still stuck? Contact me via the CodeIgniter flexi auth forum thread <a href="http://codeigniter.com/forums/viewthread/XXXXXXXXXX">http://codeigniter.com/forums/viewthread/XXXXXXXXXXX</a></p>
+				<p>Still stuck? Contact me via the CodeIgniter flexi auth forum thread <a href="http://codeigniter.com/forums/viewthread/224351/">http://codeigniter.com/forums/viewthread/224351/</a></p>
 			</div>
 			
 		</div>

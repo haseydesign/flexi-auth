@@ -39,7 +39,7 @@
 				<p>flexi auth is a free user authentication (User login) library for use with the <a href="http://codeigniter.com" target="_blank">CodeIgniter</a> 2.0+ framework.</p>
 				<p>
 					The flexi auth library initially started out as a modified version of the popular <a href="http://benedmunds.com/ion_auth/" target="_blank">Ion Auth</a> library. 
-					As the original library was tweaked with feature after feature being added, the original code base become hardly recognisable.
+					As the original library was tweaked with feature after feature being added, the original code base had transformed into a new library all of its own.
 				</p>
 				<p>
 					Below is a compiled list of the core features included within the flexi auth library.
