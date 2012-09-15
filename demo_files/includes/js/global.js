@@ -55,12 +55,12 @@ $(function()
 	$('.parallel').each(function()
 	{
 		var tallest_elem = 0;
-		$(this).children('.parallel_target').each(function(i)
+		$(this).find('.parallel_target').each(function(i)
 		{
 			tallest_elem = ($(this).height() > tallest_elem)?$(this).height():tallest_elem;
 		});
 		
-		$(this).children('.parallel_target').css({'min-height':tallest_elem});
+		$(this).find('.parallel_target').css({'min-height':tallest_elem});
 	});	
 	
 	// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
