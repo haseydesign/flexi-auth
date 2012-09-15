@@ -1,0 +1,236 @@
+/* RESET CSS */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, menu, time, mark, audio, video {margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent;}                  
+article, aside, figure, footer, header, hgroup, nav, section {display:block;}
+/* END RESET CSS -------------------------------------------------------------------------------- */
+
+/* Global Styles -------------------------------------------------------------------------------- */
+body {font:14px sans-serif; *font-size:small; *font:x-small; color:#333; line-height:1.3;}
+html {overflow-y:scroll; -webkit-font-smoothing:antialiased;}
+
+.ie7 img {-ms-interpolation-mode:bicubic;} /* IE7 Bicubic Resizing for Non-Native Sized img */
+/* END Global Styles ---------------------------------------------------------------------------- */
+
+/* Font Styling ----------------------------------------------------------------------------- */
+h1,h2,h3,h4,h5,h6 {font-weight:bold; text-rendering:optimizeLegibility;} /* Title kerning */ 
+h1 {font-size:19px; margin:5px 0;}
+h2 {font-size:18px; margin:5px 0;}
+h3 {font-size:17px; margin:3px 0;}
+h4 {font-size:16px; margin:3px 0;}
+h5 {font-size:15px; margin:0 0 3px;}
+h6 {font-size:14px; margin:0 0 3px;}
+p {font-size:14px; margin:0 0 5px;}
+
+small {display:block; margin-top:5px; font-style:italic; color:#666; line-height:1.4; font-size:85%;}
+strong {font-weight:bold;}
+pre, code {font-family: Consolas, Menlo, Monaco, 'Lucida Console', courier, monospace, serif;}
+
+hr {clear:both; display:block; width:96%; height:1px; border:0 none; border-top:1px solid #ccc; margin:15px auto; padding:0;}
+.ie6 hr, .ie7 hr {margin:8px auto;}
+
+/* Text Highlighting Colour */
+::-moz-selection{background:#39F; color:#fff; text-shadow:none;}
+::selection {background:#39F; color:#fff; text-shadow:none;} 
+
+.align_ctr {text-align:center;}
+.align_l {text-align:left;}
+.align_r {text-align:right;}
+
+.strike {text-decoration:line-through;}
+.uline {text-decoration:underline;}
+
+.highlight_red {color:#c00;}
+.highlight_orange {color:#f60;}
+.highlight_green {color:#0C0;}
+.highlight_grey {color:#888;}
+
+.info_req label:after, th.info_req:after {content:"*"; color:#c00; font-size:110%;}
+.info_note label:after, th.info_note:after {content:"\2020"; vertical-align:7px; font-size:70%;}
+/* END Font Styling ----------------------------------------------------------------------------- */
+
+/* Link Styling ----------------------------------------------------------------------------- */
+a {margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent;}
+a:hover, a:active {outline:none;}
+a, a:link, a:active, a:visited {color:#06c; text-decoration:none;}
+a:hover {color:#06c; text-decoration:underline;}
+a:link {-webkit-tap-highlight-color:#FF5E99;} /* iOS Text Highlighting */
+/* END Link Styling ----------------------------------------------------------------------------- */
+
+/* Input~Link Buttons --------------------------------------------------------------------------- */
+.link_button, a.link_button {position:relative; display:inline-block; margin-right:3px; border-radius:4px; -webkit-border-radius:4px; -moz-border-radius:4px; color:#FAFAFA; text-decoration:none; text-shadow:0 -1px 1px rgba(0,0,0,0.25); cursor:pointer;}
+.link_button:visited, a.link_button:visited {color:#FAFAFA;}
+.link_button:hover, a.link_button:hover {color:#FFF; text-decoration:none;}
+.link_button:active, a.link_button:active {color:#F0F0F0; top:1px;}
+
+.small.link_button, .small.link_button:visited {padding:5px 6px; font-size:11px; box-shadow:0 1px 1px rgba(0,0,0,0.2); -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.2); -moz-box-shadow:0 1px 1px rgba(0,0,0,0.2);}
+.link_button, .link_button:visited {padding:5px 6px; font-size:13px; font-weight:bold; line-height:1; box-shadow:0 1px 1px rgba(0,0,0,0.3); -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.3); -moz-box-shadow:0 1px 1px rgba(0,0,0,0.3);}
+.large.link_button, .large.link_button:visited {padding:8px; font-size:14px; box-shadow:0 1px 2px rgba(0,0,0,0.5); -webkit-box-shadow:0 1px 2px rgba(0,0,0,0.5); -moz-box-shadow:0 1px 2px rgba(0,0,0,0.5);}
+
+.link_button, .link_button:visited {
+	background: #666;
+	background: -webkit-gradient(linear,left top,left bottom,from(#666),to(#333));
+	background: -moz-linear-gradient(top,#666,#333);
+}
+.link_button:hover {
+	background: #444;
+	background: -webkit-gradient(linear,left top,left bottom,from(#444),to(#111));
+	background: -moz-linear-gradient(top,#444,#111);
+}
+.grey.link_button, .grey.link_button:visited {
+	background: #BBB;
+	background: -webkit-gradient(linear,left top,left bottom,from(#BBB),to(#777));
+	background: -moz-linear-gradient(top,#BBB,#777);
+}
+.grey.link_button:hover {
+	background: #999;
+	background: -webkit-gradient(linear,left top,left bottom,from(#999),to(#555));
+	background: -moz-linear-gradient(top,#999,#555);
+}
+.red.link_button, .red.link_button:visited {
+	background: #C00;
+	background: -webkit-gradient(linear,left top,left bottom,from(#C00),to(#900));
+	background: -moz-linear-gradient(top,#C00,#900);
+}
+.red.link_button:hover {
+	background: #B00;
+	background: -webkit-gradient(linear,left top,left bottom,from(#B00),to(#600));
+	background: -moz-linear-gradient(top,#B00,#600);
+}
+
+.ie6 a.link_button, .ie6 input.link_button, .ie6 button.link_button {filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#666666', EndColorStr='#333333');}
+.ie6 a.grey, .ie6 input.grey, .ie6 button.grey {filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#D0D0D0', EndColorStr='#AAAAAA');}
+.ie6 a.red, .ie6 input.red, .ie6 button.red {filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#CC0000', EndColorStr='#990000');}
+
+input.link_button, button.link_button {border:0 none;}
+.link_button.sq {border-radius:0; -webkit-border-radius:0; -moz-border-radius:0; box-shadow:0 1px 1px rgba(0,0,0,0.3); -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.3); -moz-box-shadow:0 1px 1px rgba(0,0,0,0.3);}
+
+.ie6 .link_button {padding:5px 6px; background-color:#444; font-size:13px; font-weight:bold; overflow:visible;}
+.ie7 .link_button, .ie8 .link_button  {overflow:visible; border:1px solid #777;}
+.ie6 a.small, .ie6 input.small  {padding:5px 6px; font-size:11px;}
+.ie6 a.large, .ie6 input.large, .ie6 button.large  {padding:8px; font-size:14px;}
+/* END Input~Link Buttons ----------------------------------------------------------------------------- */
+
+/* List Styling ----------------------------------------------------------------------------- */
+ul {list-style:none; margin-left:0;}
+li {padding:3px 0;}
+/* Table Styling ----------------------------------------------------------------------------- */
+
+/* Table Styling ----------------------------------------------------------------------------- */
+table {width:100%; margin:10px 0; border:2px solid #aaa; border-collapse:collapse; border-spacing:0; background-color:#f0f0f0;}
+table caption {padding:7px; font-size:16px; font-weight:bold; text-align:left;}
+table th, table td {border-bottom:1px dotted #aaa; border-right:1px dotted #aaa; text-align:left; vertical-align:middle;}
+thead th, thead td, tfoot th, tfoot td {border-bottom:1px solid #aaa; border-top:1px solid #aaa; background-color:#d9d9d9;}
+table th {padding:8px; font-weight:bold;}
+table td {padding:8px;}
+/* END Table Styling ----------------------------------------------------------------------------- */
+
+/* Form Styling ---------------------------------------------------------------------------------- */
+fieldset {margin:10px 0; padding:10px;}
+fieldset legend {font-size:16px; font-weight:bold;}
+label, input[type=button], input[type=submit], button {cursor:pointer;}
+button, input, select, textarea {margin:0; padding:3px;}
+
+/* Align Inputs with Labels */
+label {vertical-align:middle; margin-right:5px; line-height:1.5;}
+label+textarea, label+select[size] {vertical-align:top;}
+.ie6 label {vertical-align:3px;}
+
+input, select {vertical-align:middle;}
+input[type=radio] {vertical-align:-1px; margin-right:5px;}
+input[type=checkbox] {vertical-align:-2px; margin-right:5px;}
+.ie6 input {vertical-align:text-bottom;}
+.ie6 button, .ie7 button {width:auto; overflow:visible;}
+
+select optgroup {color:#777;}
+select optgroup option{color:#333;}
+
+input[type=text], input[type=password], input[type=button], input[type=submit], textarea, select, button {padding:3px; margin-bottom:5px; border:1px solid #AAA;}
+textarea {overflow-y:auto; resize:vertical;}
+
+input, textarea, select, button {
+ 	background-color:#f7f7f7;
+	outline:none;
+	font:99% sans-serif;
+	color:#333;
+	border-radius:2px;
+    -webkit-border-radius:2px;
+    -moz-border-radius:2px;
+	transition-property: background-color, box-shadow;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
+	-webkit-transition-property: background-color, -webkit-box-shadow;
+	-webkit-transition-duration: 0.25s;
+	-webkit-transition-timing-function: ease-in-out;
+	-moz-transition-property: background-color, -moz-box-shadow;
+	-moz-transition-duration: 0.25s;
+	-moz-transition-timing-function: ease-in-out;
+}
+input:focus, textarea:focus, select:focus, button:focus {
+	background-color:#fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.10);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); 
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+input:disabled, textarea:disabled, select:disabled  {font-style:italic; color:#999; background-color:#ddd;}
+
+label {display:inline-block; width:200px;}
+input.width_50, select.width_50, textarea.width_50 {width:50px;}
+input.width_75, select.width_75, textarea.width_75 {width:75px;}
+input.width_100, select.width_100, textarea.width_100 {width:100px;}
+input.width_125, select.width_125, textarea.width_125 {width:125px;}
+input.width_150, select.width_150, textarea.width_150 {width:150px;}
+input.width_175, select.width_175, textarea.width_175 {width:175px;}
+input.width_200, select.width_200, textarea.width_200 {width:200px;}
+input.width_225, select.width_225, textarea.width_225 {width:225px;}
+input.width_250, select.width_250, textarea.width_250 {width:250px;}
+input.width_300, select.width_300, textarea.width_300 {width:300px;}
+input.width_350, select.width_350, textarea.width_350 {width:350px;}
+input.width_400, select.width_400, textarea.width_400 {width:400px;}
+/* END Form Styling -------------------------------------------------------------------------------------- */
+
+/* Inline Element Spacers -------------------------------------------------------------------------------- */
+.spacer_25, label.spacer_25, .spacer_50, label.spacer_50, .spacer_75, label.spacer_75, .spacer_100, label.spacer_100, .spacer_125, label.spacer_125, 
+.spacer_150, label.spacer_150, .spacer_175, label.spacer_175, .spacer_200, label.spacer_200 , .spacer_225, label.spacer_225, 
+.spacer_250, label.spacer_250, .spacer_275, label.spacer_275, .spacer_300, label.spacer_300, .spacer_400, label.spacer_400 {display:inline-block;} 
+th.spacer_25, td.spacer_25, th.spacer_50, td.spacer_50, th.spacer_75, td.spacer_75, th.spacer_100, td.spacer_100, th.spacer_125, td.spacer_125, 
+th.spacer_150, td.spacer_150, th.spacer_175, td.spacer_175, th.spacer_200, td.spacer_200 , th.spacer_225, td.spacer_225, 
+th.spacer_250, td.spacer_250, th.spacer_275, td.spacer_275, th.spacer_300, td.spacer_300 {display:table-cell;} 
+.spacer_25 {width:25px;}
+.spacer_50 {width:50px;}
+.spacer_75 {width:75px;}
+.spacer_100 {width:100px;}
+.spacer_125 {width:125px;}
+.spacer_150 {width:150px;}
+.spacer_175 {width:175px;}
+.spacer_200 {width:200px;}
+.spacer_225 {width:225px;}
+.spacer_250 {width:250px;}
+.spacer_275 {width:275px;}
+.spacer_300 {width:300px;}
+.spacer_400 {width:400px;}
+
+/* Helper Classes -------------------------------------------------------------------------------- */
+/* Image Replacement */
+.img_rep {display:block; text-indent:-9999px; overflow:hidden; background-repeat:no-repeat;}
+
+/*JS class, even div heights*/
+.parallel {clear:both;}
+
+/* Float */
+.float_l {float:left;}
+.float_r{float:right;}
+.no_float {float:none;}
+
+/* Clear */
+.clear {clear:both;}
+.clear_l {clear:left;}
+.clear_r {clear:right;}
+.no_clear {clear:none;}
+
+hr.clear {clear:both; display:block; border:0 none; height:0;}
+.ie6 hr.clear, .ie7 hr.clear {margin:-8px 0 -7px;}
+
+/* Clearfix */
+.clearfix:after, .box:after, .parallel:after, li:after  {content:"\0020"; display:block; height:0; clear:both; visibility:hidden; overflow:hidden;}
+.clearfix, .box, .parallel {display:block;}
+/*.clearfix {display:inline-block;}
+* html .clearfix {height:1%;} /* Hides from IE-mac \*/

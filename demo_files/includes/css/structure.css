@@ -1,0 +1,215 @@
+/* Body ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+body {background:url(../images/site_bg.png) repeat #292929; text-align:center;}
+#body_wrap {position:relative; margin:0 auto; text-align:left;}
+
+/* Header ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+#header_wrap {background:url(../images/header_bg.png) repeat-x #2a2a2a;}
+#header {position:relative; width:940px; height:70px; margin:0 auto; padding:10px; background:url(../images/header_bg.png) repeat-x;} 
+#header a:link, #header a:active, #header a:hover, #header a:visited {color:#777;}
+
+#logo {position:absolute; left:10px; top:15px;}
+
+/* Main Navigation */
+#nav {position:absolute; right:10px; top:30px; font-size:22px; font-weight:bold;}
+#nav li {display:inline-block; padding-left:15px;}
+#nav a:link, #nav a:active, #nav a:hover, #nav a:visited {color:#eee;}
+
+/* Sub Navigation */
+#sub_nav_wrap {min-height:0; height:35px; padding:0;}
+#sub_nav {position:absolute; width:100%; left:0; margin:0; padding:0 10px; font-size:17px; font-weight:bold; color:#FFF; list-style:none;}
+#sub_nav>li {float:left; margin:0 15px 0 0; padding:7px 0;}
+
+#sub_nav>li>ul {position:absolute; overflow:hidden; top:35px; width:250px; margin:0; padding:0; background:#333; opacity:0.95; border-bottom-right-radius:4px; border-bottom-left-radius:4px; -moz-border-radius-bottomleft:4px; -moz-border-radius-bottomright:4px; -webkit-border-bottom-right-radius:4px; -webkit-border-bottom-left-radius:4px; box-shadow:0px 0px 8px #555; -moz-box-shadow:0px 0px 8px #555; -webkit-box-shadow:0px 0px 8px #555; z-index:100;}
+
+#user_guide #sub_nav>li>ul, #user_guide_index #sub_nav>li>ul {width:265px;}
+
+#sub_nav .css_nav_dropmenu>ul {left:-999em;}
+#sub_nav .css_nav_dropmenu:hover>ul {left:auto; border:1px solid #222;} 
+#sub_nav .js_nav_dropmenu>ul {height:0;}
+
+#sub_nav a:link, #sub_nav a:active, #sub_nav a:hover, #sub_nav a:visited {color:#fff;}
+
+#sub_nav >li>ul>li {padding:2px 10px 4px; display:inline-block; width:100%; font-size:14px; font-style:italic;}
+#sub_nav >li>ul>li a {display:inline-block; width:90%; font-weight:normal;}
+#sub_nav >li>ul>li:before {content:"\00bb\00a0";} /* "\00bb\00a0" = "» " Characters*/
+#sub_nav >li>ul>li:hover {background:#069;}
+#sub_nav >li>ul>li:last-child {margin-bottom:2px;}
+
+#sub_nav >li>ul>li.header {background:#4C4C4C; font-size:15px; box-shadow:0 2px 4px #222;}
+#sub_nav >li>ul>li.header + li {padding-top:5px;}
+#sub_nav >li>ul>li.header + li:hover {box-shadow:inset 0 2px 4px #333;}
+#sub_nav >li>ul>li.header + li.status {box-shadow:inset 0 2px 4px #333;}
+#sub_nav >li>ul>li.header small {display:block; font-size:11px; font-weight:normal; color:#fff}
+#sub_nav >li>ul>li.header:before {content:"";}
+
+#sub_nav >li>ul>li.status {padding:6px 10px; background:#333; font-size:13px; font-weight:normal; color:#fff;}
+#sub_nav >li>ul>li.status a {display:inline;}
+#sub_nav >li>ul>li.status:before {content:"";}
+#sub_nav >li>ul>li.status:last-child {padding-bottom:10px;}
+
+/* Google Search box */
+#sub_nav #user_guide_search {float:right; font-size:12px;}
+#sub_nav #user_guide_input {width:125px; height:15px;}
+
+/* flexi cart ribbon */
+#flexi_cart_ribbon {position:absolute; top:-60px; right:-148px; width:118px; height:208px; background:url(../images/flexi_cart_ribbon.png) no-repeat transparent;}
+#flexi_cart_ribbon .ribbon_text {width:90px; margin:80px 9px 0; text-align:center; font-style:italic;}
+#flexi_cart_ribbon p {margin:0; padding:0; font-size:12px; color:#aaa;}
+#flexi_cart_ribbon h6 {margin:5px 0 0; padding:0; font-size:14px; color:#ddd;}
+#flexi_cart_ribbon:hover {text-decoration:none;}
+#flexi_cart_ribbon.hover p {color:#fff;}
+#flexi_cart_ribbon.hover h6 {color:#fff; text-decoration:underline;}
+
+/* Footer ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+#footer {color:#fff;}
+#flexi_cart_floater {
+	position:absolute; 
+	width:60px; height:60px; padding:5px 5px 5px 15px; top:0; right:0; 
+	border-bottom-left-radius:80px; border-top-left-radius:3px; border-bottom-right-radius:5px; 
+	background:-webkit-radial-gradient(top right, ellipse cover, #fefcea 0%, #fc0 100%); 
+	color:#333; text-align:center; overflow:hidden;"
+}
+
+/* Content Wraps --------------------------------------------------------------------------------------------------------------------------------------------- */
+.w100, .w66, .w50, .w33 {float:left; margin:0 10px 0 0; padding:10px 15px;}
+.w100.float_r, .w66.float_r, .w50.float_r, .w33.float_r {float:right;}
+.w100 {width:926px; margin:0 0 10px;}
+.w66 {width:598px;}
+.w50 {width:441px;}
+.w33 {width:279px;}
+.r_margin {margin-right:0;}
+
+.pad_10 {padding:5px 10px;}
+.w100.pad_10 {width:936px; margin-bottom:0;}
+.w66.pad_10 {width:608px;}
+.w50.pad_10 {width:458px;}
+.w33.pad_10 {width:289px;}
+
+.position_left {float:left; width:440px; margin-right:10px; padding-right:20px;}
+.position_right {float:left; width:440px;}
+.w100.pad_10 .position_left {width:450px;}
+.w100.pad_10 .position_right {width:450px;}
+
+.pad_l_20 {padding-left:20px;} /* Pad cart discount/surcharge data */
+
+.content_wrap.nav_bg {background:url(../images/nav_wrap_blue_bg.png) repeat-x #069;}
+.content_wrap.intro_bg {background:url(../images/intro_wrap_bg.png) repeat-x #f0f0f0;}
+.content_wrap.main_content_bg {min-height:475px; padding-top:10px; background:url(../images/main_content_wrap_bg.png) repeat-x #E9E2D9;}
+.content_wrap.footer_bg {background:url(../images/footer_wrap_bg.png) repeat-x;}
+
+.content {position:relative; width:960px; margin:0 auto; padding:10px 0;}
+
+fieldset {width:926px; margin:10px 0; padding:10px 15px; background-color:#f0f0f0; border:2px solid #aaa;}
+fieldset.w50 {margin:5px 10px 5px 0;}
+fieldset.w50.r_margin {margin-right:0;}
+.frame {margin-top:10px; background-color:#f0f0f0; border:2px solid #aaa;}
+
+.frame_note {margin-top:5px; margin-bottom:15px; padding:10px; background-color:#e6e6e6; border:1px solid #ccc;}
+.frame_note hr {margin-top:10px; margin-bottom:10px;}
+.frame_note p:last-child {margin:0;}
+.frame_note:last-child {margin-bottom:5px;}
+
+/* Misc Elements --------------------------------------------------------------------------------------------------------------------------------------------- */
+h3.heading {display:block; margin:-12px -17px 10px -17px; padding:10px 15px; border:2px solid #aaa; border-bottom:1px solid #aaa; background-color:#ccc; color:#333; font-family:Verdana, Arial; font-weight:bold; font-size:16px;}
+
+/* User Guide Main Index */
+.inl_block li {display:inline-block; width:225px; margin-left:-20px;}
+.inl_block li:before, .inl_block li:before {content:"\2022\00a0"; font-size:17px;}
+
+/* Item Form Examples */
+.inl_list ul {margin:0; padding:5px 0; list-style:none;}
+.inl_list li {display:inline-block; margin:0 50px 0 0;}
+.inl_list label {width:auto;}
+
+.bullet ul, ul.bullet {list-style-position:outside; padding-left:20px; list-style:disc;}
+.pad_10 hr {margin:10px auto;}
+.inline {display:inline;}
+
+/* Toggle Content */
+.toggle {font-weight:bold; font-size:12px; cursor:pointer;}
+label.toggle {font-weight:normal; font-size:14px; cursor:pointer;}
+.hide_toggle {display:none;}
+
+/* tooltip styling */
+.tooltip_trigger {cursor:help;}
+span.tooltip_trigger:after {content:"\2020"; vertical-align:7px; font-size:70%; color:#069;}
+
+.tooltip {
+	display:none; min-width:120px; max-width:250px; padding:10px; background-color:#444; border:1px solid #222; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px;
+	color:#eee; box-shadow:0 2px 10px rgba(0,0,0,0.5); -webkit-box-shadow:0 2px 10px rgba(0,0,0,0.5); -moz-box-shadow:0 2px 10px rgba(0,0,0,0.5);
+	-moz-opacity: 0.5;
+	filter:alpha(opacity=5);
+}
+.tooltip.width_400 {max-width:400px;}
+.tooltip table {color:#333;}
+
+/* Page Intro ------------------------------------------------------------------------------------------------------------------------------------------------ */
+.intro_text {padding:0 5px;}
+
+/* Site Index ------------------------------------------------------------------------------------------------------------------------------------------------ */
+#home .main_banner .content {height:300px; padding:0; background:url(../images/nav_bg_ctr.png) center no-repeat;}
+#home .main_banner_img {position:absolute; left:10px; top:-10px; z-index:100;}
+#home #banner_wrap h1 {margin:10px 0 25px; font-size:32px; color:#fff; text-shadow:0px 0px 8px #000;}
+#home #banner_wrap a {float:left; margin-left:62px;}
+#home #banner_wrap a p {font-size:20px; font-weight:bold; color:#fff; text-decoration:underline;}
+
+/* User Guide ------------------------------------------------------------------------------------------------------------------------------------------------ */
+#user_guide_index  .w100 {width:936px; margin-bottom:0; padding:5px 10px;}
+#user_guide_index  .w33 {width:289px; padding:5px 10px;}
+#user_guide_index  .frame ul, #user_guide  .frame ul {margin:0 0 5px 20px; list-style:disc;}
+#user_guide_index  .frame ul li, #user_guide  .frame ul li {padding:2px 0;}
+#user_guide_index  .frame ul li small, #user_guide  .frame ul li small {margin:2px 0 0; padding:0;}
+#user_guide_index  hr {width:96%; margin:10px auto; border-top:1px solid #ccc;}
+
+#user_guide_index .content_wrap.nav_bg, #user_guide .content_wrap.nav_bg {background:url(../images/nav_wrap_orange_bg.png) repeat-x #ff5f00;}
+#user_guide_index #sub_nav >li>ul>li:hover, #user_guide #sub_nav >li>ul>li:hover {background:#ff5f00;}
+#user_guide_index #sub_nav >li>ul>li.header:hover, #user_guide #sub_nav >li>ul>li.header:hover {background:#4C4C4C;}
+
+#user_guide hr {margin:10px 20px; border:none; border-top:1px solid #ccc;}
+#user_guide code {color:#ff5f00; font-weight:bold;}
+
+#user_guide pre {margin-bottom:10px; padding:15px; border:1px dotted #ff5f00; background-color:#e6e6e6; color:#ff5f00;}
+#user_guide pre:last-child {margin-bottom:5px;}
+#user_guide pre .comment {color:#666;}
+#user_guide pre .comment.bold {color:#111;}
+#user_guide pre .toggle {font-weight:normal; font-size:14px; color:#069;}
+#user_guide span~pre {margin-top:5px; background-color:#eee;}
+
+#user_guide table {margin-top:5px; margin-bottom:15px;}
+#user_guide table, #user_guide table thead th  {border:1px solid #aaa;}
+#user_guide table th {background-color:#ddd; border-top:1px solid #aaa; border-bottom:1px solid #aaa;}
+#user_guide table th small {font-weight:normal; color:#444;}
+#user_guide table tbody {font-size:13px;}
+
+#user_guide table.example {margin-bottom:5px; border:1px solid #aaa;}
+#user_guide table.example td {border:1px dotted #ff5f00; background:#e6e6e6; vertical-align:middle;}
+#user_guide table.example code {font-size:14px;}
+#user_guide table.example small {font-size:13px;}
+
+.anchor_nav {margin:10px 0; padding:10px; background:#e6e6e6; border:1px solid #aaa;}
+.anchor_nav p {margin-bottom:15px;}
+.anchor_nav p:last-child {margin:0;}
+
+#user_guide .db_schema_diagram {width:924px; border:1px solid #aaa;}
+
+#user_guide .help_link {float:right; margin:-25px 0 0 0; padding:1px 5px; background-color:#ddd; border:1px dotted #069;}
+#user_guide code~.help_link {margin:-5px 0 0;}
+
+/*
+.fixed_footer #footer {margin-bottom:70px;}
+
+#item_selector_wrap {border-top:1px solid #999; background-color:#f63; box-shadow:0 0 10px rgba(0,0,0,0.75); position:fixed; bottom:-40px; left:0; width:100%; height:110px;}
+#item_selector {width:940px; margin:0 auto; padding:0 10px; color:#fff;}
+#item_selector .left {float:left; width:650px; padding:7px 0; border:none;}
+#item_selector .right {float:right; width:270px; padding:20px 0;}
+#item_selector h3 {margin:0; padding:0;}
+#item_selector small {color:#fff; margin:0; padding:0;}
+#item_selector select {width:270px;}
+#item_selector .item_selector_status {clear:both; display:block; font-size:20px; font-weight:bold; color:#fff; text-align:center;}
+#item_selector a:link, #item_selector a:active, #item_selector a:hover, #item_selector a:visited {color:#fff; font-weight:bold;}
+*/
+
+/* Messages --------------------------------------------------------------------------------------------------------------------------------------------------- */
+#message {margin-bottom:10px; border:2px solid #333; font-size:18px; font-weight:bold; text-align:center;}
+#message .status_msg {margin:0; padding:5px; background-color:#DF7;}
+#message .error_msg {margin:0; padding:5px; background-color:#FAA;}
