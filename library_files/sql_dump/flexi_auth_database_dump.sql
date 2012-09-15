@@ -26,7 +26,7 @@ CREATE TABLE `ci_sessions` (
   `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
   `user_data` text NOT NULL,
   PRIMARY KEY (`session_id`),
-  KEY `last_activity_idx` (`last_activity`)
+  KEY `last_activity` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
