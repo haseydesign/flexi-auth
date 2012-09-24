@@ -121,7 +121,7 @@ CREATE TABLE `user_accounts` (
 -- ----------------------------
 INSERT INTO `user_accounts` VALUES ('1', '3', 'admin@admin.com', 'admin', '$2a$08$lSOQGNqwBFUEDTxm2Y.hb.mfPEAt/iiGY9kJsZsd4ekLJXLD.tCrq', '0.0.0.0', 'XKVT29q2Jr', '', '', '0000-00-00 00:00:00', '', '', '1', '0', '0', '', '0000-00-00 00:00:00', '2012-04-12 21:15:05', '2011-01-01 00:00:00');
 INSERT INTO `user_accounts` VALUES ('2', '2', 'moderator@moderator.com', 'moderator', '$2a$08$q.0ZhovC5ZkVpkBLJ.Mz.O4VjWsKohYckJNx4KM40MXdP/zEZpwcm', '0.0.0.0', 'ZC38NNBPjF', '', '', '0000-00-00 00:00:00', '', '', '1', '0', '0', '', '0000-00-00 00:00:00', '2012-04-10 21:58:02', '2011-08-04 16:49:07');
-INSERT INTO `user_accounts` VALUES ('3', '1', 'public@public.com', 'public', '$2a$08$5A5KEIFm1hP2qOgivQ01/Oz6WZH5f/o2TDQJiAXwVVyl3Ln1Z4H1C', '0.0.0.0', 'GNvvhJMqqZ', '', '', '0000-00-00 00:00:00', '', '', '1', '0', '0', '', '0000-00-00 00:00:00', '2012-04-10 22:01:41', '2011-09-15 12:24:45');
+INSERT INTO `user_accounts` VALUES ('3', '1', 'public@public.com', 'public', '$2a$08$GlxQ00VKlev2t.CpvbTOlepTJljxF2RocJghON37r40mbDl4vJLv2', '0.0.0.0', 'CDNFV6dHmn', '', '', '0000-00-00 00:00:00', '', '', '1', '0', '0', '', '0000-00-00 00:00:00', '2012-04-10 22:01:41', '2011-09-15 12:24:45');
 
 -- ----------------------------
 -- Table structure for `user_groups`
