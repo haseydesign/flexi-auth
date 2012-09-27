@@ -83,7 +83,7 @@ class Flexi_auth_lite_model extends CI_Model
 		$this->auth->tbl_custom_col_user_account = $this->auth->auth_database['user_acc']['custom_columns'];
 		
 		// User custom data table(s)
-		$this->auth->tbl_custom_data = $this->auth->auth_database['custom'];
+		$this->auth->tbl_custom_data = (! empty($this->auth->auth_database['custom'])) ? $this->auth->auth_database['custom'] : array();
 		
 		// Database settings
 		$this->auth->db_settings = $this->auth->auth_database['settings'];
