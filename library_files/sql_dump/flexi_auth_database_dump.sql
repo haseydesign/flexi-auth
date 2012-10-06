@@ -63,7 +63,7 @@ CREATE TABLE `user_accounts` (
   KEY `uacc_email` (`uacc_email`),
   KEY `uacc_username` (`uacc_username`),
   KEY `uacc_fail_login_ip_address` (`uacc_fail_login_ip_address`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_accounts
@@ -80,7 +80,7 @@ CREATE TABLE `user_groups` (
   `ugrp_admin` tinyint(1) NOT NULL,
   PRIMARY KEY (`ugrp_id`),
   UNIQUE KEY `ugrp_id` (`ugrp_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_groups
@@ -113,7 +113,7 @@ CREATE TABLE `user_privileges` (
   `upriv_desc` varchar(100) NOT NULL,
   PRIMARY KEY (`upriv_id`),
   UNIQUE KEY `upriv_id` (`upriv_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_privileges
@@ -131,7 +131,7 @@ CREATE TABLE `user_privilege_users` (
   UNIQUE KEY `upriv_users_id` (`upriv_users_id`) USING BTREE,
   KEY `upriv_users_uacc_fk` (`upriv_users_uacc_fk`),
   KEY `upriv_users_upriv_fk` (`upriv_users_upriv_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_privilege_users
