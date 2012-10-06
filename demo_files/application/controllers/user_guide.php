@@ -61,6 +61,11 @@ class User_guide extends CI_Controller {
 	{
 		$this->load->view('user_guide/misc/installation_view');
 	}
+
+	function change_log()
+	{
+		$this->load->view('user_guide/misc/change_log_view');
+	}
 		
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 	// LOGIN FUNCTIONS
