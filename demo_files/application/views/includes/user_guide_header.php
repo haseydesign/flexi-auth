@@ -84,10 +84,6 @@
 					</ul>
 				</li>
 				
-				<li>
-					<a href="<?php echo $base_url; ?>user_guide/change_log">Change Log</a>
-				</li>
-				
 				<li id="user_guide_search">
 					<form method="get" action="http://www.google.com/search">
 						<input type="text" name="q" id="user_guide_input" placeholder="Search User Guide">

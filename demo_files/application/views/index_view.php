@@ -42,16 +42,7 @@
 
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
-			<h2>The latest news on flexi auth</h2>
-			<p>flexi auth 1.0 has been released!</p>
-		</div>
-	</div>
-
-	<!-- Main Content -->
-	<div class="content_wrap main_content_bg">
-		<div class="content clearfix">
-		
-			<div class="w100 frame">
+			<div class="w100">
 				<h3>What is flexi auth?</h3>
 				<p>flexi auth is a free open source user authentication/login library for use with the <a href="http://codeigniter.com" target="_blank">CodeIgniter</a> 2.0+ framework.</p>
 				<hr style="margin-top:10px; margin-bottom:10px; border:none; border-top:1px dotted #999;"/>
@@ -65,7 +56,13 @@
 				</p>
 				<p>flexi auth is designed with modularised features that can be mixed and matched, turned on or off, and can be customised to suit your requirements.</p>
 			</div>
-			
+		</div>
+	</div>
+
+	<!-- Main Content -->
+	<div class="content_wrap main_content_bg">
+		<div class="content clearfix">
+					
 			<div class="w100 frame">
 				<h2>Help and Support</h2>
 				

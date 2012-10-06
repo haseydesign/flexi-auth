@@ -27,7 +27,6 @@
 			<div class="intro_text">
 				<h1>User Guide | flexi auth</h1>
 				<p>flexi auth is the developers toolkit for building highly customised user authentication systems.</p>
-				<p>The latest version is 1.0, released on 13th September 2012. The <a href="<?php echo $base_url; ?>user_guide/change_log">change log</a> contains all amendments made to the library.</p>
 			</div>		
 		</div>
 	</div>
