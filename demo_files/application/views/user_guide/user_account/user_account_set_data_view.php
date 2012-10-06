@@ -394,7 +394,7 @@ $this->flexi_auth->delete_user($user_id);
 			<div class="w100 frame">
 				<h3 class="heading">insert_custom_user_data()</h3>
 				
-				<p>Inserts data into custom user table and returns the new table row id.</p>
+				<p>Inserts data into a custom user table and returns the table name and row id of each record inserted.</p>
 				<hr/>
 				
 				<h6>Library and Requirements</h6>
@@ -443,6 +443,7 @@ $this->flexi_auth->delete_user($user_id);
 						Within the loop, the function matches the names of the table columns with the array keys of the custom user data array.  
 					</p>
 					<p>Once the custom user data has been matched to the related custom user table, the data is inserted into each table.</p>
+					<p>The name and id of each table and row is then added to the returned array data.</p>
 				</div>
 						
 				<h6>Notes</h6>
@@ -461,7 +462,7 @@ $config['database']['custom']['custom_user_table']['custom_columns'] = array(
 				<h6>Return Values</h6>
 				<div class="frame_note">
 					<p><strong class="spacer_100">Failure:</strong>FALSE | An error message will be set.</p>
-					<p><strong class="spacer_100">Success:</strong>TRUE | A status message will be set.</p>
+					<p><strong class="spacer_100">Success:</strong>Array | A status message will be set.</p>
 				</div>
 				
 				<h6>Example</h6>

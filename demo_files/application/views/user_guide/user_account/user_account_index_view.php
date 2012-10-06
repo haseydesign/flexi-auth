@@ -134,7 +134,7 @@
 				<ul>
 					<li>
 						<a href="<?php echo $base_url; ?>user_guide/user_account_set_data#insert_custom_user_data">insert_custom_user_data()</a><br/>
-						<small>Inserts data into a custom user table and returns the new table row id.</small>
+						<small>Inserts data into a custom user table and returns the table name and row id of each record inserted.</small>
 					</li>
 					<li>
 						<a href="<?php echo $base_url; ?>user_guide/user_account_set_data#update_custom_user_data">update_custom_user_data()</a><br/>

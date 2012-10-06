@@ -669,17 +669,17 @@ class Flexi_auth extends Flexi_auth_lite
 
 	/**
 	 * insert_custom_user_data
-	 * Inserts data into a custom user table and returns the new table row id.
+	 * Inserts data into a custom user table and returns the table name and row id of each record inserted.
 	 *
-	 * @return void
+	 * @return array/void
 	 * @author Rob Hussey
 	 */
 	public function insert_custom_user_data($user_id = FALSE, $custom_data = FALSE)
 	{
-		if ($row_id = $this->CI->flexi_auth_model->insert_custom_user_data($user_id, $custom_data))
+		if ($row_data = $this->CI->flexi_auth_model->insert_custom_user_data($user_id, $custom_data))
 		{
 			$this->CI->flexi_auth_model->set_status_message('update_successful', 'config');
-			return $row_id;
+			return $row_data;
 		}
 
 		$this->CI->flexi_auth_model->set_error_message('update_unsuccessful', 'config');

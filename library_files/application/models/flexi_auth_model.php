@@ -373,9 +373,9 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 	
 	/**
 	 * insert_custom_user_data
-	 * Inserts data into custom user table and returns the new table row id.
+	 * Inserts data into a custom user table and returns the table name and row id of each record inserted.
 	 *
-	 * @return bool
+	 * @return array/bool
 	 * @author Rob Hussey
 	 */
 	public function insert_custom_user_data($user_id = FALSE, $custom_data = FALSE)
@@ -385,6 +385,9 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			return FALSE;
 		}
 	
+		// Set a var to return the name and id of each table and row that is inserted to the database.
+		$row_data = array();
+
 		// Loop through custom data table(s) set via config file.
 		foreach($this->auth->tbl_custom_data as $table)
 		{
@@ -413,11 +416,14 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 				$this->db->insert($table['table'], $sql_insert);
 				
 				// Get new table row id.
-				$row_id = ($this->db->affected_rows() > 0) ? $this->db->insert_id() : FALSE;
+				if ($this->db->affected_rows() > 0) 
+				{
+					$row_data[$table['table']] = $this->db->insert_id();
+				}
 			}		
 		}
 		
-		return $row_id;
+		return (! empty($row_data)) ? $row_data : FALSE;
 	}
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
