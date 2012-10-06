@@ -445,7 +445,15 @@ class Demo_auth_model extends CI_Model {
 		$this->session->set_flashdata('message', $this->flexi_auth->get_messages());
 		
 		// Redirect user.
-		redirect('auth_public/dashboard');
+		// Logged in users are redirected to the restricted public user dashboard, otherwise the user is redirected to the login page.
+		if ($this->flexi_auth->is_logged_in())
+		{
+			redirect('auth_public/dashboard');
+		}
+		else
+		{
+			redirect('auth/login');
+		}
 	}
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	

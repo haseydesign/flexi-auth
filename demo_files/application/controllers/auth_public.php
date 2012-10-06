@@ -32,13 +32,14 @@ class Auth_public extends CI_Controller {
 		$this->load->library('flexi_auth');	
 
 		// Check user is logged in via either password or 'Remember me'.
-		if (! $this->flexi_auth->is_logged_in())
+		// Note: Allow access to logged out users that are attempting to validate a change of their email address via the 'update_email' page/method.
+		if (! $this->flexi_auth->is_logged_in() && $this->uri->segment(2) != 'update_email')
 		{
 			// Set a custom error message.
 			$this->flexi_auth->set_error_message('You must login to access this area.', TRUE);
 			$this->session->set_flashdata('message', $this->flexi_auth->get_messages());
 			redirect('auth');
-		}		
+		}
 		
 		// Note: This is only included to create base urls for purposes of this demo only and are not necessarily considered as 'Best practice'.
 		$this->load->vars('base_url', 'http://localhost/flexi_auth/');
@@ -160,11 +161,21 @@ class Auth_public extends CI_Controller {
 		{
 			$this->demo_auth_model->verify_updated_email($user_id, $token);
 		}
-				
-		// Set any returned status/error messages.
-		$this->data['message'] = (! isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
-		
-		$this->load->view('demo/public_examples/email_update_view', $this->data);
+
+		// In this demo, the 'update_email' page is the only page in this controller that can be accessed without needing to be logged in.
+		// This is because, some users may validate their change of email address at a later time, or from a different device that they are not logged in on.
+		// Therefore, check that the user is logged in before granting them access to the 'update_email' page.
+		if ($this->flexi_auth->is_logged_in())
+		{
+			// Set any returned status/error messages.
+			$this->data['message'] = (! isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];
+			
+			$this->load->view('demo/public_examples/email_update_view', $this->data);
+		}
+		else
+		{
+			redirect('auth/login');
+		}
 	}
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
