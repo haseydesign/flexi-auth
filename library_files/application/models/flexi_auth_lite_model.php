@@ -316,13 +316,13 @@ class Flexi_auth_lite_model extends CI_Model
 	    // User login credentials are valid, continue as normal.
 	    if ($query->num_rows() == 1)
 	    {
-			// Validate if user has closed their browser since login if defined by config file.
+			// Get database session token and hash it to try and match hashed cookie token if required for the 'logout_user_onclose' or 'login_via_password_token' features.
+			$session_token = $query->row()->{$this->auth->tbl_col_user_session['token']};
+			$hash_session_token = $this->hash_cookie_token($session_token);
+
+			// Validate if user has closed their browser since login (Defined by config file).
 			if ($this->auth->auth_security['logout_user_onclose'])
-			{
-				// Get database session token and hash it to try and match hashed cookie token.
-				$session_token = $query->row()->{$this->auth->tbl_col_user_session['token']};
-				$hash_session_token = $this->hash_cookie_token($session_token);
-				
+			{				
 				if (get_cookie('login_session_token') != $hash_session_token)
 				{
 					$this->set_error_message('login_session_expired', 'config');
@@ -330,6 +330,17 @@ class Flexi_auth_lite_model extends CI_Model
 					return FALSE;
 				}
 			}
+			#!# * BETA TESTING OF THIS FEATURE * #!#
+			// Check whether to unset the users 'Logged in via password' status if they closed their browser since login (Defined by config file). 
+			else if ($this->auth->auth_security['unset_password_status_onclose'])
+			{
+				if (get_cookie('login_via_password_token') != $hash_session_token)
+				{
+					$this->delete_logged_in_via_password_session();
+					return FALSE;
+				}
+			}
+			#!# ^ BETA TESTING OF THIS FEATURE ^ #!#
 		
 			// Extend users login time if defined by config file.
 			if ($this->auth->auth_security['extend_login_session'])

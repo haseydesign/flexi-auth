@@ -1681,12 +1681,9 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		$this->update_last_login($user_id);
 		
 		// Set database and login session token if defined by config file.
-		if ($this->auth->auth_security['validate_login_onload'])
+		if ($this->auth->auth_security['validate_login_onload'] && ! $this->insert_database_login_session($user_id))
 		{
-			if (!$this->insert_database_login_session($user_id))
-			{
-				return FALSE;
-			}
+			return FALSE;
 		}
 		
 		// Set verified login session if user logged in via Password rather than 'Remember me'.
@@ -1794,19 +1791,31 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			// Create session.
 			$this->auth->session_data[$this->auth->session_name['login_session_token']] = $session_token;
 			$this->session->set_userdata(array($this->auth->session_name['name'] => $this->auth->session_data));
-						
-			// Create cookies to detech if user closes their browser if defined by config file.
+
+			// Hash database session token as it will be visible via cookie.
+			$hash_session_token = $this->hash_cookie_token($session_token);
+							
+			// Create cookies to detect if user closes their browser (Defined by config file).
 			if ($this->auth->auth_security['logout_user_onclose'])
 			{
-				// Hash database session token as it will be visible via cookie.
-				$hash_session_token = $this->hash_cookie_token($session_token);
-				
 				set_cookie(array(
 					'name' => $this->auth->cookie_name['login_session_token'],
 					'value' => $hash_session_token,
 					'expire' => 0 // Set to 0 so it expires on browser close.
 				));
 			}
+			#!# * BETA TESTING OF THIS FEATURE * #!#
+			// Create a cookie to detect when a user has closed their browser since logging in via password (Defined by config file).
+			// If the cookie is not set/valid, a users 'logged in via password' status will be unset.
+			else if ($this->auth->auth_security['unset_password_status_onclose'])
+			{
+				set_cookie(array(
+					'name' => $this->auth->cookie_name['login_via_password_token'],
+					'value' => $hash_session_token,
+					'expire' => 0 // Set to 0 so it expires on browser close.
+				));
+			}
+			#!# ^ BETA TESTING OF THIS FEATURE ^ #!#
 			
 			return TRUE;
 		}

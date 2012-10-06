@@ -220,7 +220,7 @@ $config['database']['user_sess']['columns']['user_id'] = 'usess_uacc_fk';
 									Example: 60*30 = 30 minutes, 60*60*24 = 1 day, 86400 = 1 day, 0 = Unlimited.<br/>
 									Setting the value as '0' would mean the session would not expire until CIs own session value (config['sess_expiration'] in CI config file) expired.
 								</p>
-								<p>Note: Only used when <code>$config['security']['validate_login_onload'] = true</code></p>
+								<p>Note: Used when <code>$config['security']['validate_login_onload'] = true</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -229,7 +229,7 @@ $config['database']['user_sess']['columns']['user_id'] = 'usess_uacc_fk';
 							<td class="align_ctr">true</td>
 							<td>
 								<p>Set whether a users login time is extended when their session token is validated (On every page load).</p>
-								<p>Note: Only used when <code>$config['security']['validate_login_onload'] = true</code></p>
+								<p>Note: Used when <code>$config['security']['validate_login_onload'] = true</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -242,7 +242,28 @@ $config['database']['user_sess']['columns']['user_id'] = 'usess_uacc_fk';
 									Creates a cookie with a 0 lifetime that is deleted when the browser is closed.<br/>
 								 	This invalidates the users session the next time they visit the website as there is no longer a matching cookie.
 								</p>
-								<p>Note: Only used when <code>$config['security']['validate_login_onload'] = true</code></p>
+								<p>Note: Used when <code>$config['security']['validate_login_onload'] = true</code></p>
+							</td>
+						</tr>
+						<tr>
+							<td>unset_password_status_onclose</td>
+							<td class="align_ctr">bool</td>
+							<td class="align_ctr">true</td>
+							<td>
+								<p>Set whether a user has their 'logged in via password' status removed as soon as the browser is closed.</p>
+								<p>
+									If the user enabled the 'Remember me' feature on login, and their session is still valid, they will have a 'logged in via "Remember me"' status on their next visit.<br/>
+								 	If the user did not enable the 'Remember me' feature on login, they will be logged out on their next visit.
+								</p>
+								<p>
+									If this setting is not enabled, a user who has logged in via password will have the same login status if they close the browser and revisit the site before the login 
+									session expires ('login_session_expire').
+								</p>
+								<p>
+									Creates a cookie with a 0 lifetime that is deleted when the browser is closed.<br/>
+								 	This invalidates the users session the next time they visit the website as there is no longer a matching cookie.
+								</p>
+								<p>Note: Used when <code>$config['security']['logout_user_onclose'] = false</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -277,6 +298,9 @@ $config['security']['extend_login_session'] = TRUE;
 
 <span class="comment">// Defining whether a user is logged out as soon as the browser is closed.</span>
 $config['security']['logout_user_onclose'] = TRUE;
+
+<span class="comment">// Defining whether a users 'logged in via password' status is removed as soon as the browser is closed.</span>
+$config['security']['unset_password_status_onclose'] = TRUE;
 
 <span class="comment">// Defining the lifetime of a users login cookies in seconds, this includes the 'Remember me' cookies.</span>
 $config['security']['user_cookie_expire'] = 60*60*24*14;
@@ -354,6 +378,12 @@ $config['cookies']['remember_token'] = 'remember_token';
 <span class="comment">// Note: Only used when "<em>config['security']['validate_login_onload'] = TRUE</em>" and
 // "<em>$config['security']['logout_user_onclose'] = TRUE</em>" have been defined.</span>
 $config['cookies']['login_session_token'] = 'login_session_token';
+
+<span class="comment bold">// Login Via Password Cookie.</span>
+<span class="comment">// The login via password cookie token is used to invalidate a users 'logged in via password' status
+// when they close their browser by deleting itself.</span>
+<span class="comment">// Note: Only used when "<em>config['security']['logout_user_onclose'] = FALSE</em>" has been defined.</span>
+$config['cookies']['login_via_password_token'] = 'login_via_password_token';
 </pre>
 			</div>
 

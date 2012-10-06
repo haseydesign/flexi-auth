@@ -338,6 +338,14 @@
 	 * Note: Only used when $config['security']['validate_login_onload'] = TRUE and $config['security']['logout_user_onclose'] = TRUE (Defined Below)
 	*/
 	$config['cookies']['login_session_token'] = 'login_session_token';
+	
+	/**
+	 * Login Via Password Cookie
+	 * The login via password cookie token is used to invalidate a users 'logged in via password' status when they close their browser by deleting itself.
+	 * 
+	 * Note: Only used when $config['security']['logout_user_onclose'] = FALSE (Defined Below)
+	*/
+	$config['cookies']['login_via_password_token'] = 'login_via_password_token';
 
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
@@ -399,6 +407,24 @@
 	 * !IMPORTANT: 'logout_user_onclose' will also void any 'Remember me' cookies and so both features should not be used together.
 	*/
 	$config['security']['logout_user_onclose'] = TRUE;
+
+	#!# * BETA TESTING OF THIS FEATURE * #!#
+	/**
+	 * Set whether a user has their 'logged in via password' status removed as soon as the browser is closed.
+	 * If the user enabled the 'Remember me' feature on login, and their session is still valid, they will have a 'logged in via "Remember me"' status on their next visit.
+	 * If the user did not enable the 'Remember me' feature on login, they will be logged out on their next visit.
+	 *
+	 * If this setting is not enabled, a user who has logged in via password will have the same login status if they close the browser and revisit the
+	 * site before the login session expires ('login_session_expire').
+ 	 *
+	 * The feature works by creating a cookie with a 0 lifetime that is deleted when the browser is closed.
+	 * This invalidates the users session the next time they visit the website as there is no longer a matching cookie.
+	 * @param bool
+	 *
+	 * Note: Only used when $config['security']['logout_user_onclose'] = FALSE
+	*/
+	$config['security']['unset_password_status_onclose'] = TRUE;
+	#!# ^ BETA TESTING OF THIS FEATURE ^ #!#
 	
 	/**
 	 * Set the lifetime of a users login cookies in seconds, this includes the 'Remember me' cookies.
