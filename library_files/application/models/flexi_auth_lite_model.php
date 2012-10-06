@@ -231,7 +231,7 @@ class Flexi_auth_lite_model extends CI_Model
 	 */
 	public function delete_database_login_session($user_id, $all_sessions = TRUE)
 	{
-		if (!$user_id)
+		if (!is_numeric($user_id))
 		{
 			return FALSE;
 		}

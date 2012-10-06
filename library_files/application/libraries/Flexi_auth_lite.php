@@ -320,7 +320,7 @@ class Flexi_auth_lite
 	 */
 	public function get_user_by_id_query($user_id = FALSE)
 	{
-		if (!$user_id)
+		if (!is_numeric($user_id))
 		{
 			$user_id = ($this->get_user_id()) ? $this->get_user_id() : NULL;
 		}

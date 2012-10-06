@@ -157,7 +157,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			unset($custom_data[$this->auth->tbl_col_user_group['id']]);
 	    }
 		// Else, if a $group_id was not passed to the function, use the default group id defined via the config file.
-	    else if (!$group_id)
+	    else if (!is_numeric($group_id))
 	    {
 			$group_id = $this->auth->auth_settings['default_group_id'];
 	    }
@@ -1767,7 +1767,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 	 */
 	private function insert_database_login_session($user_id)
 	{
-	    if (!$user_id)
+	    if (!is_numeric($user_id))
 	    {
 			return FALSE;
 	    }
@@ -1817,7 +1817,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 	 */
 	private function remember_user($user_id)
 	{
-	    if (!$user_id)
+	    if (!is_numeric($user_id))
 	    {
 			return FALSE;
 	    }
