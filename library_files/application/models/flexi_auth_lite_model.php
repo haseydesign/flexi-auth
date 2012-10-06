@@ -184,8 +184,9 @@ class Flexi_auth_lite_model extends CI_Model
 		$this->delete_database_login_session($user_id, $all_sessions);
 
 		// Delete session login data.
+		$this->auth->session_data = $this->set_auth_defaults();
 		$this->session->unset_userdata($this->auth->session_name['name']);
-				
+
 		// Run database maintenance function to clean up any expired login sessions.
 		$this->delete_expired_remember_users();
 
