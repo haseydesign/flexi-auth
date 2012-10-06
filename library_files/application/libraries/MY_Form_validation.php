@@ -5,9 +5,8 @@ class MY_Form_validation extends CI_Form_validation
 	public function __construct()
 	{
 		parent::__construct();
-        $this->CI->load->library('flexi_auth');
 	}
- 
+
     // Check identity is available
     protected function identity_available($identity, $user_id = FALSE)
     {
