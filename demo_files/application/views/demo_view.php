@@ -68,6 +68,9 @@
 						<a href="<?php echo $base_url; ?>auth">Login</a>
 					</li>
 					<li>
+						<a href="<?php echo $base_url; ?>auth/login_via_ajax">Login via Ajax</a>
+					</li>
+					<li>
 						<a href="<?php echo $base_url; ?>auth/register_account">Register for an Account</a>
 					</li>
 					<li>
