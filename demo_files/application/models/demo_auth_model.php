@@ -77,6 +77,20 @@ class Demo_auth_model extends CI_Model {
 			return FALSE;
 		}
 	}
+
+	/**
+	 * login_via_ajax
+	 * Attempt to log a user in via ajax.
+	 * This example is a much more simplified version of the above 'login' function example as it just returns a boolean value of
+	 * whether or not the submitted details successfully logged a user in - no redirects or status messages are set.
+	 */
+	function login_via_ajax()
+	{
+		$remember_user = ($this->input->post('remember_me') == 1);
+
+		// Verify login data.
+		return $this->flexi_auth->login($this->input->post('login_identity'), $this->input->post('login_password'), $remember_user);
+	}
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 	// Account Registration

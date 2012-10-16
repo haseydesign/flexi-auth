@@ -137,6 +137,28 @@ class Auth extends CI_Controller {
     }
 
 	/**
+	 * login_via_ajax
+	 * A simplified version of the above 'login' method that instead uses ajax to submit a users credentials.
+	 * This demo includes 3 example accounts that can be logged into via using either their email address or username. The login details are provided within the view page.
+	 * Note: This page is only accessible to users who are not currently logged in, else they will be redirected.
+	 */ 
+    function login_via_ajax()
+    {
+		if ($this->input->is_ajax_request())
+		{
+			$this->load->model('demo_auth_model');
+			
+			$this->demo_auth_model->login_via_ajax();
+
+			die($this->flexi_auth->is_logged_in());
+		}
+		else
+		{
+			$this->load->view('demo/login_via_ajax_view', $this->data);
+		}
+    }
+
+	/**
 	 * register_account
 	 * User registration page used by all new users wishing to create an account.
 	 * Note: This page is only accessible to users who are not currently logged in, else they will be redirected.

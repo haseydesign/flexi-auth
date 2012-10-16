@@ -8,6 +8,9 @@
 				<li>
 					<a href="<?php echo $base_url;?>auth"><?php echo ($this->flexi_auth->is_logged_in()) ? 'Login via Password' : 'Login';?></a>
 				</li>
+				<li>
+					<a href="<?php echo $base_url;?>auth/login_via_ajax">Login via Ajax</a>
+				</li>
 			<?php } ?>
 			<?php if (! $this->flexi_auth->is_logged_in()) { ?>
 				<li>
