@@ -433,9 +433,7 @@ class Flexi_auth_lite_model extends CI_Model
 			return FALSE;
 		}
 		
-		$browser = $this->input->server('HTTP_ACCEPT_LANGUAGE').$this->input->server('HTTP_ACCEPT_CHARSET').
-			$this->input->server('HTTP_ACCEPT_ENCODING').$this->auth->auth_security['static_salt'].
-			$this->input->server('HTTP_CONNECTION').$this->input->server('HTTP_USER_AGENT');
+		$browser = $this->auth->auth_security['static_salt'].$this->input->server('HTTP_USER_AGENT');
 		
 		return sha1($data.$browser);
 	}
