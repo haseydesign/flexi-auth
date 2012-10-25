@@ -150,7 +150,7 @@
 							<a href="http://fishbowl.pastiche.org/2004/01/19/persistent_login_cookie_best_practice/">Charles Miller's 'Best Practices' article.</a><br/>
 							<a href="http://jaspan.com/improved_persistent_login_cookie_best_practice">Barry Jaspan's Improved Best Practices</a>.
 						</li>
-						<li>The login tokens outlined via the above articles are saved in a cookie that are encrypted using CodeIgniters native encryption library.</li>
+						<li>The login tokens outlined via the above articles are saved in a cookie that can be encrypted using CodeIgniters config settings.</li>
 						<li>
 							A config setting can be defined to destroy a users login session when they close their browser.<br/>
 						 	Alternatively, a time limit can be defined that the user will be able to revisit the site using the same login credentials.
