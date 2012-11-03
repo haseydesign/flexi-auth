@@ -37,9 +37,14 @@
 		<div class="content clearfix">
 			
 			<div class="w100 frame">
-				<h3 class="heading">Release | 13th September 2012</h3>
+				<h3 class="heading">Release | 3rd November 2012</h3>
 				<ul>
-					<li>First publicly released version.</li>
+					<li>
+						<p>Updated all database table column references within the libraries model and library files to be prefixed with the columns table name.</p>
+						<p>For example, the a table column named 'id', would now be referenced within an SQL statement as 'table_name.id' rather than just 'id'.</p>
+						<p>This will help prevent developers getting SQL errors regarding '<em>ambiguous</em>' column names, caused by table columns from different tables being defined in the SQL statement with identical names.</p>
+						<p>Provided you have made no changes to the flexi auths model and library files, no changes should be required when upgrading to this release.</p>
+					</li>
 				</ul>
 			</div>
 			
@@ -51,6 +56,13 @@
 						<p>If the function successfully inserts records to a custom table, then the name and row id of the table are added to an array that is returned by the function. If multiple rows are inserted to multiple tables, then each table and row id is returned by the array.</p>
 						<p>If no records are inserted, then a boolean value of FALSE if returned.</p>
 					</li>
+				</ul>
+			</div>
+			
+			<div class="w100 frame">
+				<h3 class="heading">Release | 13th September 2012</h3>
+				<ul>
+					<li>First publicly released version.</li>
 				</ul>
 			</div>
 
