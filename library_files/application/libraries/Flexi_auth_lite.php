@@ -325,9 +325,7 @@ class Flexi_auth_lite
 			$user_id = ($this->get_user_id()) ? $this->get_user_id() : NULL;
 		}
 
-		$sql_where = array(
-			$this->CI->auth->tbl_user_account.'.'.$this->CI->auth->tbl_col_user_account['id'] => $user_id
-		);
+		$sql_where = array($this->CI->auth->tbl_col_user_account['id'] => $user_id);
 		
 		return $this->CI->flexi_auth_lite_model->get_users(FALSE, $sql_where);
 	}
@@ -348,9 +346,7 @@ class Flexi_auth_lite
 			$identity = ($this->get_user_identity()) ? $this->get_user_identity() : NULL;
 		}
 
-		$sql_where = array(
-			$this->CI->auth->tbl_user_account.'.'.$this->CI->auth->primary_identity_col => $identity
-		);
+		$sql_where = array($this->CI->auth->primary_identity_col => $identity);
 		
 		return $this->CI->flexi_auth_lite_model->get_users(FALSE, $sql_where);
 	}
@@ -399,12 +395,12 @@ class Flexi_auth_lite
 	function db_table($table = FALSE)
 	{
 		// Check the table exists in the config file and that a table name is set.
-		if (! isset($this->CI->auth->auth_database[$table]['table']) || ! $this->CI->auth->auth_database[$table]['table'])
+		if (! isset($this->CI->auth->database_config[$table]['table']) || ! $this->CI->auth->database_config[$table]['table'])
 		{
 			return FALSE;
 		}
 		
-		return $this->CI->auth->auth_database[$table]['table'];
+		return $this->CI->auth->database_config[$table]['table'];
 	}
 	
 	/**
@@ -416,12 +412,12 @@ class Flexi_auth_lite
 	function db_column($table = FALSE, $column = FALSE)
 	{
 		// Check the table and column exist in the config file and that a table/column name is set.
-		if (! isset($this->CI->auth->auth_database[$table]['columns'][$column]) || ! $this->CI->auth->auth_database[$table]['columns'][$column])
+		if (! isset($this->CI->auth->database_config[$table]['columns'][$column]) || ! $this->CI->auth->database_config[$table]['columns'][$column])
 		{
 			return FALSE;
 		}
 		
-		return $this->CI->auth->auth_database[$table]['columns'][$column];
+		return $this->CI->auth->database_config[$table]['columns'][$column];
 	}
 	
 	

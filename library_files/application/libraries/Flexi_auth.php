@@ -239,9 +239,9 @@ class Flexi_auth extends Flexi_auth_lite
 		$sql_where[$this->CI->auth->primary_identity_col] = $identity;
 		
 		$user = $this->CI->flexi_auth_model->get_users($sql_select, $sql_where)->row();
-		
-		$user_id = $user->{$this->CI->auth->tbl_col_user_account['id']};
-		$active_status = $user->{$this->CI->auth->tbl_col_user_account['active']};		
+
+		$user_id = $user->{$this->CI->auth->database_config['user_acc']['columns']['id']};
+		$active_status = $user->{$this->CI->auth->database_config['user_acc']['columns']['active']};		
 		
 		// If account is already activated.
 		if ($active_status == 1)
@@ -261,8 +261,8 @@ class Flexi_auth extends Flexi_auth_lite
 			$sql_where[$this->CI->auth->primary_identity_col] = $identity;
 			$user = $this->CI->flexi_auth_model->get_users($sql_select, $sql_where)->row();
 			
-			$email = $user->{$this->CI->auth->tbl_col_user_account['email']};
-			$activation_token = $user->{$this->CI->auth->tbl_col_user_account['activation_token']};
+			$email = $user->{$this->CI->auth->database_config['user_acc']['columns']['email']}; 
+			$activation_token = $user->{$this->CI->auth->database_config['user_acc']['columns']['activation_token']};
 			
 			// Set email data.
 			$email_to = $email;
@@ -334,11 +334,11 @@ class Flexi_auth extends Flexi_auth_lite
 			$sql_where[$this->CI->auth->primary_identity_col] = $identity;
 			
 			$user = $this->CI->flexi_auth_model->get_users($sql_select, $sql_where)->row();
-			$user_id = $user->{$this->CI->auth->tbl_col_user_account['id']};
-			$forgotten_password_token = $user->{$this->CI->auth->tbl_col_user_account['forgot_password_token']};
+			$user_id = $user->{$this->CI->auth->database_config['user_acc']['columns']['id']};
+			$forgotten_password_token = $user->{$this->CI->auth->database_config['user_acc']['columns']['forgot_password_token']}; 
 
 			// Set email data.
-			$email_to = $user->{$this->CI->auth->tbl_col_user_account['email']};
+			$email_to = $user->{$this->CI->auth->database_config['user_acc']['columns']['email']};
 			$email_title = ' - Forgotten Password Verification';
 			
 			$user_data = array(
@@ -399,8 +399,8 @@ class Flexi_auth extends Flexi_auth_lite
 				return FALSE;
 			}
 
-			$identity = $user->{$this->CI->auth->primary_identity_col};
-			$database_salt = $user->{$this->CI->auth->tbl_col_user_account['salt']};
+			$identity = $user->{$this->CI->auth->db_settings['primary_identity_col']};
+			$database_salt = $user->{$this->CI->auth->database_config['user_acc']['columns']['salt']};
 
 			// If no new password is set via $new_password, the function will generate a new one.
 			$new_password = $this->CI->flexi_auth_model->change_forgotten_password($user_id, $forgot_password_token, $new_password, $database_salt);
@@ -409,7 +409,7 @@ class Flexi_auth extends Flexi_auth_lite
 			if ($send_email)
 			{
 				// Set email data
-				$email_to = $user->{$this->CI->auth->tbl_col_user_account['email']};
+				$email_to = $user->{$this->CI->auth->database_config['user_acc']['columns']['email']};
 				$email_title = ' - New Password';
 			
 				$user_data = array(
@@ -467,8 +467,8 @@ class Flexi_auth extends Flexi_auth_lite
 				return FALSE;
 			}
 			
-			$current_email = $user->{$this->CI->auth->tbl_col_user_account['email']};
-			$update_email_token = $user->{$this->CI->auth->tbl_col_user_account['update_email_token']};
+			$current_email = $user->{$this->CI->auth->database_config['user_acc']['columns']['email']};
+			$update_email_token = $user->{$this->CI->auth->database_config['user_acc']['columns']['update_email_token']};
 			
 			// Send email activation email.
 			$email_to = $new_email;
@@ -560,8 +560,8 @@ class Flexi_auth extends Flexi_auth_lite
 				return FALSE;
 			}
 			
-			$identity = $user->{$this->CI->auth->primary_identity_col};
-			$activation_token = $user->{$this->CI->auth->tbl_col_user_account['activation_token']};
+			$identity = $user->{$this->CI->auth->db_settings['primary_identity_col']};
+			$activation_token = $user->{$this->CI->auth->database_config['user_acc']['columns']['activation_token']};
 			
 			// Prepare account activation email.
 			// If the $activation_token is not empty, the account must be activated via email before the user can login.
@@ -654,7 +654,7 @@ class Flexi_auth extends Flexi_auth_lite
 		
 			foreach ($users as $user)
 			{
-				$user_id = $user[$this->CI->auth->tbl_col_user_account['id']];
+				$user_id = $user[$this->CI->auth->database_config['user_acc']['columns']['id']];
 				$this->CI->flexi_auth_model->delete_user($user_id);
 			}
 			$this->CI->flexi_auth_model->set_status_message('delete_successful', 'config');

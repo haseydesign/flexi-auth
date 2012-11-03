@@ -58,38 +58,80 @@ class Flexi_auth_lite_model extends CI_Model
 		}
 		
 		// Database tables and settings
-		$this->auth->auth_database = $this->config->item('database','flexi_auth');
+		$this->auth->database_config = $database_config = $this->config->item('database','flexi_auth');
+
+		// Prefix each table column with the name of the parent table. 
+		foreach($database_config as $table_key => $table_data)
+		{
+			if (! empty($table_data['table']) && ! empty($table_data['columns']))
+			{
+				foreach($table_data['columns'] as $column_reference => $column_name)
+				{
+					$database_config[$table_key]['columns'][$column_reference] = $table_data['table'].'.'.$column_name;
+				}
+
+				if (! empty($table_data['custom_columns']))
+				{
+					foreach($table_data['custom_columns'] as $column_reference => $column_name)
+					{
+						$database_config[$table_key]['custom_columns'][$column_reference] = $table_data['table'].'.'.$column_name;
+					}					
+				}
+			}
+			// Prefix the primary key, foreign key and custom columns of any custom tables. 
+			else if ($table_key == 'custom')
+			{
+				foreach($table_data as $custom_table_key => $table_data)
+				{
+					if (! empty($table_data['table']) && ! empty($table_data['primary_key']))
+					{
+						$database_config['custom'][$custom_table_key]['primary_key'] = $table_data['table'].'.'.$table_data['primary_key'];
+					}
+					if (! empty($table_data['table']) && ! empty($table_data['foreign_key']))
+					{
+						$database_config['custom'][$custom_table_key]['foreign_key'] = $table_data['table'].'.'.$table_data['foreign_key'];
+					}
+					if (! empty($table_data['table']) && ! empty($table_data['custom_columns']))
+					{
+						foreach($table_data['custom_columns'] as $column_reference => $column_name)
+						{
+							$database_config['custom'][$custom_table_key]['custom_columns'][$column_reference] =  $table_data['table'].'.'.$column_name;
+						}
+					}
+				}
+			}
+		}
 
 		// User session table
-		$this->auth->tbl_user_session = $this->auth->auth_database['user_sess']['table'];
-		$this->auth->tbl_join_user_session = $this->auth->auth_database['user_sess']['join'];
-		$this->auth->tbl_col_user_session = $this->auth->auth_database['user_sess']['columns'];
+		$this->auth->tbl_user_session = $database_config['user_sess']['table'];
+		$this->auth->tbl_join_user_session = $database_config['user_sess']['join'];
+		$this->auth->tbl_col_user_session = $database_config['user_sess']['columns'];
 		
 		// User group table
-		$this->auth->tbl_user_group = $this->auth->auth_database['user_group']['table'];
-		$this->auth->tbl_join_user_group = $this->auth->auth_database['user_group']['join'];
-		$this->auth->tbl_col_user_group = $this->auth->auth_database['user_group']['columns'];
+		$this->auth->tbl_user_group = $database_config['user_group']['table'];
+		$this->auth->tbl_join_user_group = $database_config['user_group']['join'];
+		$this->auth->tbl_col_user_group = $database_config['user_group']['columns'];
 		
 		// User privilege tables
-		$this->auth->tbl_user_privilege = $this->auth->auth_database['user_privileges']['table'];
-		$this->auth->tbl_col_user_privilege = $this->auth->auth_database['user_privileges']['columns'];
-		$this->auth->tbl_user_privilege_users = $this->auth->auth_database['user_privilege_users']['table'];
-		$this->auth->tbl_col_user_privilege_users = $this->auth->auth_database['user_privilege_users']['columns'];
+		$this->auth->tbl_user_privilege = $database_config['user_privileges']['table'];
+		$this->auth->tbl_col_user_privilege = $database_config['user_privileges']['columns'];
+		$this->auth->tbl_user_privilege_users = $database_config['user_privilege_users']['table'];
+		$this->auth->tbl_col_user_privilege_users = $database_config['user_privilege_users']['columns'];
 		
 		// User main account table
-		$this->auth->tbl_user_account = $this->auth->auth_database['user_acc']['table'];
-		$this->auth->tbl_join_user_account = $this->auth->auth_database['user_acc']['join'];
-		$this->auth->tbl_col_user_account = $this->auth->auth_database['user_acc']['columns'];
-		$this->auth->tbl_custom_col_user_account = $this->auth->auth_database['user_acc']['custom_columns'];
-		
+		$this->auth->tbl_user_account = $database_config['user_acc']['table'];
+		$this->auth->tbl_join_user_account = $database_config['user_acc']['join'];
+		$this->auth->tbl_col_user_account = $database_config['user_acc']['columns'];
+		$this->auth->tbl_custom_col_user_account = $database_config['user_acc']['custom_columns'];
+
 		// User custom data table(s)
-		$this->auth->tbl_custom_data = (! empty($this->auth->auth_database['custom'])) ? $this->auth->auth_database['custom'] : array();
+		$this->auth->tbl_custom_data = (! empty($database_config['custom'])) ? $database_config['custom'] : array();
 		
 		// Database settings
-		$this->auth->db_settings = $this->auth->auth_database['settings'];
-		
+		$this->auth->db_settings = $database_config['settings'];
+
 		// Primary user identity column
-		$this->auth->primary_identity_col = $this->auth->db_settings['primary_identity_col'];
+		$this->auth->primary_identity_col = $database_config['user_acc']['table'].'.'.$database_config['settings']['primary_identity_col'];
 		
 		// Security settings
 		$this->auth->auth_security = $this->config->item('security','flexi_auth');
@@ -137,7 +179,7 @@ class Flexi_auth_lite_model extends CI_Model
 	    // Left Join user group table to user account table.
 	    $this->db->join(
 			$this->auth->tbl_user_group, 
-			$this->auth->tbl_user_account.'.'.$this->auth->tbl_col_user_account['group_id'].' = '.$this->auth->tbl_join_user_group, 'left'
+			$this->auth->tbl_col_user_account['group_id'].' = '.$this->auth->tbl_join_user_group, 'left'
 		);
 
 		// Left Join user custom data table(s) to user account table.
@@ -159,7 +201,7 @@ class Flexi_auth_lite_model extends CI_Model
 		
 		// Set any custom defined SQL statements.
 		$this->set_custom_sql_to_db($sql_select, $sql_where);
-		
+
 		return $this->db->get($this->auth->tbl_user_account);
 	}
 	
@@ -317,7 +359,7 @@ class Flexi_auth_lite_model extends CI_Model
 	    if ($query->num_rows() == 1)
 	    {
 			// Get database session token and hash it to try and match hashed cookie token if required for the 'logout_user_onclose' or 'login_via_password_token' features.
-			$session_token = $query->row()->{$this->auth->tbl_col_user_session['token']};
+			$session_token = $query->row()->{$this->auth->database_config['user_sess']['columns']['token']};
 			$hash_session_token = $this->hash_cookie_token($session_token);
 
 			// Validate if user has closed their browser since login (Defined by config file).
