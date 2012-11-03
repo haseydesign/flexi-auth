@@ -199,7 +199,7 @@ class Demo_auth_model extends CI_Model {
 		{					
 			// Verify identity and resend activation token.
 			$response = $this->flexi_auth->resend_activation_token($this->input->post('activation_token_identity'));
-						
+			
 			// Save any public status or error messages (Whilst suppressing any admin messages) to CI's flash session data.
 			$this->session->set_flashdata('message', $this->flexi_auth->get_messages());
 

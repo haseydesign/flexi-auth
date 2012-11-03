@@ -103,7 +103,7 @@
 							</tr>
 						<?php } ?>
 						</tbody>
-					<? } else { ?>
+					<?php } else { ?>
 						<tbody>
 							<tr>
 								<td colspan="<?php echo (isset($status) && $status == 'failed_login_users') ? '6' : '5'; ?>" class="highlight_red">
