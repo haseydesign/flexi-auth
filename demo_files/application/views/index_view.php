@@ -44,7 +44,7 @@
 		<div class="content clearfix">
 			<div class="w100">
 				<h3>What is flexi auth?</h3>
-				<p>flexi auth is a free open source user authentication/login library for use with the <a href="http://codeigniter.com" target="_blank">CodeIgniter</a> 2.0+ framework.</p>
+				<p>flexi auth is a free open source user authentication/login library for use with the <a href="http://ellislab.com" target="_blank">CodeIgniter</a> 2.0+ framework.</p>
 				<hr style="margin-top:10px; margin-bottom:10px; border:none; border-top:1px dotted #999;"/>
 				<p>
 					The flexi auth library initially started out as a modified version of the popular <a href="http://benedmunds.com/ion_auth/" target="_blank">Ion Auth</a> library. 
@@ -74,7 +74,7 @@
 				<p>If you find an example of what you're after, then open up the <a href="https://github.com/haseydesign/flexi-auth">downloadable</a> demo files and have a look at the underlying code.</p>
 				<hr/>
 				
-				<p>Still stuck? Contact me via the CodeIgniter flexi auth forum thread <a href="http://codeigniter.com/forums/viewthread/224351/">http://codeigniter.com/forums/viewthread/224351/</a></p>
+				<p>Still stuck? Contact me via the CodeIgniter flexi auth forum thread <a href="http://ellislab.com/forums/viewthread/224351/">http://ellislab.com/forums/viewthread/224351/</a></p>
 			</div>
 			
 		</div>

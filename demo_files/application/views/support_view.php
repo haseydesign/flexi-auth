@@ -36,7 +36,7 @@
 				<p>If you find an example of what you're after, then open up the <a href="https://github.com/haseydesign/flexi-auth">downloadable</a> demo files and have a look at the underlying code.</p>
 				<hr/>
 				
-				<p>Still stuck? Contact me via the CodeIgniter flexi auth forum thread <a href="http://codeigniter.com/forums/viewthread/224351/">http://codeigniter.com/forums/viewthread/224351/</a></p>
+				<p>Still stuck? Contact me via the CodeIgniter flexi auth forum thread <a href="http://ellislab.com/forums/viewthread/224351/">http://ellislab.com/forums/viewthread/224351/</a></p>
 			</div>		
 
 		</div>
