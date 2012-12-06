@@ -243,7 +243,7 @@ class Demo_auth_model extends CI_Model {
 			redirect('auth');
 		}
 		else
-		{	
+		{
 			// Set validation errors.
 			$this->data['message'] = validation_errors('<p class="error_msg">', '</p>');
 			

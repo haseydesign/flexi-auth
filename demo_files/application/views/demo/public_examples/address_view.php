@@ -98,7 +98,6 @@
 						</tbody>
 						<?php } ?>
 					</table>
-					
 				<?php echo form_close();?>
 			</div>
 		</div>
