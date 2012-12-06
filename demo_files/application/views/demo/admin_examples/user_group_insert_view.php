@@ -57,7 +57,7 @@
 							</li>
 							<li>
 								<label for="description">Group Description:</label>
-								<textarea id="description" name="update_group_description" class="width_400 tooltip_trigger"
+								<textarea id="description" name="insert_group_description" class="width_400 tooltip_trigger"
 									title="A short description of the purpose of the user group."><?php echo set_value('insert_group_description');?></textarea>
 							</li>
 							<li>
