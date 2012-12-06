@@ -56,6 +56,7 @@
 				</p>
 				<h6>Password Validation</h6>
 				<p>
+					<a href="#validate_current_password">validate_current_password()</a> |
 					<a href="#min_password_length">min_password_length()</a> |
 					<a href="#valid_password_chars">valid_password_chars()</a>
 				</p>
@@ -653,6 +654,53 @@
 				</table>
 			</div>			
 				
+			<a name="validate_current_password"></a>
+			<div class="w100 frame">
+				<h3 class="heading">validate_current_password()</h3>
+				
+				<p>Validate a submitted password matches the password of a specific user stored in the database.</p>
+				<hr/>
+				
+				<h6>Library and Requirements</h6>
+				<div class="frame_note">
+					<p>Available via the standard library.</p>
+				</div>
+
+				<h6>How it Works</h6>
+				<div class="frame_note">
+					<p>The function compares a submitted password against the users current password saved within the database.</p>
+				</div>
+				
+				<h6>Return Values</h6>
+				<div class="frame_note">
+					<p><strong class="spacer_100">Failure:</strong>FALSE</p>
+					<p><strong class="spacer_100">Success:</strong>TRUE</p>
+				</div>
+				
+				<h6>Example</h6>
+				<small>Note: The returned example values below are displaying live data from the current auth database and session data set via the demo.</small>
+				<table class="example">
+					<tr>
+						<td>
+							<code>validate_current_password('password123', 'admin@admin.com')</code>
+							<small>Is 'admin@admin.com' current password 'password123'?</small>
+						</td>
+						<td class="spacer_200 align_ctr">
+							<?php var_dump($this->flexi_auth->validate_current_password('password123', 'admin@admin.com')); ?>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<code>validate_current_password('WRONGPASSWORD', 'admin@admin.com')</code>
+							<small>Is 'admin@admin.com' current password 'WRONGPASSWORD'?</small>
+						</td>
+						<td class="spacer_200 align_ctr">
+							<?php var_dump($this->flexi_auth->validate_current_password('WRONGPASSWORD', 'admin@admin.com')); ?>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
 			<a name="min_password_length"></a>
 			<div class="w100 frame">
 				<h3 class="heading">min_password_length()</h3>

@@ -95,6 +95,10 @@
 				<h3>Password Validation Functions</h3>
 				<ul>
 					<li>
+						<a href="<?php echo $base_url; ?>user_guide/validation_functions#validate_current_password">validate_current_password()</a><br/>
+						<small>Validate a submitted password matches the password of a specific user stored in the database.</small>
+					</li>
+					<li>
 						<a href="<?php echo $base_url; ?>user_guide/validation_functions#min_password_length">min_password_length()</a><br/>
 						<small>Gets the minimum valid password character length.</small>
 					</li>
