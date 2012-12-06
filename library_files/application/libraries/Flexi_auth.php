@@ -289,10 +289,22 @@ class Flexi_auth extends Flexi_auth_lite
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
 	
 	/**
+	 * validate_current_password
+	 * Validates a submitted 'Current' password against the database for a specific user. 
+	 *
+	 * @return bool
+	 * @author Rob Hussey
+	 */
+	public function validate_current_password($current_password, $identity)
+	{
+		return ($this->CI->flexi_auth_model->verify_password($identity, $current_password));
+	}	
+	
+	/**
 	 * change_password
 	 * Validates a submitted 'Current' password against the database, if valid, the database is updated with the 'New' password. 
 	 *
-	 * @return void
+	 * @return bool
 	 * @author Mathew Davies
 	 */
 	public function change_password($identity, $current_password, $new_password)

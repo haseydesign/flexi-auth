@@ -64,3 +64,4 @@ $lang['delete_unsuccessful']						= 'Unable to delete account information.';
 $lang['form_validation_duplicate_identity'] 		= "An account with this email address or username already exists.";
 $lang['form_validation_duplicate_email'] 			= "The Email of %s field is not available.";
 $lang['form_validation_duplicate_username'] 		= "The Username of %s field is not available.";
+$lang['form_validation_current_password'] 			= "The %s field is invalid.";

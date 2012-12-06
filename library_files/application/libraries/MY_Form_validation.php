@@ -42,6 +42,18 @@ class MY_Form_validation extends CI_Form_validation
 		}
         return TRUE;
     }
+  
+    // Validate a password matches a specific users current password.
+    protected function validate_current_password($current_password, $identity)
+    {
+		if (!$this->CI->flexi_auth->validate_current_password($current_password, $identity))
+		{
+			$status_message = $this->CI->lang->line('form_validation_current_password');
+			$this->CI->form_validation->set_message('validate_current_password', $status_message);
+			return FALSE;
+		}
+        return TRUE;
+    }
 	
     // Validate Password
      protected function validate_password($password)
