@@ -738,6 +738,34 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		
 		return ($this->db->affected_rows() == 1) ? $this->db->insert_id() : FALSE;
 	}
+        
+        
+	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
+	
+	/**
+	 * insert_privilege_group
+	 * Inserts a new group privilege to the database.
+	 *
+	 * @return bool
+	 * @author Rob Hussey (Copy/Paste by: Filou Tschiemer)
+	 */
+	public function insert_privilege_group($group_id, $privilege_id)
+  	{
+		if (!is_numeric($group_id) || !is_numeric($privilege_id))
+		{
+			return FALSE;
+		}
+		
+		// Set standard privilege data.
+		$sql_insert = array(
+			$this->auth->tbl_col_user_privilege_groups['group_id'] => $group_id,
+			$this->auth->tbl_col_user_privilege_groups['privilege_id'] => $privilege_id
+		);
+
+		$this->db->insert($this->auth->tbl_user_privilege_groups, $sql_insert);
+		
+		return ($this->db->affected_rows() == 1) ? $this->db->insert_id() : FALSE;
+	}
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
 
@@ -756,6 +784,28 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		}
 		
 		$this->db->delete($this->auth->tbl_user_privilege_users, $sql_where);
+
+		return $this->db->affected_rows() == 1;	
+	}
+        
+        
+	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
+
+	/**
+	 * delete_privilege_group
+	 * Deletes a privilege from the privilege group table.
+	 *
+	 * @return bool
+	 * @author Rob Hussey (Copy/Paste by: Filou Tschiemer)
+	 */
+	public function delete_privilege_group($sql_where)
+  	{
+		if (is_numeric($sql_where))
+		{
+			$sql_where = array($this->auth->tbl_col_user_privilege_groups['id'] => $sql_where);
+		}
+		
+		$this->db->delete($this->auth->tbl_user_privilege_groups, $sql_where);
 
 		return $this->db->affected_rows() == 1;	
 	}
@@ -1411,10 +1461,10 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 	 */
 	public function get_privileges($sql_select, $sql_where)
 	{
-		// Set any custom defined SQL statements.
-		$this->flexi_auth_lite_model->set_custom_sql_to_db($sql_select, $sql_where);
-		
-		return $this->db->get($this->auth->tbl_user_privilege);
+                // Set any custom defined SQL statements.
+                $this->flexi_auth_lite_model->set_custom_sql_to_db($sql_select, $sql_where);
+                
+                return $this->db->get($this->auth->tbl_user_privilege);       
 	}
 
 	/**
@@ -1431,6 +1481,24 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		
 		return $this->db->from($this->auth->tbl_user_privilege)
 			->join($this->auth->tbl_user_privilege_users, $this->auth->tbl_col_user_privilege['id'].' = '.$this->auth->tbl_col_user_privilege_users['privilege_id'])
+			->get();
+	}
+        
+        
+	/**
+	 * get_group_privileges
+	 * Returns a list of user privileges matching the $sql_where condition.
+	 *
+	 * @return void
+	 * @author Rob Hussey (Copy/Paste by: Filou Tschiemer)
+	 */
+	public function get_group_privileges($sql_select, $sql_where)
+	{
+		// Set any custom defined SQL statements.
+		$this->flexi_auth_lite_model->set_custom_sql_to_db($sql_select, $sql_where);
+		
+		return $this->db->from($this->auth->tbl_user_privilege)
+			->join($this->auth->tbl_user_privilege_groups, $this->auth->tbl_col_user_privilege['id'].' = '.$this->auth->tbl_col_user_privilege_groups['privilege_id'])
 			->get();
 	}
 
@@ -1706,25 +1774,52 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		
 		###+++++++++++++++++++++++++++++++++###
 
-		// Get user privileges.
-		$sql_select = array(
-			$this->auth->tbl_col_user_privilege['id'],
-			$this->auth->tbl_col_user_privilege['name']
-		);
-		
-		$sql_where = array($this->auth->tbl_col_user_privilege_users['user_id'] => $user_id);
-		
-		$query = $this->get_user_privileges($sql_select, $sql_where);
-		
-		// Create an array of user privileges.
+                $privilege_sources = $this->auth->auth_settings['privilege_sources'];
+                        
 		$privileges = array();
-		if ($query->num_rows() > 0)
-		{
-			foreach($query->result_array() as $data)
-			{
-				$privileges[$data[$this->auth->database_config['user_privileges']['columns']['id']]] = $data[$this->auth->database_config['user_privileges']['columns']['name']];
-			}
-		}
+                
+                if (in_array('user', $privilege_sources)){
+                    // Get user privileges.
+
+                    $sql_select = array(
+                            $this->auth->tbl_col_user_privilege['id'],
+                            $this->auth->tbl_col_user_privilege['name']
+                    );
+
+                    $sql_where = array($this->auth->tbl_col_user_privilege_users['user_id'] => $user_id);
+
+                    $query = $this->get_user_privileges($sql_select, $sql_where);
+
+                    // Create an array of user privileges.
+                    if ($query->num_rows() > 0)
+                    {
+                            foreach($query->result_array() as $data)
+                            {
+                                    $privileges[$data[$this->auth->database_config['user_privileges']['columns']['id']]] = $data[$this->auth->database_config['user_privileges']['columns']['name']];
+                            }
+                    }
+                }
+                
+                if (in_array('group', $privilege_sources)){
+                    // Get group privileges.
+                    $sql_select = array(
+                            $this->auth->tbl_col_user_privilege['id'],
+                            $this->auth->tbl_col_user_privilege['name']
+                    );
+
+                    $sql_where = array($this->auth->tbl_col_user_privilege_groups['group_id'] => $user->{$this->auth->database_config['user_acc']['columns']['group_id']});
+
+                    $query = $this->get_group_privileges($sql_select, $sql_where);
+
+                    // Extend array of user privileges by group privileges.
+                    if ($query->num_rows() > 0)
+                    {
+                            foreach($query->result_array() as $data)
+                            {
+                                    $privileges[$data[$this->auth->database_config['user_privileges']['columns']['id']]] = $data[$this->auth->database_config['user_privileges']['columns']['name']];
+                            }
+                    }
+                }
 
 		// Set user privileges to session.
 		$this->auth->session_data[$this->auth->session_name['privileges']] = $privileges;

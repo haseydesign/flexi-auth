@@ -38,7 +38,8 @@
 		<div class="content clearfix">
 			<div class="col100">
 				<h2>Update User Group</h2>
-				<a href="<?php echo $base_url;?>auth_admin/manage_user_groups">Manage User Groups</a>
+				<a href="<?php echo $base_url;?>auth_admin/manage_user_groups">Manage User Groups</a> |
+				<a href="<?php echo $base_url;?>auth_admin/update_group_privileges/<?php echo $group['ugrp_id']; ?>">Manage Groups Privileges</a>
 
 			<?php if (! empty($message)) { ?>
 				<div id="message">

@@ -434,6 +434,46 @@ class Demo_auth_admin_model extends CI_Model {
 		// Redirect user.
 		redirect('auth_admin/manage_user_accounts');			
 	}
+
+
+   	/**
+	 * update_group_privileges
+	 * Updates the privileges for a specific group.
+	 */
+   function update_group_privileges($group_id)
+    {
+		// Update privileges.
+		foreach($this->input->post('update') as $row)
+		{
+                    
+			if ($row['current_status'] != $row['new_status'])
+			{
+				// Insert new user privilege.
+				if ($row['new_status'] == 1)
+				{
+					$this->flexi_auth->insert_privilege_group($group_id, $row['id']);	
+				}
+				// Delete existing user privilege.
+				else
+				{
+					$sql_where = array(
+						$this->flexi_auth->db_column('user_privilege_groups', 'group_id') => $group_id,
+						$this->flexi_auth->db_column('user_privilege_groups', 'privilege_id') => $row['id']
+					);
+					
+					$this->flexi_auth->delete_privilege_group($sql_where);
+				}
+			}
+		}
+
+		// Save any public or admin status or error messages to CI's flash session data.
+		$this->session->set_flashdata('message', $this->flexi_auth->get_messages());
+		
+		// Redirect user.
+		redirect('auth_admin/manage_user_groups');			
+    }
+
 }
+
 /* End of file demo_auth_admin_model.php */
 /* Location: ./application/models/demo_auth_admin_model.php */

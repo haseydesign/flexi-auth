@@ -136,3 +136,23 @@ CREATE TABLE `user_privilege_users` (
 -- ----------------------------
 -- Records of user_privilege_users
 -- ----------------------------
+
+
+-- ----------------------------
+-- Table structure for `user_privilege_groups`
+-- ----------------------------
+
+DROP TABLE IF EXISTS `user_privilege_groups`;
+CREATE TABLE `user_privilege_groups` (
+  `upriv_groups_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `upriv_groups_ugrp_fk` smallint(5) unsigned NOT NULL,
+  `upriv_groups_upriv_fk` smallint(5) unsigned NOT NULL,
+  PRIMARY KEY (`upriv_groups_id`),
+  UNIQUE KEY `upriv_groups_id` (`upriv_groups_id`) USING BTREE,
+  KEY `upriv_groups_ugrp_fk` (`upriv_groups_ugrp_fk`),
+  KEY `upriv_groups_upriv_fk` (`upriv_groups_upriv_fk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+-- ----------------------------
+-- Records of user_privilege_groups
+-- ----------------------------

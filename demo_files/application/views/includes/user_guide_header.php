@@ -15,6 +15,9 @@
 						<ul>
 							<li class="header">Internal Auth Config</li>
 						<li>
+							<a href="<?php echo $base_url; ?>user_guide/general_settings">General Settings</a>
+						</li>
+						<li>
 							<a href="<?php echo $base_url; ?>user_guide/login_session_config#user_login_sessions_cookies">Session / Cookie Settings</a>
 						</li>
 						<li>
@@ -44,6 +47,9 @@
 						</li>
 						<li>
 							<a href="<?php echo $base_url; ?>user_guide/user_privilege_config#user_privilege_users_table">User Privilege Users Table</a>
+						</li>
+						<li>
+							<a href="<?php echo $base_url; ?>user_guide/user_privilege_config#user_privilege_groups_table">User Privilege Groups Table</a>
 						</li>
 						<li>
 							<a href="<?php echo $base_url; ?>user_guide/login_session_config#user_login_session_table">User Login Session Table</a>

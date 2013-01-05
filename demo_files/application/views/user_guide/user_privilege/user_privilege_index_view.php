@@ -63,6 +63,10 @@
 						<a href="<?php echo $base_url; ?>user_guide/user_privilege_get_data#get_user_privileges">get_user_privileges()</a><br/>
 						<small>Get the user privileges for a user.</small>
 					</li>
+					<li>
+						<a href="<?php echo $base_url; ?>user_guide/user_privilege_get_data#get_group_privileges">get_group_privileges()</a><br/>
+						<small>Get the group privileges for a group.</small>
+					</li>
 				</ul>
 				<hr/>
 				
@@ -101,6 +105,14 @@
 					<li>
 						<a href="<?php echo $base_url; ?>user_guide/user_privilege_set_data#delete_privilege_user">delete_privilege_user()</a><br/>
 						<small>Deletes a user privilege for a user.</small>
+					</li>
+					<li>
+						<a href="<?php echo $base_url; ?>user_guide/user_privilege_set_data#insert_privilege_group">insert_privilege_group()</a><br/>
+						<small>Inserts a new user privilege for a group.</small>
+					</li>
+					<li>
+						<a href="<?php echo $base_url; ?>user_guide/user_privilege_set_data#delete_privilege_group">delete_privilege_group()</a><br/>
+						<small>Deletes a user privilege for a group.</small>
 					</li>
 				</ul>
 			</div>
