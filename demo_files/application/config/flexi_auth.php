@@ -122,6 +122,17 @@
 	$config['database']['user_privilege_users']['columns']['user_id'] = 'upriv_users_uacc_fk';
 	$config['database']['user_privilege_users']['columns']['privilege_id'] = 'upriv_users_upriv_fk';
 
+	/**
+	 * User Privilege Groups Table
+	 * The user privilege group table is used to assign privileges to groups. Multiple privileges can be assigned to a group.
+	 * 
+	 * All columns are required.
+	*/ 
+	$config['database']['user_privilege_groups']['table'] = 'user_privilege_groups';
+	$config['database']['user_privilege_groups']['columns']['id'] = 'upriv_groups_id';
+	$config['database']['user_privilege_groups']['columns']['group_id'] = 'upriv_groups_ugrp_fk';
+	$config['database']['user_privilege_groups']['columns']['privilege_id'] = 'upriv_groups_upriv_fk';
+
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
 	
 	/**
@@ -598,6 +609,14 @@
 	 * @param: int
 	*/
 	$config['settings']['default_group_id'] = 1;
+
+        /**
+         * Set which sources are used to retrieve privileges. Can be assigned either through user or group.
+         * @param array
+         * 
+         * Examples: array('user','group'), array('user')
+         */
+        $config['settings']['privilege_sources']= array('user','group');
 
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	

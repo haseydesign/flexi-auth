@@ -262,9 +262,9 @@ class User_guide extends CI_Controller {
 	// MISC INFO
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 	
-	function misc_info() 
+        function general_settings()  
 	{
-		$this->load->view('user_guide/misc/misc_view');
+		$this->load->view('user_guide/misc/general_settings');
 	}
 }
 /* End of file user_guide.php */

@@ -47,7 +47,9 @@
 					<a href="#update_privilege">update_privilege()</a> | 
 					<a href="#delete_privilege">delete_privilege()</a> |
 					<a href="#insert_privilege_user">insert_privilege_user()</a> | 
-					<a href="#delete_privilege_user">delete_privilege_user()</a>
+					<a href="#delete_privilege_user">delete_privilege_user()</a> |
+					<a href="#insert_privilege_group">insert_privilege_group()</a> | 
+					<a href="#delete_privilege_group">delete_privilege_group()</a>
 				</p>
 			</div>
 
@@ -423,7 +425,142 @@ $sql_where = array(...);
 $this->flexi_auth->delete_privilege_user($sql_where);
 </pre>
 			</div>
+                        
 
+			<a name="insert_privilege_group"></a>
+			<div class="w100 frame">
+				<h3 class="heading">insert_privilege_group()</h3>
+				
+				<p>Inserts a new user privilege for a group.</p>
+				<hr/>
+				
+				<h6>Library and Requirements</h6>
+				<div class="frame_note">
+					<p>Available via the standard library.</p>
+				</div>
+				
+				<h6>Function Parameters</h6>
+				<code>insert_privilege_group(group_id, privilege_id)</code>
+				<a href="#help" class="help_link">Help</a>
+				<table>
+					<thead>
+						<tr>
+							<th class="spacer_150">Name</th>
+							<th class="spacer_100 align_ctr">Data Type</th>
+							<th class="spacer_75 align_ctr">Required</th>
+							<th class="spacer_75 align_ctr">Default</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>group_id</td>
+							<td class="align_ctr">int</td>
+							<td class="align_ctr">Yes</td>
+							<td class="align_ctr">FALSE</td>
+							<td>Defines the id of the group to insert a new user privilege for.</td>
+						</tr>
+						<tr>
+							<td>privilege_id</td>
+							<td class="align_ctr">int</td>
+							<td class="align_ctr">Yes</td>
+							<td class="align_ctr">FALSE</td>
+							<td>Defines the id of the user privilege to be inserted for a group.</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<h6>How it Works</h6>
+				<div class="frame_note">
+					<p>The function runs an SQL INSERT query inserting the '<em>group_id</em>' and '<em>privilege_id</em>' to the User Privilege Groups table.</p>
+				</div>
+									
+				<h6>Return Values</h6>
+				<div class="frame_note">
+					<p><strong class="spacer_100">Failure:</strong>FALSE | An error message will be set.</p>
+					<p><strong class="spacer_100">Success:</strong>TRUE | id of new record | A status message will be set.</p>
+				</div>
+				
+				<h6>Example</h6>
+<pre>
+<span class="comment">// Example of applying a user privilege to a specific group.</span>
+$group_id = 3;
+$privilege_id = 201;
+
+$this->flexi_auth->insert_privilege_group($group_id, $privilege_id);
+</pre>
+			</div>
+
+			<a name="delete_privilege_group"></a>
+			<div class="w100 frame">
+				<h3 class="heading">delete_privilege_group()</h3>
+				
+				<p>Deletes a user privilege for a group.</p>
+				<hr/>
+				
+				<h6>Library and Requirements</h6>
+				<div class="frame_note">
+					<p>Available via the standard library.</p>
+				</div>
+				
+				<h6>Function Parameters</h6>
+				<code>delete_privilege_group(sql_where)</code>
+				<a href="#help" class="help_link">Help</a>
+				<table>
+					<thead>
+						<tr>
+							<th class="spacer_150">Name</th>
+							<th class="spacer_100 align_ctr">Data Type</th>
+							<th class="spacer_75 align_ctr">Required</th>
+							<th class="spacer_75 align_ctr">Default</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>sql_where</td>
+							<td class="align_ctr">string | int | array</td>
+							<td class="align_ctr">No</td>
+							<td class="align_ctr">FALSE</td>
+							<td>
+								<p>
+									Set the SQL WHERE statement used to filter the database records to return.
+									Read the <a href="<?php echo $base_url; ?>/user_guide/defining_custom_sql">defining SQL documentation</a> for further information.
+								</p>
+								<p>
+									If a number is passed, the function will interpret the value as the tables primary key. 		
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<h6>How it Works</h6>
+				<div class="frame_note">
+					<p>The function generates an SQL WHERE statement from the passed '<em>sql_where</em>' argument and deletes all matching user privilege users.</p>
+				</div>
+									
+				<h6>Return Values</h6>
+				<div class="frame_note">
+					<p><strong class="spacer_100">Failure:</strong>FALSE | An error message will be set.</p>
+					<p><strong class="spacer_100">Success:</strong>TRUE | A status message will be set.</p>
+				</div>
+				
+				<h6>Examples</h6>
+<pre>
+<span class="comment">// Example #1 : Delete a user privilege group via a user privilege group id of 101.</span>
+$sql_where = 101;
+
+$this->flexi_auth->delete_privilege_group($sql_where);
+</pre>
+<pre>
+<span class="comment">// Example #2 : Delete user privilege groups via a custom SQL WHERE statement.</span>
+<span class="comment">// Read the <a href="<?php echo $base_url; ?>user_guide/defining_custom_sql">defining SQL documentation</a> for further information on setting SQL statements.</span>
+$sql_where = array(...);
+
+$this->flexi_auth->delete_privilege_group($sql_where);
+</pre>
+			</div>
 
 		</div>
 	</div>	
