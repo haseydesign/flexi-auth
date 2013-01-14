@@ -701,7 +701,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			// Loop through deleted privilege ids and then deleted related user privileges.
 			foreach($query->result_array() as $row)
 			{
-				$sql_where = array($this->auth->tbl_col_user_privilege_users['privilege_id'] => $row[$this->auth->database_config['user_privilege_users']['columns']['id']]);
+				$sql_where = array($this->auth->tbl_col_user_privilege_users['privilege_id'] => $row[$this->auth->database_config['user_privileges']['columns']['id']]);
 				
 				$this->db->delete($this->auth->tbl_user_privilege_users, $sql_where);
 			}
