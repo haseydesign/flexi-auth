@@ -2106,7 +2106,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		{
 			if ($captcha_theme == 'custom')
 			{
-				$theme = "theme:'custom', custom_theme_widget:'recaptcha_widget,'";
+				$theme = "theme:'custom', custom_theme_widget:'recaptcha_widget',";
 			}
 			else
 			{
