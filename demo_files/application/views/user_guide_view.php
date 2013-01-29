@@ -43,7 +43,7 @@
 				<ul>
 					<li><a href="https://github.com/haseydesign/flexi-auth">Download</a> the latest version of the flexi auth library.</li>
 					<li>Read through the <a href="<?php echo $base_url; ?>user_guide/installation">installation guide</a>.</li>
-					<li>Read the <a href="<?php echo $base_url; ?>user_guide/conception">flexi auth conception</a> to understand the principle ideas of how flexi auth works.</li>
+					<li>Read the <a href="<?php echo $base_url; ?>user_guide/concept">flexi auth concept</a> to understand the principle ideas of how flexi auth works.</li>
 					<li>Read the <a href="<?php echo $base_url; ?>user_guide/library_info">library documentation</a> to get an understanding of the purpose of each library.</li>
 					<li>Then start building your user authentication system, using the demo and user guide for reference on how to implement each of flexi auths features.</li>
 				</ul>

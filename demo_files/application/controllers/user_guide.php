@@ -47,9 +47,9 @@ class User_guide extends CI_Controller {
 		$this->load->view('user_guide_view');
 	}
 
-	function conception()
+	function concept()
 	{
-		$this->load->view('user_guide/misc/conception_view');
+		$this->load->view('user_guide/misc/concept_view');
 	}
 
 	function library_info()
