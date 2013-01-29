@@ -399,9 +399,15 @@ class Auth_admin extends CI_Controller {
 		}
 
 		// Get users profile data.
-		$sql_select = array('upro_uacc_fk', 'upro_first_name', 'upro_last_name');
+		$sql_select = array(
+                        'upro_uacc_fk', 
+                        'upro_first_name', 
+                        'upro_last_name',
+                        'uacc_group_fk',
+			$this->flexi_auth->db_column('user_group', 'name')
+                );
 		$sql_where = array($this->flexi_auth->db_column('user_acc', 'id') => $user_id);
-		$this->data['user'] = $this->flexi_auth->get_users_row_array($sql_select, $sql_where);		
+		$user = $this->data['user'] = $this->flexi_auth->get_users_row_array($sql_select, $sql_where);		
 
 		// Get all privilege data. 
 		$sql_select = array(
@@ -411,6 +417,18 @@ class Auth_admin extends CI_Controller {
 		);
 		$this->data['privileges'] = $this->flexi_auth->get_privileges_array($sql_select);
 		
+                
+		// Get user's group current privilege data.
+		$sql_select = array($this->flexi_auth->db_column('user_privilege_groups', 'privilege_id'));
+		$sql_where = array($this->flexi_auth->db_column('user_privilege_groups', 'group_id') => $user['uacc_group_fk']);
+		$group_privileges = $this->flexi_auth->get_group_privileges_array($sql_select, $sql_where);
+                
+                $this->data['group_privileges'] = array();
+                foreach($group_privileges as $privilege)
+                {
+                    $this->data['group_privileges'][] = $privilege[$this->flexi_auth->db_column('user_privilege_groups', 'privilege_id')];
+                }
+                
 		// Get users current privilege data.
 		$sql_select = array($this->flexi_auth->db_column('user_privilege_users', 'privilege_id'));
 		$sql_where = array($this->flexi_auth->db_column('user_privilege_users', 'user_id') => $user_id);
@@ -427,7 +445,66 @@ class Auth_admin extends CI_Controller {
 		// Set any returned status/error messages.
 		$this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];		
 
+                // For the sake of this example demo, load the settings array containing the current privilege sources.
+                $this->data['privilege_sources'] = $this->auth->auth_settings['privilege_sources'];
+                
 		$this->load->view('demo/admin_examples/user_privileges_update_view', $this->data);		
+    }
+    
+    
+ 	/**
+ 	 * update_group_privileges
+ 	 * Update the access privileges of a specific group.
+ 	 */
+    function update_group_privileges($group_id)
+    {
+		// Check user has privileges to update group privileges, else display a message to notify the user they do not have valid privileges.
+		if (! $this->flexi_auth->is_privileged('Update Privileges'))
+		{
+			$this->session->set_flashdata('message', '<p class="error_msg">You do not have access privileges to update group privileges.</p>');
+			redirect('auth_admin/manage_user_accounts');		
+		}
+
+		// If 'Update group Privilege' form has been submitted, update the user privileges.
+		if ($this->input->post('update_group_privilege')) 
+		{
+			$this->load->model('demo_auth_admin_model');
+			$this->demo_auth_admin_model->update_group_privileges($group_id);
+		}
+
+		
+		// Get group's current data.
+		$sql_where = array($this->flexi_auth->db_column('user_group', 'id') => $group_id);
+		$this->data['group'] = $this->flexi_auth->get_groups_row_array(FALSE, $sql_where);
+                
+		// Get all privilege data. 
+		$sql_select = array(
+			$this->flexi_auth->db_column('user_privileges', 'id'),
+			$this->flexi_auth->db_column('user_privileges', 'name'),
+			$this->flexi_auth->db_column('user_privileges', 'description')
+		);
+		$this->data['privileges'] = $this->flexi_auth->get_privileges_array($sql_select);
+		
+		// Get groups current privilege data.
+		$sql_select = array($this->flexi_auth->db_column('user_privilege_groups', 'privilege_id'));
+		$sql_where = array($this->flexi_auth->db_column('user_privilege_groups', 'group_id') => $group_id);
+		$group_privileges = $this->flexi_auth->get_group_privileges_array($sql_select, $sql_where);
+                
+		// For the purposes of the example demo view, create an array of ids for all the group assigned privileges.
+		// The array can then be used within the view to check whether the group has a specific privilege, this data allows us to then format form input values accordingly. 
+		$this->data['group_privileges'] = array();
+		foreach($group_privileges as $privilege)
+		{
+			$this->data['group_privileges'][] = $privilege[$this->flexi_auth->db_column('user_privilege_groups', 'privilege_id')];
+		}
+	
+		// Set any returned status/error messages.
+		$this->data['message'] = (!isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];		
+
+                // For the sake of this example demo, load the settings array containing the current privilege sources.
+                $this->data['privilege_sources'] = $this->auth->auth_settings['privilege_sources'];
+                
+		$this->load->view('demo/admin_examples/group_privileges_update_view', $this->data);		
     }
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	

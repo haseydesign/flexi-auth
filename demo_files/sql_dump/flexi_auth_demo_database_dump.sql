@@ -219,3 +219,38 @@ INSERT INTO `user_privilege_users` VALUES ('12', '2', '1');
 INSERT INTO `user_privilege_users` VALUES ('13', '2', '2');
 INSERT INTO `user_privilege_users` VALUES ('14', '2', '3');
 INSERT INTO `user_privilege_users` VALUES ('15', '2', '6');
+
+
+-- ----------------------------
+-- Table structure for `user_privilege_groups`
+-- ----------------------------
+
+DROP TABLE IF EXISTS `user_privilege_groups`;
+CREATE TABLE `user_privilege_groups` (
+  `upriv_groups_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `upriv_groups_ugrp_fk` smallint(5) unsigned NOT NULL,
+  `upriv_groups_upriv_fk` smallint(5) unsigned NOT NULL,
+  PRIMARY KEY (`upriv_groups_id`),
+  UNIQUE KEY `upriv_groups_id` (`upriv_groups_id`) USING BTREE,
+  KEY `upriv_groups_ugrp_fk` (`upriv_groups_ugrp_fk`),
+  KEY `upriv_groups_upriv_fk` (`upriv_groups_upriv_fk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+
+-- ----------------------------
+-- Records of user_privilege_groups
+-- ----------------------------
+
+INSERT INTO `user_privilege_groups` VALUES(1, 3, 1);
+INSERT INTO `user_privilege_groups` VALUES(3, 3, 3);
+INSERT INTO `user_privilege_groups` VALUES(4, 3, 4);
+INSERT INTO `user_privilege_groups` VALUES(5, 3, 5);
+INSERT INTO `user_privilege_groups` VALUES(6, 3, 6);
+INSERT INTO `user_privilege_groups` VALUES(7, 3, 7);
+INSERT INTO `user_privilege_groups` VALUES(8, 3, 8);
+INSERT INTO `user_privilege_groups` VALUES(9, 3, 9);
+INSERT INTO `user_privilege_groups` VALUES(10, 3, 10);
+INSERT INTO `user_privilege_groups` VALUES(11, 3, 11);
+INSERT INTO `user_privilege_groups` VALUES(12, 2, 2);
+INSERT INTO `user_privilege_groups` VALUES(13, 2, 4);
+INSERT INTO `user_privilege_groups` VALUES(14, 2, 5);

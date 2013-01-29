@@ -62,6 +62,10 @@
 									title="Indicates whether the group is considered an 'Admin' group.<br/> Note: Privileges can still be set seperately.">
 									Is Admin Group
 								</th>
+								<th class="spacer_100 align_ctr tooltip_trigger"
+									title="Manage the access privileges of groups.">
+									Group Privileges
+								</th>
 								<th class="spacer_100 align_ctr tooltip_trigger" 
 									title="If checked, the row will be deleted upon the form being updated.">
 									Delete
@@ -79,6 +83,9 @@
 								<td><?php echo $group[$this->flexi_auth->db_column('user_group', 'description')];?></td>
 								<td class="align_ctr"><?php echo ($group[$this->flexi_auth->db_column('user_group', 'admin')] == 1) ? "Yes" : "No";?></td>
 								<td class="align_ctr">
+									<a href="<?php echo $base_url.'auth_admin/update_group_privileges/'.$group[$this->flexi_auth->db_column('user_group', 'id')];?>">Manage</a>
+								</td>
+								<td class="align_ctr">
 								<?php if ($this->flexi_auth->is_privileged('Delete User Groups')) { ?>
 									<input type="checkbox" name="delete_group[<?php echo $group[$this->flexi_auth->db_column('user_group', 'id')];?>]" value="1"/>
 								<?php } else { ?>
@@ -91,7 +98,7 @@
 						<?php } ?>
 						</tbody>
 						<tfoot>
-							<td colspan="4">
+							<td colspan="5">
 								<?php $disable = (! $this->flexi_auth->is_privileged('Update User Groups') && ! $this->flexi_auth->is_privileged('Delete User Groups')) ? 'disabled="disabled"' : NULL;?>
 								<input type="submit" name="submit" value="Delete Checked User Groups" class="link_button large" <?php echo $disable; ?>/>
 							</td>

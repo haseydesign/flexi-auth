@@ -876,6 +876,26 @@ class Flexi_auth extends Flexi_auth_lite
 		$this->CI->flexi_auth_model->set_error_message('update_unsuccessful', 'config');
 		return FALSE;
 	}
+        
+        
+	/**
+	 * insert_privilege_group
+	 * Inserts a new user privilege group to the database.
+	 *
+	 * @return void
+	 * @author Rob Hussey (Copy/Paste by: Filou Tschiemer)
+	 */
+	public function insert_privilege_group($group_id, $privilege_id)
+	{
+		if ($privilege_id = $this->CI->flexi_auth_model->insert_privilege_group($group_id, $privilege_id));
+		{
+			$this->CI->flexi_auth_model->set_status_message('update_successful', 'config');
+			return $privilege_id;
+		}
+
+		$this->CI->flexi_auth_model->set_error_message('update_unsuccessful', 'config');
+		return FALSE;
+	}
 	
 	/**
 	 * delete_privilege_user
@@ -887,6 +907,26 @@ class Flexi_auth extends Flexi_auth_lite
 	public function delete_privilege_user($sql_where)
 	{
 		if ($this->CI->flexi_auth_model->delete_privilege_user($sql_where))
+		{
+			$this->CI->flexi_auth_model->set_status_message('delete_successful', 'config');
+			return TRUE;
+		}
+
+		$this->CI->flexi_auth_model->set_error_message('delete_unsuccessful', 'config');
+		return FALSE;
+	}
+        
+        
+	/**
+	 * delete_privilege_group
+	 * Deletes a group from the user privilege group table.
+	 *
+	 * @return bool
+	 * @author Rob Hussey (Copy/Paste by: Filou Tschiemer)
+	 */
+	public function delete_privilege_group($sql_where)
+	{
+		if ($this->CI->flexi_auth_model->delete_privilege_group($sql_where))
 		{
 			$this->CI->flexi_auth_model->set_status_message('delete_successful', 'config');
 			return TRUE;
@@ -1034,6 +1074,25 @@ class Flexi_auth extends Flexi_auth_lite
 		}
 	
 		return $this->CI->flexi_auth_model->get_user_privileges($sql_select, $sql_where);
+	}
+        
+        
+	/**
+	 * get_group_privileges_query
+	 * Returns a groups privileges using their session group_id by default.
+	 *
+	 * @return object
+	 * @author Rob Hussey (Copy/Paste by: Filou Tschiemer)
+	 */
+	public function get_group_privileges_query($sql_select = FALSE, $sql_where = FALSE)
+	{
+		if (! $sql_where)
+		{
+			$sql_where = array($this->CI->auth->tbl_col_user_privilege_groups['group'] => 
+				$this->CI->auth->session_data[$this->CI->auth->session_name['group']]);
+		}
+	
+		return $this->CI->flexi_auth_model->get_group_privileges($sql_select, $sql_where);
 	}
 
 	
