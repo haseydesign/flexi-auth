@@ -6,9 +6,9 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>User Login Session Configuration | User Guide | flexi auth | A User Authentication Library for CodeIgniter</title>
-	<meta name="description" content="The user guide for configuring user login sessions in flexi auth."/> 
-	<meta name="keywords" content="user login session configuration, user guide, flexi auth, user authentication, codeigniter"/>
+	<title>General Settings | User Guide | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<meta name="description" content="The user guide for configuring general settings in flexi auth."/> 
+	<meta name="keywords" content="general settings, user guide, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
 </head>
 
@@ -70,14 +70,11 @@
 				</div>
 			</div>
 
-
 			<a name="general_settings"></a>
 			<div class="w100 frame">
 				<h3 class="heading">General Config File Settings</h3>
 				
 				<p>Many of flexi auths automatic functions are customisable and can even be turned on and off to suit different websites.</p>
-				<hr/>
-
 				
 <pre><span class="comment">// Set whether an incremented number is added to the end of an unavailable username.</span>
 $config['settings']['auto_increment_username'] = FALSE;
@@ -86,18 +83,18 @@ $config['settings']['auto_increment_username'] = FALSE;
 $config['settings']['suspend_new_accounts'] = FALSE;
 
 <span class="comment">// Set a time limit to grant users instant login access, once expired, they are locked out until they
-activate their account via an activation email sent to them.</span>
+// activate their account via an activation email sent to them.</span>
 $config['settings']['account_activation_time_limit'] = 0;
 
 <span class="comment">// Set the id of the default group that new users will be added to unless otherwise specified.</span>
 $config['settings']['default_group_id'] = 1;
 
-<span class="comment">// Set which sources are used to retrieve privileges. Can be assigned either through user or group.
-// Demo default: user & group, System default: user only</span>
+<span class="comment">// Set which sources are used to retrieve privileges. Can be defined either through privileges 
+// assigned per user or via privileges assigned to a users user group.
+// Demo default: user and user group. Library default: user only</span>
 $config['settings']['privilege_sources']= array('user','group');
 </pre>
 			</div>
-
 
 		</div>
 	</div>	

@@ -63,8 +63,8 @@
 									Is Admin Group
 								</th>
 								<th class="spacer_100 align_ctr tooltip_trigger"
-									title="Manage the access privileges of groups.">
-									Group Privileges
+									title="Manage the access privileges of user groups.">
+									User Group Privileges
 								</th>
 								<th class="spacer_100 align_ctr tooltip_trigger" 
 									title="If checked, the row will be deleted upon the form being updated.">

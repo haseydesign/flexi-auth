@@ -45,11 +45,17 @@
 				<p>
 					<a href="#insert_privilege">insert_privilege()</a> | 
 					<a href="#update_privilege">update_privilege()</a> | 
-					<a href="#delete_privilege">delete_privilege()</a> |
+					<a href="#delete_privilege">delete_privilege()</a>
+				</p>
+				<h6>User Privilege CRUD Functions</h6>
+				<p>
 					<a href="#insert_privilege_user">insert_privilege_user()</a> | 
-					<a href="#delete_privilege_user">delete_privilege_user()</a> |
-					<a href="#insert_privilege_group">insert_privilege_group()</a> | 
-					<a href="#delete_privilege_group">delete_privilege_group()</a>
+					<a href="#delete_privilege_user">delete_privilege_user()</a>
+				</p>
+				<h6>User Group Privilege CRUD Functions</h6>
+				<p>
+					<a href="#insert_user_group_privilege">insert_user_group_privilege()</a> | 
+					<a href="#delete_user_group_privilege">delete_user_group_privilege()</a>
 				</p>
 			</div>
 
@@ -427,9 +433,9 @@ $this->flexi_auth->delete_privilege_user($sql_where);
 			</div>
                         
 
-			<a name="insert_privilege_group"></a>
+			<a name="insert_user_group_privilege"></a>
 			<div class="w100 frame">
-				<h3 class="heading">insert_privilege_group()</h3>
+				<h3 class="heading">insert_user_group_privilege()</h3>
 				
 				<p>Inserts a new user privilege for a group.</p>
 				<hr/>
@@ -440,7 +446,7 @@ $this->flexi_auth->delete_privilege_user($sql_where);
 				</div>
 				
 				<h6>Function Parameters</h6>
-				<code>insert_privilege_group(group_id, privilege_id)</code>
+				<code>insert_user_group_privilege(group_id, privilege_id)</code>
 				<a href="#help" class="help_link">Help</a>
 				<table>
 					<thead>
@@ -458,14 +464,14 @@ $this->flexi_auth->delete_privilege_user($sql_where);
 							<td class="align_ctr">int</td>
 							<td class="align_ctr">Yes</td>
 							<td class="align_ctr">FALSE</td>
-							<td>Defines the id of the group to insert a new user privilege for.</td>
+							<td>Defines the id of the user group to insert a new user privilege for.</td>
 						</tr>
 						<tr>
 							<td>privilege_id</td>
 							<td class="align_ctr">int</td>
 							<td class="align_ctr">Yes</td>
 							<td class="align_ctr">FALSE</td>
-							<td>Defines the id of the user privilege to be inserted for a group.</td>
+							<td>Defines the id of the user privilege to be inserted to a user group.</td>
 						</tr>
 					</tbody>
 				</table>
@@ -483,17 +489,17 @@ $this->flexi_auth->delete_privilege_user($sql_where);
 				
 				<h6>Example</h6>
 <pre>
-<span class="comment">// Example of applying a user privilege to a specific group.</span>
+<span class="comment">// Example of applying a user privilege to a specific user group.</span>
 $group_id = 3;
 $privilege_id = 201;
 
-$this->flexi_auth->insert_privilege_group($group_id, $privilege_id);
+$this->flexi_auth->insert_user_group_privilege($group_id, $privilege_id);
 </pre>
 			</div>
 
-			<a name="delete_privilege_group"></a>
+			<a name="delete_user_group_privilege"></a>
 			<div class="w100 frame">
-				<h3 class="heading">delete_privilege_group()</h3>
+				<h3 class="heading">delete_user_group_privilege()</h3>
 				
 				<p>Deletes a user privilege for a group.</p>
 				<hr/>
@@ -504,7 +510,7 @@ $this->flexi_auth->insert_privilege_group($group_id, $privilege_id);
 				</div>
 				
 				<h6>Function Parameters</h6>
-				<code>delete_privilege_group(sql_where)</code>
+				<code>delete_user_group_privilege(sql_where)</code>
 				<a href="#help" class="help_link">Help</a>
 				<table>
 					<thead>
@@ -551,14 +557,14 @@ $this->flexi_auth->insert_privilege_group($group_id, $privilege_id);
 <span class="comment">// Example #1 : Delete a user privilege group via a user privilege group id of 101.</span>
 $sql_where = 101;
 
-$this->flexi_auth->delete_privilege_group($sql_where);
+$this->flexi_auth->delete_user_group_privilege($sql_where);
 </pre>
 <pre>
 <span class="comment">// Example #2 : Delete user privilege groups via a custom SQL WHERE statement.</span>
 <span class="comment">// Read the <a href="<?php echo $base_url; ?>user_guide/defining_custom_sql">defining SQL documentation</a> for further information on setting SQL statements.</span>
 $sql_where = array(...);
 
-$this->flexi_auth->delete_privilege_group($sql_where);
+$this->flexi_auth->delete_user_group_privilege($sql_where);
 </pre>
 			</div>
 

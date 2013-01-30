@@ -262,7 +262,7 @@ class User_guide extends CI_Controller {
 	// General Settings
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 	
-	function general_settings()  
+	function general_settings()
 	{
 		$this->load->view('user_guide/misc/general_settings');
 	}

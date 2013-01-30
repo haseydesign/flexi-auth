@@ -127,6 +127,7 @@ h3.heading {display:block; margin:-12px -17px 10px -17px; padding:10px 15px; bor
 
 /* Toggle Content */
 .toggle {font-weight:bold; font-size:12px; cursor:pointer;}
+h3.toggle {margin:15px 0 5px; font-size:15px;}
 label.toggle {font-weight:normal; font-size:14px; cursor:pointer;}
 .hide_toggle {display:none;}
 

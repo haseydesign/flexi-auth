@@ -12,8 +12,8 @@
 
 				<li class="css_nav_dropmenu">
 					Auth Configuration
-						<ul>
-							<li class="header">Internal Auth Config</li>
+					<ul>
+						<li class="header">Internal Auth Config</li>
 						<li>
 							<a href="<?php echo $base_url; ?>user_guide/general_settings">General Settings</a>
 						</li>

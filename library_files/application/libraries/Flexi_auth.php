@@ -13,6 +13,7 @@
 * Ben Edmunds, benedmunds.com
 * Phil Sturgeon, philsturgeon.co.uk
 * Mathew Davies
+* Filou Tschiemer (User Group Privileges)
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -876,26 +877,6 @@ class Flexi_auth extends Flexi_auth_lite
 		$this->CI->flexi_auth_model->set_error_message('update_unsuccessful', 'config');
 		return FALSE;
 	}
-        
-        
-	/**
-	 * insert_privilege_group
-	 * Inserts a new user privilege group to the database.
-	 *
-	 * @return void
-	 * @author Rob Hussey (Copy/Paste by: Filou Tschiemer)
-	 */
-	public function insert_privilege_group($group_id, $privilege_id)
-	{
-		if ($privilege_id = $this->CI->flexi_auth_model->insert_privilege_group($group_id, $privilege_id));
-		{
-			$this->CI->flexi_auth_model->set_status_message('update_successful', 'config');
-			return $privilege_id;
-		}
-
-		$this->CI->flexi_auth_model->set_error_message('update_unsuccessful', 'config');
-		return FALSE;
-	}
 	
 	/**
 	 * delete_privilege_user
@@ -916,17 +897,37 @@ class Flexi_auth extends Flexi_auth_lite
 		return FALSE;
 	}
         
+	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
         
 	/**
-	 * delete_privilege_group
-	 * Deletes a group from the user privilege group table.
+	 * insert_user_group_privilege
+	 * Inserts a new user group privilege to the database.
+	 *
+	 * @return void
+	 * @author Rob Hussey / Filou Tschiemer
+	 */
+	public function insert_user_group_privilege($group_id, $privilege_id)
+	{
+		if ($privilege_id = $this->CI->flexi_auth_model->insert_user_group_privilege($group_id, $privilege_id));
+		{
+			$this->CI->flexi_auth_model->set_status_message('update_successful', 'config');
+			return $privilege_id;
+		}
+
+		$this->CI->flexi_auth_model->set_error_message('update_unsuccessful', 'config');
+		return FALSE;
+	}
+       
+	/**
+	 * delete_user_group_privilege
+	 * Deletes a user group privilege from the user privilege group table.
 	 *
 	 * @return bool
-	 * @author Rob Hussey (Copy/Paste by: Filou Tschiemer)
+	 * @author Rob Hussey / Filou Tschiemer
 	 */
-	public function delete_privilege_group($sql_where)
+	public function delete_user_group_privilege($sql_where)
 	{
-		if ($this->CI->flexi_auth_model->delete_privilege_group($sql_where))
+		if ($this->CI->flexi_auth_model->delete_user_group_privilege($sql_where))
 		{
 			$this->CI->flexi_auth_model->set_status_message('delete_successful', 'config');
 			return TRUE;
@@ -1078,21 +1079,21 @@ class Flexi_auth extends Flexi_auth_lite
         
         
 	/**
-	 * get_group_privileges_query
-	 * Returns a groups privileges using their session group_id by default.
+	 * get_user_group_privileges_query
+	 * Returns a user groups privileges using a users session group_id by default.
 	 *
 	 * @return object
-	 * @author Rob Hussey (Copy/Paste by: Filou Tschiemer)
+	 * @author Rob Hussey / Filou Tschiemer
 	 */
-	public function get_group_privileges_query($sql_select = FALSE, $sql_where = FALSE)
+	public function get_user_group_privileges_query($sql_select = FALSE, $sql_where = FALSE)
 	{
 		if (! $sql_where)
 		{
-			$sql_where = array($this->CI->auth->tbl_col_user_privilege_groups['group'] => 
+			$sql_where = array($this->CI->auth->tbl_col_user_privilege_groups['group_id'] => 
 				$this->CI->auth->session_data[$this->CI->auth->session_name['group']]);
 		}
 	
-		return $this->CI->flexi_auth_model->get_group_privileges($sql_select, $sql_where);
+		return $this->CI->flexi_auth_model->get_user_group_privileges($sql_select, $sql_where);
 	}
 
 	

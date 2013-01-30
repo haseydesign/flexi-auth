@@ -403,7 +403,7 @@ class Demo_auth_admin_model extends CI_Model {
 	 * update_user_privileges
 	 * Updates the privileges for a specific user.
 	 */
-   function update_user_privileges($user_id)
+	function update_user_privileges($user_id)
     {
 		// Update privileges.
 		foreach($this->input->post('update') as $row)
@@ -435,23 +435,21 @@ class Demo_auth_admin_model extends CI_Model {
 		redirect('auth_admin/manage_user_accounts');			
 	}
 
-
    	/**
 	 * update_group_privileges
-	 * Updates the privileges for a specific group.
+	 * Updates the privileges for a specific user group.
 	 */
-   function update_group_privileges($group_id)
+	function update_group_privileges($group_id)
     {
 		// Update privileges.
 		foreach($this->input->post('update') as $row)
 		{
-                    
 			if ($row['current_status'] != $row['new_status'])
 			{
 				// Insert new user privilege.
 				if ($row['new_status'] == 1)
 				{
-					$this->flexi_auth->insert_privilege_group($group_id, $row['id']);	
+					$this->flexi_auth->insert_user_group_privilege($group_id, $row['id']);	
 				}
 				// Delete existing user privilege.
 				else
@@ -461,7 +459,7 @@ class Demo_auth_admin_model extends CI_Model {
 						$this->flexi_auth->db_column('user_privilege_groups', 'privilege_id') => $row['id']
 					);
 					
-					$this->flexi_auth->delete_privilege_group($sql_where);
+					$this->flexi_auth->delete_user_group_privilege($sql_where);
 				}
 			}
 		}
@@ -472,7 +470,6 @@ class Demo_auth_admin_model extends CI_Model {
 		// Redirect user.
 		redirect('auth_admin/manage_user_groups');			
     }
-
 }
 
 /* End of file demo_auth_admin_model.php */

@@ -38,8 +38,7 @@
 		<div class="content clearfix">
 			<div class="col100">
 				<h2>Update User Group</h2>
-				<a href="<?php echo $base_url;?>auth_admin/manage_user_groups">Manage User Groups</a> |
-				<a href="<?php echo $base_url;?>auth_admin/update_group_privileges/<?php echo $group['ugrp_id']; ?>">Manage Groups Privileges</a>
+				<a href="<?php echo $base_url;?>auth_admin/manage_user_groups">Manage User Groups</a>
 
 			<?php if (! empty($message)) { ?>
 				<div id="message">
@@ -66,6 +65,10 @@
 								<label for="admin">Is Admin Group:</label>
 								<input type="checkbox" id="admin" name="update_group_admin" value="1" <?php echo set_checkbox('update_group_admin', 1, $ugrp_admin);?> class="tooltip_trigger"
 									title="If checked, the user group is set as an 'Admin' group."/>
+							</li>
+							<li>
+								<label for="admin">User Group Privileges:</label>
+								<a href="<?php echo $base_url;?>auth_admin/update_group_privileges/<?php echo $group['ugrp_id']; ?>">Manage Privileges for this User Group</a>
 							</li>
 						</ul>
 					</fieldset>

@@ -48,7 +48,9 @@
 				</p>
 				<h6>Table and Config File Settings</h6>
 				<p>
-					<a href="#user_privilege_table">User Privilege Table</a> | <a href="#user_privilege_users_table">User Privilege Users Table</a>
+					<a href="#user_privilege_table">User Privilege Table</a> | 
+					<a href="#user_privilege_users_table">User Privilege Users Table</a> |
+					<a href="#user_privilege_groups_table">User Privilege Groups Table</a>
 				</p>
 			</div>
 		
@@ -149,7 +151,7 @@ $config['database']['user_privileges']['columns']['id'] = 'upriv_id';
 				<h3 class="heading">User Privilege Users Table</h3>
 				
 				<p>
-					The user privilege user table is used to assign privileges to users. Multiple privileges can be assigned to a user
+					The user privilege user table is used to assign privileges to users. Multiple privileges can be assigned to a user.
 				</p>
 				<hr/>
 
@@ -181,13 +183,13 @@ $config['database']['user_privileges']['columns']['id'] = 'upriv_id';
 							<td>user_id</td>
 							<td>upriv_users_uacc_fk</td>
 							<td class="align_ctr">int</td>
-							<td>The foreign key.</td>
+							<td>The foreign key to the user account table.</td>
 						</tr>
 						<tr>
 							<td>privilege_id</td>
 							<td>upriv_users_upriv_fk</td>
 							<td class="align_ctr">int</td>
-							<td>A brief description of the privilege.</td>
+							<td>The foreign key to the user privilege table.</td>
 						</tr>
 					</tbody>
 				</table>
@@ -197,6 +199,62 @@ $config['database']['user_privileges']['columns']['id'] = 'upriv_id';
 <span class="comment">// Defining the table and column names.</span>
 $config['database']['user_privilege_users']['table'] = 'user_privilege_users';
 $config['database']['user_privilege_users']['columns']['id'] = 'upriv_users_id';
+</pre>
+			</div>
+	
+			<a name="user_privilege_groups_table"></a>
+			<div class="w100 frame">
+				<h3 class="heading">User Privilege Groups Table</h3>
+				
+				<p>
+					The user privilege group table is used to assign privileges to user groups. Multiple privileges can be assigned to a user group.
+				</p>
+				<hr/>
+
+				<h6>Table and Column Setup</h6>
+				<a href="#help" class="help_link">Help</a>
+				<table>
+					<thead>
+						<tr>
+							<th class="spacer_125">Config Name</th>
+							<th class="spacer_125">Default</th>
+							<th class="spacer_75 align_ctr">Data Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>table</td>
+							<td>user_privilege_groups</td>
+							<td class="align_ctr">-</td>
+							<td>The tables name.</td>
+						</tr>
+						<tr>
+							<td>id</td>
+							<td>upriv_groups_id</td>
+							<td class="align_ctr">int</td>
+							<td>The tables primary key.</td>
+						</tr>
+						<tr>
+							<td>group_id</td>
+							<td>upriv_groups_ugrp_fk</td>
+							<td class="align_ctr">int</td>
+							<td>The foreign key to the user group table.</td>
+						</tr>
+						<tr>
+							<td>privilege_id</td>
+							<td>upriv_groups_upriv_fk</td>
+							<td class="align_ctr">int</td>
+							<td>The foreign key to the user privilege table.</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<h6>Example</h6>
+<pre>
+<span class="comment">// Defining the table and column names.</span>
+$config['database']['user_privilege_groups']['table'] = 'user_privilege_groups';
+$config['database']['user_privilege_groups']['columns']['id'] = 'upriv_groups_id';
 </pre>
 			</div>
 

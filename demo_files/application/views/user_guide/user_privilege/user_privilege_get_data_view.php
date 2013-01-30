@@ -45,7 +45,7 @@
 				<p>
 					<a href="#get_privileges">get_privileges()</a> | 
 					<a href="#get_user_privileges">get_user_privileges()</a> | 
-					<a href="#get_group_privileges">get_group_privileges()</a>
+					<a href="#get_user_group_privileges">get_user_group_privileges()</a>
 				</p>
 			</div>
 
@@ -243,13 +243,12 @@ $sql_where = array(...);
 $this->flexi_auth->get_user_privileges($sql_select, $sql_where)->result();
 </pre>
 			</div>
-
                         
-			<a name="get_group_privileges"></a>
+			<a name="get_user_group_privileges"></a>
 			<div class="w100 frame">
-				<h3 class="heading">get_group_privileges()</h3>
+				<h3 class="heading">get_user_group_privileges()</h3>
 				
-				<p>Get the user privileges for a group.</p>
+				<p>Get the user privileges for a user group.</p>
 				<hr/>
 				
 				<h6>Library and Requirements</h6>
@@ -258,7 +257,7 @@ $this->flexi_auth->get_user_privileges($sql_select, $sql_where)->result();
 				</div>
 				
 				<h6>Function Parameters</h6>
-				<code>get_group_privileges(sql_select, sql_where)</code>
+				<code>get_user_group_privileges(sql_select, sql_where)</code>
 				<a href="#help" class="help_link">Help</a>
 				<table>
 					<thead>
@@ -292,7 +291,7 @@ $this->flexi_auth->get_user_privileges($sql_select, $sql_where)->result();
 									Read the <a href="<?php echo $base_url; ?>/user_guide/defining_custom_sql">defining SQL documentation</a> for further information.
 								</p>
 								<p>
-									If no value is passed to the '<em>sql_where</em>' argument, the function will use the sessions group id to filter privileges for the current logged in user.
+									If no value is passed to the '<em>sql_where</em>' argument, the function will use the sessions user group id to filter privileges for the current logged in user.
 								</p>
 							</td>
 						</tr>
@@ -303,7 +302,7 @@ $this->flexi_auth->get_user_privileges($sql_select, $sql_where)->result();
 				<div class="frame_note">
 					<p>The function runs an SQL SELECT query that joins the User Privilege and User Privilege Groups table together.</p>
 					<p>The function uses the defined '<em>sql_where</em>' argument to create an SQL WHERE statement to filter a list of user privileges.</p>
-					<p>If no value is passed to the '<em>sql_where</em>' argument, the function will use the sessions user id to filter privileges for the current logged in user.</p>
+					<p>If no value is passed to the '<em>sql_where</em>' argument, the function will use the sessions user group id to filter privileges for the current logged in user.</p>
 					<p>The data returned by the query is defined via the '<em>sql_select</em>' argument. If no columns are specified, all columns will be returned.</p>
 				</div>
 				
@@ -324,7 +323,7 @@ $this->flexi_auth->get_user_privileges($sql_select, $sql_where)->result();
 				<h6>Examples</h6>
 <pre>
 <span class="comment">// Example #1 : Using the session group id of a logged in user.</span>
-$this->flexi_auth->get_group_privileges(FALSE, FALSE);
+$this->flexi_auth->get_user_group_privileges(FALSE, FALSE);
 </pre>
 <pre>
 <span class="comment">// Example #2 : Defining a specific SQL WHERE condition and specific columns to return.
@@ -334,11 +333,10 @@ $sql_where = array(...);
 
 <span class="comment">// Example of chaining CI's query function 'result()'.
 // Read the <a href="<?php echo $base_url; ?>user_guide/query_sql_results">Query Result documentation</a> for further information on available functions.</span>
-$this->flexi_auth->get_group_privileges($sql_select, $sql_where)->result();
+$this->flexi_auth->get_user_group_privileges($sql_select, $sql_where)->result();
 </pre>
 			</div>
 
-                        
 		</div>
 	</div>	
 	

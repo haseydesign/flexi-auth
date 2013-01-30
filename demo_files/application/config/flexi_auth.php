@@ -124,7 +124,7 @@
 
 	/**
 	 * User Privilege Groups Table
-	 * The user privilege group table is used to assign privileges to groups. Multiple privileges can be assigned to a group.
+	 * The user privilege group table is used to assign privileges to user groups. Multiple privileges can be assigned to a user group.
 	 * 
 	 * All columns are required.
 	*/ 
@@ -419,7 +419,6 @@
 	*/
 	$config['security']['logout_user_onclose'] = TRUE;
 
-	#!# * BETA TESTING OF THIS FEATURE * #!#
 	/**
 	 * Set whether a user has their 'logged in via password' status removed as soon as the browser is closed.
 	 * If the user enabled the 'Remember me' feature on login, and their session is still valid, they will have a 'logged in via "Remember me"' status on their next visit.
@@ -435,7 +434,6 @@
 	 * Note: Only used when $config['security']['logout_user_onclose'] = FALSE
 	*/
 	$config['security']['unset_password_status_onclose'] = TRUE;
-	#!# ^ BETA TESTING OF THIS FEATURE ^ #!#
 	
 	/**
 	 * Set the lifetime of a users login cookies in seconds, this includes the 'Remember me' cookies.
@@ -610,13 +608,13 @@
 	*/
 	$config['settings']['default_group_id'] = 1;
 
-        /**
-         * Set which sources are used to retrieve privileges. Can be assigned either through user or group.
-         * @param array
-         * 
-         * Examples: array('user','group'), array('user')
-         */
-        $config['settings']['privilege_sources']= array('user','group');
+    /**
+     * Set whether user privileges should be determined by individual privileges assigned per user, or via privileges assigned to a users user group.
+     * @param array
+     * 
+     * Options: array('user','group'), array('user'), array('group')
+     */
+    $config['settings']['privilege_sources'] = array('user','group');
 
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	

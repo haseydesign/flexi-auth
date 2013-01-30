@@ -6,13 +6,13 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Update User Privileges Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title>Update User Group Privileges Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
 </head>
 
-<body id="update_user_privileges">
+<body id="update_user_group_privileges">
 
 <div id="body_wrap">
 	<!-- Header -->  
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Admin: Update User Privileges</h2>
+				<h2>Admin: Update User Group Privileges</h2>
 				<p>The flexi auth library allows for unlimited custom privileges to be defined. The privileges can then be assigned to user groups or users individually.</p>
 				<p>Once privileges have been defined, access to specific pages or even specific sections of pages can be controlled by checking whether a user has permission to access a requested page.</p>
 				<p>The default setup of this demo uses user groups and privileges to restrict the example public user from accessing the admin area, and the example moderator user from inserting, updating and deleting specific data within the admin area.</p>
@@ -63,9 +63,9 @@
 	<div class="content_wrap main_content_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Update User Privileges of '<?php echo $user['upro_first_name'].' '.$user['upro_last_name']; ?>', Member of Group '<?php echo $user['ugrp_name']; ?>'</h2>
-				<a href="<?php echo $base_url;?>auth_admin/manage_user_accounts">Manage User Accounts</a> | 
-				<a href="<?php echo $base_url;?>auth_admin/update_user_account/<?php echo $user['upro_uacc_fk']; ?>">Update Users Account</a>
+				<h2>Update User Group Privileges of Group '<?php echo $group['ugrp_name']; ?>'</h2>
+				<a href="<?php echo $base_url;?>auth_admin/manage_user_groups">Manage User Groups</a> | 
+				<a href="<?php echo $base_url;?>auth_admin/update_user_group/<?php echo $group['ugrp_id']; ?>">Update User Group</a>
 
 			<?php if (! empty($message)) { ?>
 				<div id="message">
@@ -86,12 +86,8 @@
 									Description
 								</th>
 								<th class="spacer_150 align_ctr tooltip_trigger"
-									title="If checked, the user will be granted the privilege, regardless of whether their user group has the privilege."/>
-									User Has Individual Privilege
-								</th>
-								<th class="spacer_150 align_ctr tooltip_trigger"
-									title="Indicates whether the privilege has been assigned to the user via the privileges defined for their user group."/>
-									Has Privilege From User Group
+									title="If checked, the user will be granted the privilege."/>
+									User Has Privilege
 								</th>
 							</tr>
 						</thead>
@@ -106,23 +102,20 @@
 								<td class="align_ctr">
 									<?php 
 										// Define form input values.
-										$current_status = (in_array($privilege[$this->flexi_auth->db_column('user_privileges', 'id')], $user_privileges)) ? 1 : 0; 
-										$new_status = (in_array($privilege[$this->flexi_auth->db_column('user_privileges', 'id')], $user_privileges)) ? 'checked="checked"' : NULL;
+										$current_status = (in_array($privilege[$this->flexi_auth->db_column('user_privileges', 'id')], $group_privileges)) ? 1 : 0; 
+										$new_status = (in_array($privilege[$this->flexi_auth->db_column('user_privileges', 'id')], $group_privileges)) ? 'checked="checked"' : NULL;
 									?>
 									<input type="hidden" name="update[<?php echo $privilege[$this->flexi_auth->db_column('user_privileges', 'id')];?>][current_status]" value="<?php echo $current_status ?>"/>
 									<input type="hidden" name="update[<?php echo $privilege[$this->flexi_auth->db_column('user_privileges', 'id')];?>][new_status]" value="0"/>
 									<input type="checkbox" name="update[<?php echo $privilege[$this->flexi_auth->db_column('user_privileges', 'id')];?>][new_status]" value="1" <?php echo $new_status ?>/>
 								</td>
-                                <td class="align_ctr">
-									<?php echo (in_array($privilege[$this->flexi_auth->db_column('user_privileges', 'id')], $group_privileges) ? 'Yes' : 'No'); ?>
-                                </td>
 							</tr>
 						<?php } ?>
 						</tbody>
 						<tfoot>
 							<tr>
-								<td colspan="4">
-									<input type="submit" name="update_user_privilege" value="Update User Privileges" class="link_button large"/>
+								<td colspan="3">
+									<input type="submit" name="update_group_privilege" value="Update Group Privileges" class="link_button large"/>
 								</td>
 							</tr>
 						</tfoot>

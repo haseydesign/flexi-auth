@@ -118,7 +118,7 @@ class Flexi_auth_lite_model extends CI_Model
 		$this->auth->tbl_user_privilege_users = $database_config['user_privilege_users']['table'];
 		$this->auth->tbl_col_user_privilege_users = $database_config['user_privilege_users']['columns'];
 		
-		// Group privilege tables
+		// User group privilege tables
 		$this->auth->tbl_user_privilege_groups = $database_config['user_privilege_groups']['table'];
 		$this->auth->tbl_col_user_privilege_groups = $database_config['user_privilege_groups']['columns'];
 		
@@ -376,7 +376,6 @@ class Flexi_auth_lite_model extends CI_Model
 					return FALSE;
 				}
 			}
-			#!# * BETA TESTING OF THIS FEATURE * #!#
 			// Check whether to unset the users 'Logged in via password' status if they closed their browser since login (Defined by config file). 
 			else if ($this->auth->auth_security['unset_password_status_onclose'])
 			{
@@ -386,7 +385,6 @@ class Flexi_auth_lite_model extends CI_Model
 					return FALSE;
 				}
 			}
-			#!# ^ BETA TESTING OF THIS FEATURE ^ #!#
 		
 			// Extend users login time if defined by config file.
 			if ($this->auth->auth_security['extend_login_session'])
