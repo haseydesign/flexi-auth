@@ -22,7 +22,7 @@
 	<?php $this->load->view('includes/user_guide_header'); ?> 
 
 	<!-- Main Content -->
-	<div class="content_wrap main_content_bg">
+	<div class="content_wrap main_content_bg no_bg_overlap">
 		<div class="content main_content_bg clearfix">			
 
 			<div class="w100 frame">

@@ -48,7 +48,7 @@ body {background:url(../images/site_bg.png) repeat #292929; text-align:center;}
 #sub_nav >li>ul>li.status:last-child {padding-bottom:10px;}
 
 /* Google Search box */
-#sub_nav #user_guide_search {float:right; font-size:12px;}
+#sub_nav #user_guide_search {float:right; font-size:12px; padding:3px;}
 #sub_nav #user_guide_input {width:125px; height:15px;}
 
 /* flexi cart ribbon */
@@ -96,6 +96,7 @@ body {background:url(../images/site_bg.png) repeat #292929; text-align:center;}
 .content_wrap.intro_bg {background:url(../images/intro_wrap_bg.png) repeat-x #f0f0f0;}
 .content_wrap.main_content_bg {min-height:475px; padding-top:10px; background:url(../images/main_content_wrap_bg.png) repeat-x #E9E2D9;}
 .content_wrap.footer_bg {background:url(../images/footer_wrap_bg.png) repeat-x;}
+.content_wrap.no_bg_overlap {background-position:0 -10px;}
 
 .content {position:relative; width:960px; margin:0 auto; padding:10px 0;}
 
