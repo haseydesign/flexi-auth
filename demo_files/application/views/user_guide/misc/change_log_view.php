@@ -37,6 +37,20 @@
 		<div class="content clearfix">
 			
 			<div class="w100 frame">
+				<h3 class="heading">Release | 30th January 2013</h3>
+				<ul>
+					<li>
+						<p>A new user privilege feature has been added to the library.</p>
+						<p>
+							Privileges can now be assigned to a specific user group, any user within that user group will then inherit the assigned privileges. <br>
+							Privileges can still be assigned to users on an individual basis.
+						</p>
+						<p>Thanks to Filou Tschiemer who contributed this feature to the the library!</p>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="w100 frame">
 				<h3 class="heading">Release | 3rd November 2012</h3>
 				<ul>
 					<li>
