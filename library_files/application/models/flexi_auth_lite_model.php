@@ -573,12 +573,12 @@ class Flexi_auth_lite_model extends CI_Model
 			$target_user = strtolower($target_user);
 
 			// Set message delimiters, by checking they do not exactly equal FALSE, we can allow NULL or empty '' delimiter values. 
-			if (! $prefix_delimiter)
+			if ($prefix_delimiter!=FALSE)
 			{
 				$prefix_delimiter = ($message_type == 'status') ? 
 					$this->auth->message_settings['delimiters']['status_prefix'] : $this->auth->message_settings['delimiters']['error_prefix'];
 			}
-			if (! $suffix_delimiter)
+			if ($suffix_delimiter!=FALSE)
 			{
 				$suffix_delimiter = ($message_type == 'status') ? 
 					$this->auth->message_settings['delimiters']['status_suffix'] : $this->auth->message_settings['delimiters']['error_suffix'];
