@@ -74,7 +74,7 @@ class Auth_public extends CI_Controller {
 	 * Forwards to the public dashboard.
 	 */ 
 	function index()
-    {
+	{
 		redirect('auth_public/dashboard');
 	}
  
@@ -84,12 +84,12 @@ class Auth_public extends CI_Controller {
  	 * The dashboard provides links to some examples of the features available from the flexi auth library.  
  	 */
 	function dashboard()
-    {
+	{
 		// Get any status message that may have been set.
 		$this->data['message'] = $this->session->flashdata('message');
 		
 		$this->load->view('demo/public_examples/dashboard_view', $this->data);
-    }
+	}
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 	// Public Account Management
