@@ -282,6 +282,10 @@ class Flexi_auth_lite_model extends CI_Model
 			return FALSE;
 		}
 
+		// Get 'Remember me' cookie values before they are deleted.
+		$remember_token = get_cookie($this->auth->cookie_name['remember_token']);
+		$remember_series = get_cookie($this->auth->cookie_name['remember_series']);
+
 		// Delete 'Remember me' cookies if they exist.
 		$this->delete_remember_me_cookies();
 
