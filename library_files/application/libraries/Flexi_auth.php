@@ -1090,7 +1090,7 @@ class Flexi_auth extends Flexi_auth_lite
 		if (! $sql_where)
 		{
 			$sql_where = array($this->CI->auth->tbl_col_user_privilege_groups['group_id'] => 
-				$this->CI->auth->session_data[$this->CI->auth->session_name['group']]);
+				key($this->CI->auth->session_data[$this->CI->auth->session_name['group']]));
 		}
 	
 		return $this->CI->flexi_auth_model->get_user_group_privileges($sql_select, $sql_where);
