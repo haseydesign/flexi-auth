@@ -277,12 +277,13 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		$this->db->trans_start();
 
 		// Create an array of updatable columns.
+		// Note: The global var $this->auth->tbl_col_user_account is not used as it prepend column names with the table name. 
 		$user_account_cols = $this->auth->database_config['user_acc']['columns'];
 		
 		// Add any additional custom data columns from the main user account table to the array.
 		foreach($this->auth->database_config['user_acc']['custom_columns'] as $column)
 		{
-			$user_account_cols[] = $column;
+			$user_account_cols[$column] = $column;
 		}
 
 		$sql_update = array();

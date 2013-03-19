@@ -72,10 +72,12 @@ class Flexi_auth_lite_model extends CI_Model
 
 				if (! empty($table_data['custom_columns']))
 				{
+					$database_config[$table_key]['custom_columns'] = array();
+
 					foreach($table_data['custom_columns'] as $column_reference => $column_name)
 					{
-						$database_config[$table_key]['custom_columns'][$column_reference] = $table_data['table'].'.'.$column_name;
-					}					
+						$database_config[$table_key]['custom_columns'][$column_name] = $table_data['table'].'.'.$column_name;
+					}
 				}
 			}
 			// Prefix the primary key, foreign key and custom columns of any custom tables. 
@@ -125,8 +127,8 @@ class Flexi_auth_lite_model extends CI_Model
 		// User main account table
 		$this->auth->tbl_user_account = $database_config['user_acc']['table'];
 		$this->auth->tbl_join_user_account = $database_config['user_acc']['join'];
-		$this->auth->tbl_col_user_account = $database_config['user_acc']['columns'];
-		$this->auth->tbl_custom_col_user_account = $database_config['user_acc']['custom_columns'];
+		$this->auth->tbl_col_user_account = array_merge($database_config['user_acc']['columns'], $database_config['user_acc']['custom_columns']);
+		#$this->auth->tbl_custom_col_user_account = $database_config['user_acc']['custom_columns']; // Currently unused.
 
 		// User custom data table(s)
 		$this->auth->tbl_custom_data = (! empty($database_config['custom'])) ? $database_config['custom'] : array();
