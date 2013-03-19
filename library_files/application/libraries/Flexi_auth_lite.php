@@ -83,11 +83,14 @@ class Flexi_auth_lite
 
 		if (isset($target_library))
 		{
-			// Pass the first 3 submitted arguments to the function (Usually the SQL SELECT and WHERE statements).
+			// Pass the first 5 submitted arguments to the function (Usually the SQL SELECT and WHERE statements).
+			// Note: The search_users() function requires the 4th and 5th arguments.
 			$argument_1 = (isset($arguments[0])) ? $arguments[0] : FALSE; // Usually $sql_select
 			$argument_2 = (isset($arguments[1])) ? $arguments[1] : FALSE; // Usually $sql_where
 			$argument_3 = (isset($arguments[2])) ? $arguments[2] : FALSE; // Other
-			$data = $this->CI->$target_library->$method_substr_query($argument_1, $argument_2, $argument_3);
+			$argument_4 = (isset($arguments[3])) ? $arguments[3] : FALSE; // Other
+			$argument_5 = (isset($arguments[4])) ? $arguments[4] : FALSE; // Other
+			$data = $this->CI->$target_library->$method_substr_query($argument_1, $argument_2, $argument_3, $argument_4, $argument_5);
 			
 			if (! empty($data))
 			{
