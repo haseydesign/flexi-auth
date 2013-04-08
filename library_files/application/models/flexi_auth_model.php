@@ -2308,6 +2308,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		
 		$this->email->clear();
 		$this->email->initialize(array('mailtype' => $this->auth->email_settings['email_type']));
+		$this->email->set_newline("\r\n");
 		$this->email->from($this->auth->email_settings['reply_email'], $this->auth->email_settings['site_title']);
 		$this->email->to($email_to);
 		$this->email->subject($this->auth->email_settings['site_title'] ." ". $email_title);
