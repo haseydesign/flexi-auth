@@ -331,9 +331,9 @@ class Demo_auth_model extends CI_Model {
 			// IMPORTANT NOTE: As we are updating multiple tables (The main user account and user profile tables), it is very important to pass the
 			// primary key column and value in the $profile_data for any custom user tables being updated, otherwise, the function will not
 			// be able to identify the correct custom data row.
-			// In this example, the primary key column and value is 'upro_id' => $user_id.
+			// In this example, the primary key column and value is 'upro_uacc_fk' => $user_id.
 			$profile_data = array(
-				'upro_id' => $user_id,
+				'upro_uacc_fk' => $user_id,
 				'upro_first_name' => $this->input->post('update_first_name'),
 				'upro_last_name' => $this->input->post('update_last_name'),
 				'upro_phone' => $this->input->post('update_phone_number'),
