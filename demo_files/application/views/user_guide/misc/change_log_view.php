@@ -37,6 +37,12 @@
 		<div class="content clearfix">
 			
 			<div class="w100 frame">
+				<h3 class="heading">Github Commit History</h3>
+				<h6>See the Github commit history log for more better indepth and up-to-date details on changes.</h6>
+				<p><a href="https://github.com/haseydesign/flexi-auth/commits/master">https://github.com/haseydesign/flexi-auth/commits/master</a></p>
+			</div>
+
+			<div class="w100 frame">
 				<h3 class="heading">Release | 30th January 2013</h3>
 				<ul>
 					<li>
