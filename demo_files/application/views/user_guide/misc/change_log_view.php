@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="intro_text">
-				<h1>User Guide | Change log</h1>
+				<h1>User Guide | Change Log</h1>
 				<p>A log of all important changes that have been made to the flexi auth library since release.</p>
 				<p>Whilst there have been many minor tweaks to the library and demo since release, this change log is intended to only cover the most important changes that are likely to affect an existing flexi auth installation.</p>
 			</div>		
