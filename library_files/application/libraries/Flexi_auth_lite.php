@@ -316,12 +316,12 @@ class Flexi_auth_lite
 		
 	/**
 	 * get_user_by_id_query
-	 * Get all user data by submitting the users id.
+	 * Gets data from the user account table and any custom tables that have been related to it by submitting the users id.
 	 *
 	 * @return object
 	 * @author Rob Hussey
 	 */
-	public function get_user_by_id_query($user_id = FALSE)
+	public function get_user_by_id_query($user_id = FALSE, $sql_select = FALSE)
 	{
 		if (!is_numeric($user_id))
 		{
@@ -330,19 +330,19 @@ class Flexi_auth_lite
 
 		$sql_where = array($this->CI->auth->tbl_col_user_account['id'] => $user_id);
 		
-		return $this->CI->flexi_auth_lite_model->get_users(FALSE, $sql_where);
+		return $this->CI->flexi_auth_lite_model->get_users($sql_select, $sql_where);
 	}
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
 	
 	/**
 	 * get_user_by_identity_query
-	 * Get all user data by submitting the users identity.
+	 * Gets data from the user account table and any custom tables that have been related to it by submitting the users identity.
 	 *
 	 * @return object
 	 * @author Rob Hussey
 	 */
-	public function get_user_by_identity_query($identity = FALSE)
+	public function get_user_by_identity_query($identity = FALSE, $sql_select = FALSE)
 	{
 		if (!$identity)
 		{
@@ -351,7 +351,7 @@ class Flexi_auth_lite
 
 		$sql_where = array($this->CI->auth->primary_identity_col => $identity);
 		
-		return $this->CI->flexi_auth_lite_model->get_users(FALSE, $sql_where);
+		return $this->CI->flexi_auth_lite_model->get_users($sql_select, $sql_where);
 	}
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###

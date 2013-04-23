@@ -172,7 +172,7 @@
 			<div class="w100 frame">
 				<h3 class="heading">get_user_by_id()</h3>
 				
-				<p>Get all user data by submitting the users id.</p>
+				<p>Gets data from the user account table and any custom tables that have been related to it by submitting the users id.</p>
 				<hr/>
 				
 				<h6>Library and Requirements</h6>
@@ -181,7 +181,7 @@
 				</div>
 				
 				<h6>Function Parameters</h6>
-				<code>get_user_by_id(user_id)</code>
+				<code>get_user_by_id(user_id, sql_select)</code>
 				<a href="#help" class="help_link">Help</a>
 				<table>
 					<thead>
@@ -204,12 +204,23 @@
 								If no value is defined, the function will try to use the user id of the current logged in user.
 							</td>
 						</tr>
+						<tr>
+							<td>sql_select</td>
+							<td class="align_ctr">string | array</td>
+							<td class="align_ctr">No</td>
+							<td class="align_ctr">FALSE</td>
+							<td>
+								Define the database fields returned via an SQL SELECT statement.<br/>
+								Read the <a href="<?php echo $base_url; ?>/user_guide/defining_custom_sql">defining SQL documentation</a> for further information.
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				
 				<h6>How it Works</h6>
 				<div class="frame_note">
 					<p>The function uses the defined user id to create an SQL WHERE statement that filters the defined user from the user accounts table.</p>
+					<p>The data returned by the query is defined via the 'sql_select' argument. If no columns are specified, all columns will be returned.</p>
 					<p>
 						The SQL query is automatically joined with any other custom user tables (e.g. Profile and address tables in the demo) that have been defined and joined via the config. file.
 						By using the defined joins, the query will return data from all the related custom tables too.
@@ -242,9 +253,11 @@
 $this->flexi_auth->get_user_by_id();
 </pre>
 <pre>
-<span class="comment">// Example #2 : Get all user data for the user with an id of '101'.</span>
+<span class="comment">// Example #2 : Get defined column data for the user with an id of '101'.</span>
 $user_id = 101;
-$this->flexi_auth->get_user_by_id($user_id);
+$sql_select = array(...);
+
+$this->flexi_auth->get_user_by_id($user_id, $sql_select);
 </pre>
 <pre>
 <span class="comment">// Example of chaining CI's query function 'result()'.
@@ -257,7 +270,7 @@ $this->flexi_auth->get_user_by_id()->result();
 			<div class="w100 frame">
 				<h3 class="heading">get_user_by_identity()</h3>
 				
-				<p>Get all user data by submitting the users identity.</p>
+				<p>Gets data from the user account table and any custom tables that have been related to it by submitting the users identity.</p>
 				<hr/>
 				
 				<h6>Library and Requirements</h6>
@@ -266,7 +279,7 @@ $this->flexi_auth->get_user_by_id()->result();
 				</div>
 				
 				<h6>Function Parameters</h6>
-				<code>get_user_by_identity(identity)</code>
+				<code>get_user_by_identity(identity, sql_select)</code>
 				<a href="#help" class="help_link">Help</a>
 				<table>
 					<thead>
@@ -289,12 +302,23 @@ $this->flexi_auth->get_user_by_id()->result();
 								If no value is defined, the function will try to use the primary identity of the current logged in user.
 							</td>
 						</tr>
+						<tr>
+							<td>sql_select</td>
+							<td class="align_ctr">string | array</td>
+							<td class="align_ctr">No</td>
+							<td class="align_ctr">FALSE</td>
+							<td>
+								Define the database fields returned via an SQL SELECT statement.<br/>
+								Read the <a href="<?php echo $base_url; ?>/user_guide/defining_custom_sql">defining SQL documentation</a> for further information.
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				
 				<h6>How it Works</h6>
 				<div class="frame_note">
 					<p>The function uses the defined user identity (Username and/or Email) to create an SQL WHERE statement that filters the defined user from the user accounts table.</p>
+					<p>The data returned by the query is defined via the 'sql_select' argument. If no columns are specified, all columns will be returned.</p>
 					<p>
 						The SQL query is automatically joined with any other custom user tables (e.g. Profile and address tables in the demo) that have been defined and joined via the config. file.
 						By using the defined joins, the query will return data from all the related custom tables too.
@@ -327,14 +351,18 @@ $this->flexi_auth->get_user_by_id()->result();
 $this->flexi_auth->get_user_by_identity();
 </pre>
 <pre>
-<span class="comment">// Example #2 : Get all user data for the user with an email identity of 'custom@email.com'.</span>
+<span class="comment">// Example #2 : Get defined column data for the user with an email identity of 'custom@email.com'.</span>
 $user_identity = 'custom@email.com';
-$this->flexi_auth->get_user_by_identity($user_identity);
+$sql_select = array(...);
+
+$this->flexi_auth->get_user_by_identity($user_identity, $sql_select);
 </pre>
 <pre>
-<span class="comment">// Example #3 : Get all user data for the user with a username identity of 'custom_username'.</span>
+<span class="comment">// Example #3 : Get defined column data for the user with a username identity of 'custom_username'.</span>
 $user_identity = 'custom_username';
-$this->flexi_auth->get_user_by_identity($user_identity);
+$sql_select = array(...);
+
+$this->flexi_auth->get_user_by_identity($user_identity, $sql_select);
 </pre>
 <pre>
 <span class="comment">// Example of chaining CI's query function 'result()'.
