@@ -125,6 +125,20 @@
 $config['security']['recaptcha_public_key'] = 'ENTER_RECAPTCHA_PUBLIC_KEY_HERE';
 $config['security']['recaptcha_private_key'] = 'ENTER_RECAPTCHA_PRIVATE_KEY_HERE'; 						
 </pre>
+					<br>
+					<p>If using the 'custom' reCAPTCHA theme (Defined via the config. file option 'recaptcha_theme'), note that the customised reCAPTCHA html code must be <span class="uline">prepended</span> to the code generated via the 'recaptcha()' function.</p>
+					<p>Examples of custom themes are available at <a href="https://developers.google.com/recaptcha/docs/customization">https://developers.google.com/recaptcha/docs/customization</a>.</p>
+<pre>
+<span class="comment">// Defining a custom reCAPTCHA theme.</span>
+$custom_recaptcha = '<?php echo htmlspecialchars('
+  <div id="recaptcha_widget" style="display:none">
+    <div id="recaptcha_image"></div>
+    <!-- Customised code ... -->
+    <div><a href="javascript:Recaptcha.showhelp()">Help</a></div>
+  </div>'); ?>';
+
+$custom_repcatcha .= $this->flexi_auth->recaptcha();
+</pre>
 				</div>
 			
 				<h6>Return Values</h6>

@@ -112,7 +112,10 @@ class Auth extends CI_Controller {
 			 * To activate reCAPTCHA, ensure the 'recaptcha()' function below is uncommented and then comment out the 'math_captcha()' function further below.
 			 *
 			 * A boolean variable can be passed to 'recaptcha()' to set whether to use SSL or not.
-			 * When displaying the captcha in a view, reCAPTCHA generates all html required for display. 
+			 * When displaying the captcha in a view, if the reCAPTCHA theme has been set to one of the template skins (See https://developers.google.com/recaptcha/docs/customization),
+			 *  then the 'recaptcha()' function generates all the html required.
+			 * If using a 'custom' reCAPTCHA theme, then the custom html must be PREPENDED to the code returned by the 'recaptcha()' function.
+			 * Again see https://developers.google.com/recaptcha/docs/customization for a template 'custom' html theme. 
 			 * 
 			 * Note: To use this example, you will also need to enable the recaptcha examples in 'models/demo_auth_model.php', and 'views/demo/login_view.php'.
 			*/
