@@ -2,9 +2,9 @@
 
 class MY_Form_validation extends CI_Form_validation 
 {
-	public function __construct()
+	public function __construct($config)
 	{
-		parent::__construct();
+		parent::__construct($config);
 	}
 
     // Check identity is available
