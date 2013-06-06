@@ -1639,7 +1639,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 	    {
 		    return FALSE;
 	    }
-		
+
 		$user_id = get_cookie($this->auth->cookie_name['user_id']);
 		$remember_series = get_cookie($this->auth->cookie_name['remember_series']);
 		$remember_token = get_cookie($this->auth->cookie_name['remember_token']);
@@ -1699,7 +1699,6 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 	    }
 		
 		// 'Remember me' has been unsuccessful, for security, remove any existing cookies and database sessions.
-		$user_id = get_cookie($this->auth->cookie_name['user_id']);
 		$this->delete_database_login_session($user_id);
 
 	    return FALSE;
