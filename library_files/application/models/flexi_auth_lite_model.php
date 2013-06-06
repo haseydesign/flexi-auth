@@ -412,8 +412,9 @@ class Flexi_auth_lite_model extends CI_Model
 			return $this->auth_verified = TRUE;
 		}
 		// The users login session token has either expired, is invalid (Not found in database), or their account has been deactivated since login.
-		// Delete the users 'logged_in_via_password' credentials. Then instantly attempt to log the user in via any defined 'Remember Me' cookies. 
+		// Attempt to log the user in via any defined 'Remember Me' cookies. 
 		// If the "Remember me' cookies are valid, the user will have 'logged_in' credentials, but will have no 'logged_in_via_password' credentials.
+	 	// If the user cannot be logged in via a 'Remember me' cookie, the user will be stripped of any login session credentials.
 		// Note: If the user is also logged in on another computer using the same identity, those sessions are not deleted as they will be authenticated when they next login.
 		else
 		{
@@ -426,18 +427,20 @@ class Flexi_auth_lite_model extends CI_Model
 		
 	/**
 	 * delete_logged_in_via_password_session
-	 * Remove a users 'logged_in_via_password' session credentials, without deleting any database data that is used for logging in a user via a 'Remember me' cookie.
-	 * Then attempt to log the user in via any defined 'Remember me' cookies.
+	 * Attempt to log the user in via any defined 'Remember me' cookies.
+	 * If the user cannot be logged in via a 'Remember me' cookie, then remove any login credentials assigned to the users session.
 	 *
 	 * @return bool
 	 * @author Rob Hussey
 	 */
 	private function delete_logged_in_via_password_session()
 	{
-		$this->auth->session_data = FALSE;
-		
 		$this->load->model('flexi_auth_model');
-		$this->flexi_auth_model->login_remembered_user(); 
+		if (! $this->flexi_auth_model->login_remembered_user())
+		{
+			$this->set_error_message('login_session_expired', 'config');
+			$this->session->set_userdata(array($this->auth->session_name['name'] => $this->set_auth_defaults()));
+		}
 		
 		return TRUE;
 	}
