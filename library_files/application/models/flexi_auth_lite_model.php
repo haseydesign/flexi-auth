@@ -374,8 +374,8 @@ class Flexi_auth_lite_model extends CI_Model
 
 			// Validate if user has closed their browser since login (Defined by config file).
 			if ($this->auth->auth_security['logout_user_onclose'])
-			{				
-				if (get_cookie('login_session_token') != $hash_session_token)
+			{
+				if (get_cookie($this->auth->cookie_name['login_session_token']) != $hash_session_token)
 				{
 					$this->set_error_message('login_session_expired', 'config');
 					$this->logout(FALSE);
@@ -385,7 +385,7 @@ class Flexi_auth_lite_model extends CI_Model
 			// Check whether to unset the users 'Logged in via password' status if they closed their browser since login (Defined by config file). 
 			else if ($this->auth->auth_security['unset_password_status_onclose'])
 			{
-				if (get_cookie('login_via_password_token') != $hash_session_token)
+				if (get_cookie($this->auth->cookie_name['login_via_password_token']) != $hash_session_token)
 				{
 					$this->delete_logged_in_via_password_session();
 					return FALSE;
