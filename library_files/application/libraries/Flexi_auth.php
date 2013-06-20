@@ -1135,7 +1135,7 @@ class Flexi_auth extends Flexi_auth_lite
 		}
 
 		// Set template data placeholder.
-		$data = $this->auth->template_data;
+		$data = $this->CI->auth->template_data;
 
 		// Change default template if set
 		if (!empty($template))
