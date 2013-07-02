@@ -146,6 +146,22 @@ class Flexi_auth_lite
 		
 		return TRUE;
 	}
+
+	/**
+	 * logout_specific_user
+	 * Logs a specific user out of all of their logged in sessions. 
+	 *
+	 * @return bool
+	 * @author Rob Hussey
+	 */
+	public function logout_specific_user($user_id = FALSE)
+	{
+		$this->CI->flexi_auth_lite_model->logout_specific_user($user_id);
+	
+		$this->CI->flexi_auth_lite_model->set_status_message('logout_successful', 'config');#!#
+		
+		return TRUE;
+	}	
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 	// LOGIN STATUS FUNCTIONS

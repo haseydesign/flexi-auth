@@ -241,6 +241,27 @@ class Flexi_auth_lite_model extends CI_Model
 		return TRUE;
 	}
 
+	/**
+	 * logout_specific_user
+	 * Logs a specific user out of all of their logged in sessions.
+	 *
+	 * @return bool
+	 * @author Rob Hussey
+	 */
+	public function logout_specific_user($user_id = FALSE)
+	{
+		if (is_numeric($user_id))
+		{
+			// Delete database login sessions and 'Remember me' cookies.
+			$this->delete_database_login_session($user_id, TRUE);
+		}
+		
+		// Run database maintenance function to clean up any expired login sessions.
+		$this->delete_expired_remember_users();
+
+		return TRUE;
+	}
+
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
 		
 	/**
