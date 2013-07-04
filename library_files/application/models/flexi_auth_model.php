@@ -2305,6 +2305,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		
 		$message = $this->load->view($template, $data, TRUE);
 		
+		$this->load->library('email');
 		$this->email->clear();
 		$this->email->initialize(array('mailtype' => $this->auth->email_settings['email_type']));
 		$this->email->set_newline("\r\n");
