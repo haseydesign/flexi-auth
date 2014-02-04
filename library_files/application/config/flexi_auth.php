@@ -609,6 +609,41 @@
 	 * Note: If using 'text', the default code within the flexi auth templates use HTML which will be emailed as plain text.
 	*/
 	$config['email']['email_type'] = 'html';
+
+	/**
+	 * The mail sending protocol. Options: 'mail', 'sendmail', 'smtp'
+	*/
+	$config['email']['protocol'] = 'mail';
+
+	/**
+     * SMTP Server Address.
+	*/
+    $config['email']['smtp_host'] = "";
+    
+	/**
+     * SMTP Username.
+	*/
+    $config['email']['smtp_user'] = "";
+    
+	/**
+     * SMTP Password.
+	*/
+    $config['email']['smtp_pass'] = "";
+    
+	/**
+     * SMTP Port . For Gmail is 587
+	*/
+    $config['email']['smtp_port'] = 25;
+    
+    /**
+	 * SMTP Encryption. Can be "", "ssl","tls"
+	*/
+    $config['email']['smtp_crypto'] = "";
+
+	/**
+	 * Enable Email debug. Debug information will be printed
+	*/
+    $config['email']['debug'] = FALSE;
 	
 	/**
 	 * Directory where email templates are stored.
