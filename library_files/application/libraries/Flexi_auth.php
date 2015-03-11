@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  defined('BASEPATH') OR exit('No direct script access allowed');
 /*
 * Name: flexi auth
 *
@@ -33,7 +33,8 @@
 */
 
 // Load the flexi auth Lite library to allow it to be extended.
-load_class('Flexi_auth_lite', 'libraries', FALSE);
+$CI =& get_instance();
+$CI->load->library('Flexi_auth_lite');
 
 class Flexi_auth extends Flexi_auth_lite
 {
@@ -1152,5 +1153,5 @@ class Flexi_auth extends Flexi_auth_lite
 	}
 }
 
-/* End of file flexi_auth.php */
-/* Location: ./application/controllers/flexi_auth.php */
+/* End of file Flexi_auth.php */
+/* Location: ./application/controllers/Flexi_auth.php */
