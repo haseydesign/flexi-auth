@@ -167,14 +167,15 @@ CREATE TABLE `user_privileges` (
 INSERT INTO `user_privileges` VALUES ('1', 'View Users', 'User can view user account details.');
 INSERT INTO `user_privileges` VALUES ('2', 'View User Groups', 'User can view user groups.');
 INSERT INTO `user_privileges` VALUES ('3', 'View Privileges', 'User can view privileges.');
-INSERT INTO `user_privileges` VALUES ('4', 'Insert User Groups', 'User can insert new user groups.');
-INSERT INTO `user_privileges` VALUES ('5', 'Insert Privileges', 'User can insert privileges.');
-INSERT INTO `user_privileges` VALUES ('6', 'Update Users', 'User can update user account details.');
-INSERT INTO `user_privileges` VALUES ('7', 'Update User Groups', 'User can update user groups.');
-INSERT INTO `user_privileges` VALUES ('8', 'Update Privileges', 'User can update user privileges.');
-INSERT INTO `user_privileges` VALUES ('9', 'Delete Users', 'User can delete user accounts.');
-INSERT INTO `user_privileges` VALUES ('10', 'Delete User Groups', 'User can delete user groups.');
-INSERT INTO `user_privileges` VALUES ('11', 'Delete Privileges', 'User can delete user privileges.');
+INSERT INTO `user_privileges` VALUES ('4', 'Insert Users', 'User can insert new user accounts.');
+INSERT INTO `user_privileges` VALUES ('5', 'Insert User Groups', 'User can insert new user groups.');
+INSERT INTO `user_privileges` VALUES ('6', 'Insert Privileges', 'User can insert privileges.');
+INSERT INTO `user_privileges` VALUES ('7', 'Update Users', 'User can update user account details.');
+INSERT INTO `user_privileges` VALUES ('8', 'Update User Groups', 'User can update user groups.');
+INSERT INTO `user_privileges` VALUES ('9', 'Update Privileges', 'User can update user privileges.');
+INSERT INTO `user_privileges` VALUES ('10', 'Delete Users', 'User can delete user accounts.');
+INSERT INTO `user_privileges` VALUES ('11', 'Delete User Groups', 'User can delete user groups.');
+INSERT INTO `user_privileges` VALUES ('12', 'Delete Privileges', 'User can delete user privileges.');
 
 -- ----------------------------
 -- Table structure for `user_privilege_users`
@@ -204,10 +205,11 @@ INSERT INTO `user_privilege_users` VALUES ('8', '1', '8');
 INSERT INTO `user_privilege_users` VALUES ('9', '1', '9');
 INSERT INTO `user_privilege_users` VALUES ('10', '1', '10');
 INSERT INTO `user_privilege_users` VALUES ('11', '1', '11');
-INSERT INTO `user_privilege_users` VALUES ('12', '2', '1');
-INSERT INTO `user_privilege_users` VALUES ('13', '2', '2');
-INSERT INTO `user_privilege_users` VALUES ('14', '2', '3');
-INSERT INTO `user_privilege_users` VALUES ('15', '2', '6');
+INSERT INTO `user_privilege_users` VALUES ('12', '1', '12');
+INSERT INTO `user_privilege_users` VALUES ('13', '2', '1');
+INSERT INTO `user_privilege_users` VALUES ('14', '2', '2');
+INSERT INTO `user_privilege_users` VALUES ('15', '2', '3');
+INSERT INTO `user_privilege_users` VALUES ('16', '2', '6');
 
 
 -- ----------------------------
@@ -240,6 +242,7 @@ INSERT INTO `user_privilege_groups` VALUES(8, 3, 8);
 INSERT INTO `user_privilege_groups` VALUES(9, 3, 9);
 INSERT INTO `user_privilege_groups` VALUES(10, 3, 10);
 INSERT INTO `user_privilege_groups` VALUES(11, 3, 11);
-INSERT INTO `user_privilege_groups` VALUES(12, 2, 2);
-INSERT INTO `user_privilege_groups` VALUES(13, 2, 4);
-INSERT INTO `user_privilege_groups` VALUES(14, 2, 5);
+INSERT INTO `user_privilege_groups` VALUES(12, 3, 12);
+INSERT INTO `user_privilege_groups` VALUES(13, 2, 2);
+INSERT INTO `user_privilege_groups` VALUES(14, 2, 4);
+INSERT INTO `user_privilege_groups` VALUES(15, 2, 5);
