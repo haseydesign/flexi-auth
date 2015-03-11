@@ -82,10 +82,9 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		
 		if ($is_password)
 		{
-			require_once(APPPATH.'libraries/phpass/PasswordHash.php');				
-			$phpass = new PasswordHash(8, FALSE);
-			
-			return $phpass->HashPassword($database_salt . $token . $static_salt);
+                    
+                    $data["salt"]=$static_salt.$database_salt;
+                    return password_hash($token, 1, $data);
 		}
 		else
 		{
@@ -1047,10 +1046,42 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		$database_salt = $result->{$this->auth->database_config['user_acc']['columns']['salt']};
 		$static_salt = $this->auth->auth_security['static_salt'];
 		
-		require_once(APPPATH.'libraries/phpass/PasswordHash.php');				
-		$hash_token = new PasswordHash(8, FALSE);
-					
-		return $hash_token->CheckPassword($database_salt . $verify_password . $static_salt, $database_password);
+                $data["salt"]=$static_salt.$database_salt;
+                $match=false;
+                if( password_hash($verify_password, 1, $data) == $database_password)
+                {
+                    $match=true;
+                    if(password_needs_rehash($database_password, 1)) {
+                        // store new hash in database
+                         $this->__save_rehashed_password($identity,  $verify_password); 
+                    }
+                }
+                return $match;
+	}
+        
+        ###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
+
+	/**
+	 * __save_rehashed_password
+	 * Save new rehashed password is needed
+	 *
+	 * @return bool
+	 * @author Daniel Santibáñez
+	 */
+        
+        
+    private function __save_rehashed_password($identity, $new_password)
+	{	
+                // Create hash of password and store.
+                $hash_new_password = $this->generate_hash_token($new_password, $user->{$this->auth->database_config['user_acc']['columns']['salt']}, TRUE);
+
+                $sql_update[$this->auth->tbl_col_user_account['password']] = $hash_new_password;
+
+                $sql_where[$this->auth->primary_identity_col] = $identity;
+
+                $this->db->update($this->auth->tbl_user_account, $sql_update, $sql_where);
+
+                return $this->db->affected_rows() == 1;
 	}
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
@@ -1198,7 +1229,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			}
 						
 			$hashed_new_password = $this->generate_hash_token($new_password, $database_salt, TRUE);
-			
+                        
 			$sql_update = array(
 				$this->auth->tbl_col_user_account['password'] => $hashed_new_password,
 				$this->auth->tbl_col_user_account['forgot_password_token'] => '',
@@ -1573,7 +1604,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			}
 
 			// Check whether account has been activated.
-			if ($user->{$this->auth->database_config['user_acc']['columns']['active']} == 0)
+			else if ($user->{$this->auth->database_config['user_acc']['columns']['active']} == 0)
 			{
 				$this->set_error_message('account_requires_activation', 'config');
 				return FALSE;
@@ -1941,11 +1972,11 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		{
 			$remember_series = $this->generate_token(40);
 		}
-	
-                // Set new 'Remember me' unique token.
-                $remember_token = $this->generate_token(40);
+			    
+        // Set new 'Remember me' unique token.
+        $remember_token = $this->generate_token(40);
                 
-                // Hash the database session tokens with user-agent to help invalidate hijacked cookies used from different browser.
+        // Hash the database session tokens with user-agent to help invalidate hijacked cookies used from different browser.
 		$sql_insert = array(
 			$this->auth->tbl_col_user_session['user_id'] => $user_id,
 			$this->auth->tbl_col_user_session['series'] => $this->hash_cookie_token($remember_series),
@@ -2332,7 +2363,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			'value'  => '',
 			'expire' => ''
 		);	
-                $this->session->set_userdata($ci_session);
+                $this->session->set_userdata($ci_session); 
 	}
 }
 
