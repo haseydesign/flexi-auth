@@ -632,6 +632,31 @@ class Auth_admin extends CI_Controller {
 		
 		$this->load->view('demo/admin_examples/users_view', $this->data);
 	}
+        
+        /**
+	 * register_account
+	 * User registration page used by admin to manually add new users accounts.
+	 * Note: This page is only accessible for admin or privileged users.
+	 */ 
+	function register_account()
+	{
+             // Redirect user away from registration page if not admin.
+		if (!$this->flexi_auth->is_privileged('Insert Users')) 
+		{
+			$this->session->set_flashdata('message', '<p class="error_msg">You do not have privileges to view user accounts.</p>');
+			redirect('auth_admin');	
+		}
+		if ($this->input->post('register_user'))
+		{
+                    $this->load->model('auth_model');
+                    $this->auth_model->register_account($this->input->post("activate_account"));
+		}
+		
+		// Get any status message that may have been set.
+		$this->data['message'] = (! isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];		
+
+		$this->load->view('demo/admin_examples/register_view', $this->data);
+	}
 
 }
 
