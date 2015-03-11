@@ -19,8 +19,6 @@ class Auth extends CI_Controller {
 		}
 		
 		// Load required CI libraries and helpers.
-		$this->load->database();
-		$this->load->library('session');
  		$this->load->helper('url');
  		$this->load->helper('form');
 
@@ -49,8 +47,8 @@ class Auth extends CI_Controller {
 		}
 		
 		// Note: This is only included to create base urls for purposes of this demo only and are not necessarily considered as 'Best practice'.
-		$this->load->vars('base_url', 'http://localhost/flexi_auth/');
-		$this->load->vars('includes_dir', 'http://localhost/flexi_auth/includes/');
+		$this->load->vars('base_url', '//'.$_SERVER['HTTP_HOST'].'/flexi_auth/');
+		$this->load->vars('includes_dir', '//'.$_SERVER['HTTP_HOST'].'/flexi_auth/includes/');
 		$this->load->vars('current_url', $this->uri->uri_to_assoc(1));
 		
 		// Define a global variable to store data that is then used by the end view page.
@@ -62,8 +60,8 @@ class Auth extends CI_Controller {
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 
 	/**
-	 * Many of the functions within this controller load a custom model called 'demo_auth_model' that has been created for the purposes of this demo.
-	 * The 'demo_auth_model' file is not part of the flexi auth library, it is included to demonstrate how some of the functions of flexi auth can be used.
+	 * Many of the functions within this controller load a custom model called 'auth_model' that has been created for the purposes of this demo.
+	 * The 'auth_model' file is not part of the flexi auth library, it is included to demonstrate how some of the functions of flexi auth can be used.
 	 *
 	 * These demos show working examples of how to implement some (most) of the functions available from the flexi auth library.
 	 * This particular controller 'auth', is used as the main login page, user registration, and for forgotten password requests.
@@ -97,8 +95,8 @@ class Auth extends CI_Controller {
 		// If 'Login' form has been submited, attempt to log the user in.
 		if ($this->input->post('login_user'))
 		{
-			$this->load->model('demo_auth_model');
-			$this->demo_auth_model->login();
+			$this->load->model('auth_model');
+			$this->auth_model->login();
 		}
 			
 		// CAPTCHA Example
@@ -117,7 +115,7 @@ class Auth extends CI_Controller {
 			 * If using a 'custom' reCAPTCHA theme, then the custom html must be PREPENDED to the code returned by the 'recaptcha()' function.
 			 * Again see https://developers.google.com/recaptcha/docs/customization for a template 'custom' html theme. 
 			 * 
-			 * Note: To use this example, you will also need to enable the recaptcha examples in 'models/demo_auth_model.php', and 'views/demo/login_view.php'.
+			 * Note: To use this example, you will also need to enable the recaptcha examples in 'models/auth_model.php', and 'views/demo/login_view.php'.
 			*/
 			$this->data['captcha'] = $this->flexi_auth->recaptcha(FALSE);
 						
@@ -128,7 +126,7 @@ class Auth extends CI_Controller {
 			 * 
 			 * To activate math_captcha, ensure the 'math_captcha()' function below is uncommented and then comment out the 'recaptcha()' function above.
 			 *
-			 * Note: To use this example, you will also need to enable the math_captcha examples in 'models/demo_auth_model.php', and 'views/demo/login_view.php'.
+			 * Note: To use this example, you will also need to enable the math_captcha examples in 'models/auth_model.php', and 'views/demo/login_view.php'.
 			*/
 			# $this->data['captcha'] = $this->flexi_auth->math_captcha(FALSE);
 		}
@@ -149,9 +147,9 @@ class Auth extends CI_Controller {
     {
 		if ($this->input->is_ajax_request())
 		{
-			$this->load->model('demo_auth_model');
+			$this->load->model('auth_model');
 			
-			$this->demo_auth_model->login_via_ajax();
+			$this->auth_model->login_via_ajax();
 
 			die($this->flexi_auth->is_logged_in());
 		}
@@ -176,8 +174,8 @@ class Auth extends CI_Controller {
 		// If 'Registration' form has been submitted, attempt to register their details as a new account.
 		else if ($this->input->post('register_user'))
 		{			
-			$this->load->model('demo_auth_model');
-			$this->demo_auth_model->register_account();
+			$this->load->model('auth_model');
+			$this->auth_model->register_account();
 		}
 		
 		// Get any status message that may have been set.
@@ -220,8 +218,8 @@ class Auth extends CI_Controller {
 		// If the 'Resend Activation Token' form has been submitted, resend the user an account activation email.
 		if ($this->input->post('send_activation_token')) 
 		{
-			$this->load->model('demo_auth_model');
-			$this->demo_auth_model->resend_activation_token();
+			$this->load->model('auth_model');
+			$this->auth_model->resend_activation_token();
 		}
 		
 		// Get any status message that may have been set.
@@ -247,8 +245,8 @@ class Auth extends CI_Controller {
 		// If the 'Forgotten Password' form has been submitted, then email the user a link to reset their password.
 		if ($this->input->post('send_forgotten_password')) 
 		{
-			$this->load->model('demo_auth_model');
-			$this->demo_auth_model->forgotten_password();
+			$this->load->model('auth_model');
+			$this->auth_model->forgotten_password();
 		}
 		
 		// Get any status message that may have been set.
@@ -268,8 +266,8 @@ class Auth extends CI_Controller {
 		// If the 'Change Forgotten Password' form has been submitted, then update the users password.
 		if ($this->input->post('change_forgotten_password')) 
 		{
-			$this->load->model('demo_auth_model');
-			$this->demo_auth_model->manual_reset_forgotten_password($user_id, $token);
+			$this->load->model('auth_model');
+			$this->auth_model->manual_reset_forgotten_password($user_id, $token);
 		}
 		
 		// Get any status message that may have been set.
@@ -334,5 +332,5 @@ class Auth extends CI_Controller {
     }	
 }
 
-/* End of file auth.php */
-/* Location: ./application/controllers/auth.php */
+/* End of file Auth.php */
+/* Location: ./application/controllers/Auth.php */
