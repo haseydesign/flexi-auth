@@ -552,6 +552,13 @@
 	*/
 	$config['settings']['auto_increment_username'] = FALSE;
 	
+        /**
+	 * Set whether accounts are activate by default on registration / inserting user.
+	 * This option allows admins to verify account details before enabling users.
+	 * @param: bool
+	*/
+	$config['settings']['instant_activate_new_accounts'] = FALSE;
+        
 	/**
 	 * Set whether accounts are suspended by default on registration / inserting user.
 	 * This option allows admins to verify account details before enabling users.

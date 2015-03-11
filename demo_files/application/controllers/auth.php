@@ -175,7 +175,7 @@ class Auth extends CI_Controller {
 		else if ($this->input->post('register_user'))
 		{			
 			$this->load->model('auth_model');
-			$this->auth_model->register_account();
+			$this->auth_model->register_account($this->auth->auth_settings['instant_activate_new_accounts']);
 		}
 		
 		// Get any status message that may have been set.
