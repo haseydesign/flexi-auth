@@ -1941,11 +1941,11 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		{
 			$remember_series = $this->generate_token(40);
 		}
-		
-	    // Set new 'Remember me' unique token.
-		$remember_token = $this->generate_token(40);
-		
-		// Hash the database session tokens with user-agent to help invalidate hijacked cookies used from different browser.
+	
+                // Set new 'Remember me' unique token.
+                $remember_token = $this->generate_token(40);
+                
+                // Hash the database session tokens with user-agent to help invalidate hijacked cookies used from different browser.
 		$sql_insert = array(
 			$this->auth->tbl_col_user_session['user_id'] => $user_id,
 			$this->auth->tbl_col_user_session['series'] => $this->hash_cookie_token($remember_series),
@@ -2331,10 +2331,10 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			'name'   => $this->config->item('sess_cookie_name'),
 			'value'  => '',
 			'expire' => ''
-		);
-		set_cookie($ci_session);	
+		);	
+                $this->session->set_userdata($ci_session);
 	}
 }
 
-/* End of file flexi_auth_model.php */
-/* Location: ./application/controllers/flexi_auth_model.php */
+/* End of file Flexi_auth_model.php */
+/* Location: ./application/controllers/Flexi_auth_model.php */

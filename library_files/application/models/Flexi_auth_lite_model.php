@@ -36,7 +36,7 @@ class Flexi_auth_lite_model extends CI_Model
 	public function __construct()
 	{
 		$this->load->database();
-		$this->load->library('session');
+		$this->load->driver('session');
 		$this->load->helper('cookie');
 		$this->load->config('flexi_auth', TRUE);
 		$this->lang->load('flexi_auth');
@@ -862,5 +862,5 @@ class Flexi_auth_lite_model extends CI_Model
 	}	
 }
 
-/* End of file flexi_auth_lite_model.php */
-/* Location: ./application/controllers/flexi_auth_lite_model.php */
+/* End of file Flexi_auth_lite_model.php */
+/* Location: ./application/controllers/Flexi_auth_lite_model.php */

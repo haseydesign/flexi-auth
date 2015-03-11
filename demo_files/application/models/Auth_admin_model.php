@@ -1,6 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Demo_auth_admin_model extends CI_Model {
+class auth_admin_model extends CI_Model {
 	
 	// The following method prevents an error occurring when $this->data is modified.
 	// Error Message: 'Indirect modification of overloaded property Demo_cart_admin_model::$data has no effect'.
@@ -145,7 +145,7 @@ class Demo_auth_admin_model extends CI_Model {
  	/**
 	 * update_user_account
 	 * Updates the account and profile data of a specific user.
-	 * Note: The user profile table ('demo_user_profiles') is used in this demo as an example of relating additional user data to the auth libraries account tables. 
+	 * Note: The user profile table ('user_profiles') is used in this demo as an example of relating additional user data to the auth libraries account tables. 
 	 */
 	function update_user_account($user_id)
 	{
@@ -472,5 +472,5 @@ class Demo_auth_admin_model extends CI_Model {
     }
 }
 
-/* End of file demo_auth_admin_model.php */
-/* Location: ./application/models/demo_auth_admin_model.php */
+/* End of file Auth_admin_model.php */
+/* Location: ./application/models/Auth_admin_model.php */
