@@ -37,7 +37,7 @@
 		<div class="content clearfix">
 			<div class="col100">
 				<h2>User Accounts</h2>
-
+                                <a href="<?php echo $base_url; ?>auth_admin/register_accounts" class="link_button">Add new account</a>
 			<?php if (! empty($message)) { ?>
 				<div id="message">
 					<?php echo $message; ?>
