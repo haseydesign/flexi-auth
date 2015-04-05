@@ -10,5 +10,3 @@ flexi auth Concept: http://haseydesign.com/flexi-auth/user_guide/concept/
 Library Overview: http://haseydesign.com/flexi-auth/
 Library Demo: http://haseydesign.com/flexi-auth/auth_lite/demo/
 Library User Guide: http://haseydesign.com/flexi-auth/user_guide/
-
-Support : http://ellislab.com/forums/viewthread/224351/
