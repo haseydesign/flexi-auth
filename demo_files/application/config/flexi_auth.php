@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 * Name: flexi auth Config
 *
@@ -121,7 +121,7 @@
 	$config['database']['user_privilege_users']['columns']['id'] = 'upriv_users_id';
 	$config['database']['user_privilege_users']['columns']['user_id'] = 'upriv_users_uacc_fk';
 	$config['database']['user_privilege_users']['columns']['privilege_id'] = 'upriv_users_upriv_fk';
-	
+
 	/**
 	 * User Privilege Groups Table
 	 * The user privilege group table is used to assign privileges to user groups. Multiple privileges can be assigned to a user group.
@@ -169,8 +169,43 @@
 	 * $config['database']['custom']['#Array Alias#']['join'] = '#Actual table name#.#Foreign key column to main user table "user_acc"#';
 	 * $config['database']['custom']['#Array Alias#']['custom_columns'] = array('#Column1#','#Column2#');
 	 *
-	 * Note: No custom tables are required to use flexi auth, see the demo config file for examples of including custom tables.
+	 * Note: No custom tables are required to use flexi auth and the custom 'User Profile' and 'User Address' tables below are set only as examples.
 	*/
+	
+	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
+
+	/**
+	 * Custom User Profile Table
+	 * Example table used to hold profile data on each user.
+	 *
+	 * Note: This table and all included fields can be expanded upon or removed completely.
+	*/ 
+	$config['database']['custom']['user_profile']['table'] = 'demo_user_profiles';
+	$config['database']['custom']['user_profile']['primary_key'] = 'upro_id';
+	$config['database']['custom']['user_profile']['foreign_key'] = 'upro_uacc_fk';
+	$config['database']['custom']['user_profile']['join'] = 'demo_user_profiles.upro_uacc_fk';
+	$config['database']['custom']['user_profile']['custom_columns'] = array(
+		'upro_first_name','upro_last_name','upro_phone','upro_newsletter'
+	);
+
+	###+++++++++++++++++++++++++++###
+	
+	/**
+	 * Custom User Address Table
+	 * Example table used to hold address data on each user.
+	 * By holding this data in a separate table from the profile data table above, a user can save multiple addresses.
+	 *
+	 * Note: This table and all included fields can be expanded upon or removed completely.
+	*/ 
+	$config['database']['custom']['user_address']['table'] = 'demo_user_address';
+	$config['database']['custom']['user_address']['primary_key'] = 'uadd_id';
+	$config['database']['custom']['user_address']['foreign_key'] = 'uadd_uacc_fk';
+	$config['database']['custom']['user_address']['join'] = 'demo_user_address.uadd_uacc_fk';
+	$config['database']['custom']['user_address']['custom_columns'] = array(
+		'uadd_alias','uadd_recipient','uadd_phone','uadd_company','uadd_address_01','uadd_address_02','uadd_city','uadd_county',
+		'uadd_post_code','uadd_country'
+	);
+	
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 	// DATABASE SETTINGS
@@ -210,7 +245,7 @@
 	 * 
 	 * Note: Any column within the user main account, custom or group tables can be added to array
 	*/ 
-	$config['database']['settings']['search_user_cols'] = array('uacc_email');
+	$config['database']['settings']['search_user_cols'] = array('uacc_email', 'upro_first_name', 'upro_last_name');
 	
 	/**
 	 * Database Date / Time Format
@@ -438,8 +473,10 @@
 	 * !IMPORTANT: 
 	 *	Do NOT change this salt once users have started registering accounts as their passwords will not work without the original salt.
 	 *	CHANGE THE DEFAULT STATIC SALT SET BELOW TO YOUR OWN RANDOM SET OF CHARACTERS.
+         * !VERY IMPORTANT:
+         *      static-salt must be at least 20 characters!!
 	*/
-	$config['security']['static_salt'] = 'change-me!';
+	$config['security']['static_salt'] = 'change-me-carrefully!';
 	
 	/**
 	 * Set whether a salt is stored in the database and then used for password and hash token generation.
@@ -552,13 +589,6 @@
 	*/
 	$config['settings']['auto_increment_username'] = FALSE;
 	
-        /**
-	 * Set whether accounts are activate by default on registration / inserting user.
-	 * This option allows admins to verify account details before enabling users.
-	 * @param: bool
-	*/
-	$config['settings']['instant_activate_new_accounts'] = FALSE;
-        
 	/**
 	 * Set whether accounts are suspended by default on registration / inserting user.
 	 * This option allows admins to verify account details before enabling users.
@@ -579,15 +609,14 @@
 	 * @param: int
 	*/
 	$config['settings']['default_group_id'] = 1;
-        
+
     /**
      * Set whether user privileges should be determined by individual privileges assigned per user, or via privileges assigned to a users user group.
      * @param array
      * 
      * Options: array('user','group'), array('user'), array('group')
-     * Default: individual user privileges only.
      */
-    $config['settings']['privilege_sources'] = array('user');
+    $config['settings']['privilege_sources'] = array('user','group');
 
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	

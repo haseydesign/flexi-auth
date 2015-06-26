@@ -1088,32 +1088,43 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 
 	/**
 	 * change_password
-	 * Validates a submitted 'Current' password against the database, if valid, the database is updated with the 'New' password. 
-	 *
+	 * - Validates a submitted 'Current' password against the database, if valid, the database is updated with the 'New' password. 
+	 * - If an admin user change user password, can use it without password confirmation
 	 * @return bool
 	 * @author Rob Hussey
+         * @colaborator Daniel Santibáñez
 	 */
 	public function change_password($identity, $current_password, $new_password)
 	{		
 		// Verify current password matches
-	    if ($this->verify_password($identity, $current_password))
+	    if ($this->verify_password($identity, $current_password) || ($this->flexi_auth->is_admin() && !empty($new_password)))
 	    {
 			// Remove 'Remember me' database sessions so all remembered instances have to re-login, whilst maintaining current login session
-			$user_id = $this->auth->session_data[$this->auth->session_name['user_id']];
+                        $user_id = $identity;
+                        if(!is_numeric($user_id))
+                        {
+                            $user_id = $this->auth->session_data[$this->auth->session_name['user_id']];
 			
-			if ($session_token = $this->auth->session_data[$this->auth->session_name['login_session_token']])
-			{
-				$this->db->where($this->auth->tbl_col_user_session['token'].' != ', $session_token);
-			}
-			$this->db->where($this->auth->tbl_col_user_session['user_id'],$user_id);			
-			$this->db->delete($this->auth->tbl_user_session);
+                            if ($session_token = $this->auth->session_data[$this->auth->session_name['login_session_token']])
+                            {
+                                    $this->db->where($this->auth->tbl_col_user_session['token'].' != ', $session_token);
+                            }
+                        
+                            $this->db->where($this->auth->tbl_col_user_session['user_id'],$user_id);			
+                            $this->db->delete($this->auth->tbl_user_session);
+                            
+                            $sql_where = array(
+                                    $this->auth->primary_identity_col => $identity
+                            );
+                        }else{
+                            
+                            $sql_where = array(
+                                    $this->auth->tbl_col_user_account['id'] => $user_id
+                            );
+                        }
 			
 			// Get users salt.
-			$sql_select = $this->auth->tbl_col_user_account['salt'];
-
-			$sql_where = array(
-				$this->auth->primary_identity_col => $identity
-			);
+                        $sql_select = $this->auth->tbl_col_user_account['salt'];
 		
 			$user = $this->get_users($sql_select, $sql_where)->row();
 			
@@ -1121,8 +1132,6 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			$hash_new_password = $this->generate_hash_token($new_password, $user->{$this->auth->database_config['user_acc']['columns']['salt']}, TRUE);
 			
 			$sql_update[$this->auth->tbl_col_user_account['password']] = $hash_new_password;
-
-			$sql_where[$this->auth->primary_identity_col] = $identity;
 
 			$this->db->update($this->auth->tbl_user_account, $sql_update, $sql_where);
 

@@ -161,6 +161,9 @@ class auth_admin_model extends CI_Model {
 			array('field' => 'update_username', 'label' => 'Username', 'rules' => 'min_length[4]|identity_available['.$user_id.']'),
 			array('field' => 'update_group', 'label' => 'User Group', 'rules' => 'required|integer')
 		);
+                
+                if($this->input->post('new_password')!="")
+                    $validation[]=array('field' => 'new_password', 'label' => 'New Password', 'rules' => 'required|validate_password');
 
 		$this->form_validation->set_rules($validation_rules);
 		
@@ -184,6 +187,9 @@ class auth_admin_model extends CI_Model {
 
 			// If we were only updating profile data (i.e. no email, username or group included), we could use the 'update_custom_user_data()' function instead.
 			$this->flexi_auth->update_user($user_id, $profile_data);
+                        
+                        if($this->input->post('new_password') != "")
+                            $this->flexi_auth->change_password($user_id, FALSE, $this->input->post('new_password'));
 				
 			// Save any public or admin status or error messages to CI's flash session data.
 			$this->session->set_flashdata('message', $this->flexi_auth->get_messages());

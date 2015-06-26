@@ -90,6 +90,10 @@
 									title="Set the users username that they can use to login with."
 								/>
 							</li>
+                                                        <li>
+                                                                <label for="new_password"><?=$lang("new_password")?>:</label>
+                                                                <input  type="text" id="new_password" name="new_password" value="<?php echo set_value('new_password');?>"/>
+                                                        </li>
 							<li class="info_req">
 								<label for="group">Group:</label>
 								<select id="group" name="update_group" class="tooltip_trigger"
