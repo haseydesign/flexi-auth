@@ -96,11 +96,15 @@ function generatepass(plength){
     var keylist="abcdefghijklmnopqrstuvwxyzñABCDEFGHIJKLMNOPQRSTUVWXYZÑ123456789";
     var temp='';
     for (i=0;i<plength;i++)
-    temp+=keylist.charAt(Math.floor(Math.random()*keylist.length))
-    return temp
+    temp+=keylist.charAt(Math.floor(Math.random()*keylist.length));
+    return temp;
 }
 
 function generatePassword(plength){
     var pass=generatepass(plength);
     $(":password").val(pass) ;
+    var label = document.getElementById("password_result");
+    var span = document.getElementById("password_result_span");
+    label.style.visibility="visible";
+    span.innerHTML=pass;
 };
