@@ -44,7 +44,7 @@
 		<div class="content clearfix">
 			<div class="w100">
 				<h3>What is flexi auth?</h3>
-				<p>flexi auth is a free open source user authentication/login library for use with the <a href="http://ellislab.com" target="_blank">CodeIgniter</a> 2.0+ framework.</p>
+				<p>flexi auth is a free open source user authentication/login library for use with the <a href="http://ellislab.com" target="_blank">CodeIgniter</a> 3.0+ framework.</p>
 				<hr style="margin-top:10px; margin-bottom:10px; border:none; border-top:1px dotted #999;"/>
 				<p>
 					The flexi auth library initially started out as a modified version of the popular <a href="http://benedmunds.com/ion_auth/" target="_blank">Ion Auth</a> library. 
