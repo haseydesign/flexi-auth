@@ -168,7 +168,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 	    $database_salt = $store_database_salt ? $this->generate_token($this->auth->auth_security['database_salt_length']) : FALSE;
 		
 		$hash_password = $this->generate_hash_token($password, $database_salt, TRUE);
-		$activation_token = sha1($this->generate_token(20));
+		$activation_token = sha1($this->generate_token(22));
 		$suspend_account = ($this->auth->auth_settings['suspend_new_accounts']) ? 1 : 0;
 		
 		###+++++++++++++++++++++++++++++++++###
@@ -997,7 +997,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			return FALSE;
 	    }
 
-	    $activation_token = sha1($this->generate_token(20));
+	    $activation_token = sha1($this->generate_token(22));
 
 	    $sql_update = array(
 			$this->auth->tbl_col_user_account['activation_token'] => $activation_token,
@@ -1088,11 +1088,10 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 
 	/**
 	 * change_password
-	 * - Validates a submitted 'Current' password against the database, if valid, the database is updated with the 'New' password. 
-	 * - If an admin user change user password, can use it without password confirmation
+	 * Validates a submitted 'Current' password against the database, if valid, the database is updated with the 'New' password. 
+	 *
 	 * @return bool
 	 * @author Rob Hussey
-         * @colaborator Daniel Santibáñez
 	 */
 	public function change_password($identity, $current_password, $new_password)
 	{		
@@ -1913,7 +1912,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 	    }
 		
 		// Generate session token.
-		$session_token = sha1($this->generate_token(20));
+		$session_token = sha1($this->generate_token(22));
 		
 		$sql_insert = array(
 			$this->auth->tbl_col_user_session['user_id'] => $user_id,
