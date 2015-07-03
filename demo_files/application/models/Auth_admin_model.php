@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class auth_admin_model extends CI_Model {
+class Auth_admin_model extends CI_Model {
 	
 	// The following method prevents an error occurring when $this->data is modified.
 	// Error Message: 'Indirect modification of overloaded property Demo_cart_admin_model::$data has no effect'.
@@ -145,7 +145,7 @@ class auth_admin_model extends CI_Model {
  	/**
 	 * update_user_account
 	 * Updates the account and profile data of a specific user.
-	 * Note: The user profile table ('user_profiles') is used in this demo as an example of relating additional user data to the auth libraries account tables. 
+	 * Note: The user profile table ('demo_user_profiles') is used in this  as an example of relating additional user data to the auth libraries account tables. 
 	 */
 	function update_user_account($user_id)
 	{
@@ -162,8 +162,8 @@ class auth_admin_model extends CI_Model {
 			array('field' => 'update_group', 'label' => 'User Group', 'rules' => 'required|integer')
 		);
                 
-                if($this->input->post('new_password')!="")
-                    $validation[]=array('field' => 'new_password', 'label' => 'New Password', 'rules' => 'required|validate_password');
+                if(!empty($this->input->post('new_password')))
+                    $validation_rules[]=array('field' => 'new_password', 'label' => lang("new_password"), 'rules' => 'validate_password');
 
 		$this->form_validation->set_rules($validation_rules);
 		
@@ -183,13 +183,14 @@ class auth_admin_model extends CI_Model {
 				$this->flexi_auth->db_column('user_acc', 'email') => $this->input->post('update_email_address'),
 				$this->flexi_auth->db_column('user_acc', 'username') => $this->input->post('update_username'),
 				$this->flexi_auth->db_column('user_acc', 'group_id') => $this->input->post('update_group')
-			);			
-
-			// If we were only updating profile data (i.e. no email, username or group included), we could use the 'update_custom_user_data()' function instead.
-			$this->flexi_auth->update_user($user_id, $profile_data);
+                                
+			);
                         
                         if($this->input->post('new_password') != "")
                             $this->flexi_auth->change_password($user_id, FALSE, $this->input->post('new_password'));
+
+			// If we were only updating profile data (i.e. no email, username or group included), we could use the 'update_custom_user_data()' function instead.
+			$this->flexi_auth->update_user($user_id, $profile_data);
 				
 			// Save any public or admin status or error messages to CI's flash session data.
 			$this->session->set_flashdata('message', $this->flexi_auth->get_messages());
@@ -197,7 +198,8 @@ class auth_admin_model extends CI_Model {
 			// Redirect user.
 			redirect('auth_admin/manage_user_accounts');			
 		}
-		
+		// Set validation errors.
+		$this->data['message'] = validation_errors('<p class="error_msg">', '</p>');
 		return FALSE;
 	}
 

@@ -464,7 +464,7 @@
 	 * Default allows alpha-numeric, dashes, underscores, periods and commas ('\.\,\-_ a-z0-9').
 	 * Note this is a regular expression.
 	*/ 
-	$config['security']['valid_password_chars'] = '\.\,\-_ a-z0-9';
+	$config['security']['valid_password_chars'] = '\.\,\-_ a-zA-Z0-9';
 
 	/**
 	 * Set the static (non-database stored) salt used for password and hash token generation.
@@ -589,6 +589,13 @@
 	*/
 	$config['settings']['auto_increment_username'] = FALSE;
 	
+        /**
+	 * Set whether accounts are activate by default on registration / inserting user.
+	 * This option allows admins to verify account details before enabling users.
+	 * @param: bool
+	*/
+	$config['settings']['instant_activate_new_accounts'] = FALSE;
+        
 	/**
 	 * Set whether accounts are suspended by default on registration / inserting user.
 	 * This option allows admins to verify account details before enabling users.

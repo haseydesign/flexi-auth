@@ -90,6 +90,19 @@
 									title="Set a username that can be used to login with."
 								/>
 							</li>
+                                                        <li class="info_req">
+								<label for="group">Group:</label>
+								<select id="group" name="update_group" class="tooltip_trigger"
+									title="Set the users group, that can define them as an admin, public, moderator etc."
+								>
+								<?php foreach($groups as $group) { ?>
+									<?php $default_group = ($group[$this->flexi_auth->db_column('user_group', 'id')] == $this->auth->auth_settings['default_group_id']) ? TRUE : FALSE;?>
+									<option value="<?php echo $group[$this->flexi_auth->db_column('user_group', 'id')];?>" <?php echo set_select('update_group', $group[$this->flexi_auth->db_column('user_group', 'id')], $default_group);?>>
+										<?php echo $group[$this->flexi_auth->db_column('user_group', 'name')];?>
+									</option>
+								<?php } ?>
+								</select>
+							</li>
 							<li>							
 								<small>
 									<strong>For this demo, the following validation settings have been defined:</strong><br/>
@@ -102,10 +115,10 @@
 							</li>
 							<li class="info_req">
 								<label for="confirm_password">Confirm Password:</label>
-								<input type="password" id="confirm_password" name="register_confirm_password" value="1" <?php echo set_checkbox('register_confirm_password',1);?>/>
-							</li>
-                                                        <li class="info_req">
-                                                            <button id="generate_pass" type="button" onclick="generatePassword(8)"> Generar Contraseña </button>
+								<input type="password" id="confirm_password" name="register_confirm_password" value="<?php echo set_value('register_confirm_password');?>"/>
+                                                        <li class="info_req">        
+                                                            <label id="password_result" for="generate_password" style = "visibility: hidden;"><?php echo lang("new_password");?>: <span id="password_result_span"></span></label>
+                                                            <button id="generate_password" type="button" onclick="generatePassword(8)" class="link_button large"> <?php echo lang("generate_password");?> </button>
                                                         </li>
 						</ul>
 					</fieldset>
@@ -120,7 +133,7 @@
 							</li>
                                                         <li class="info_req">
 								<label for="activate_account">Instant Activate account:</label>
-                                                                <input type="checkbox" id="activate_account" name="activate_account" value="<?php echo set_value('register_password');?>"/>
+                                                                <input <?php echo set_checkbox("activate_account",1,$this->auth->auth_settings['instant_activate_new_accounts'] )?> type="checkbox" id="activate_account" name="activate_account" value="1"/>
 							</li>
 							<li>
 								<hr/>

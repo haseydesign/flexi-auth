@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class auth_model extends CI_Model {
+class Auth_model extends CI_Model {
 	
 	// The following method prevents an error occurring when $this->data is modified.
 	// Error Message: 'Indirect modification of overloaded property Demo_cart_admin_model::$data has no effect'.
@@ -101,7 +101,7 @@ class auth_model extends CI_Model {
 	 * Create a new user account. 
 	 * Then if defined via the '$instant_activate' var, automatically log the user into their account.
 	 */
-	function register_account($instant_activate = FALSE)
+	function register_account($instant_activate = FALSE, $user_group = FALSE, $redirect = TRUE)
 	{
 		$this->load->library('form_validation');
 
@@ -145,7 +145,7 @@ class auth_model extends CI_Model {
 			// #1. Specify the group ID for the user to be added to (i.e. 'Moderator' / 'Public'), the default is set via the config file.
 			// #2. Set whether to automatically activate the account upon registration, default is FALSE. 
 			// Note: An account activation email will be automatically sent if auto activate is FALSE, or if an activation time limit is set by the config file.
-			$response = $this->flexi_auth->insert_user($email, $username, $password, $profile_data, 1, $instant_activate);
+			$response = $this->flexi_auth->insert_user($email, $username, $password, $profile_data, $user_group, $instant_activate);
 
 			if ($response)
 			{
@@ -163,6 +163,8 @@ class auth_model extends CI_Model {
 				
 				// This is an example of how to log the user into their account immeadiately after registering.
 				// This example would only be used if users do not have to authenticate their account via email upon registration.
+                                if(!$redirect)
+                                    return TRUE;
 				if ($instant_activate && $this->flexi_auth->login($email, $password))
 				{
 					// Redirect user to public dashboard.

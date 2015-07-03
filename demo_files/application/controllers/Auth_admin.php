@@ -19,7 +19,7 @@ class Auth_admin extends CI_Controller {
 		}
 		
 		// Load required CI libraries and helpers.
- 		$this->load->helper('url');
+ 		
  		$this->load->helper('form');
 
   		// IMPORTANT! This global must be defined BEFORE the flexi auth library is loaded! 
@@ -40,8 +40,8 @@ class Auth_admin extends CI_Controller {
 		}
 
 		// Note: This is only included to create base urls for purposes of this demo only and are not necessarily considered as 'Best practice'.
-		$this->load->vars('base_url', '//'.$_SERVER['HTTP_HOST'].'/flexi_auth/');
-		$this->load->vars('includes_dir', '//'.$_SERVER['HTTP_HOST'].'/flexi_auth/includes/');
+		$this->load->vars('base_url', '//'.$_SERVER['HTTP_HOST'].'/');
+		$this->load->vars('includes_dir', '//'.$_SERVER['HTTP_HOST'].'/includes/');
 		$this->load->vars('current_url', $this->uri->uri_to_assoc(1));
 		
 		// Define a global variable to store data that is then used by the end view page.
@@ -637,27 +637,29 @@ class Auth_admin extends CI_Controller {
 	 * register_account
 	 * User registration page used by admin to manually add new users accounts.
 	 * Note: This page is only accessible for admin or privileged users.
+         * @dansanti
 	 */ 
-	function register_account()
-	{
-             // Redirect user away from registration page if not admin.
-		if (!$this->flexi_auth->is_privileged('Insert Users')) 
-		{
-			$this->session->set_flashdata('message', '<p class="error_msg">You do not have privileges to view user accounts.</p>');
-			redirect('auth_admin');	
-		}
+	function insert_account()
+	{		
+		// If 'Registration' form has been submitted, attempt to register their details as a new account.
 		if ($this->input->post('register_user'))
 		{
+                    $instant_activate = FALSE;
+                    if($this->input->post("activate_account"))
+                        $instant_activate = TRUE;
                     $this->load->model('auth_model');
-                    $this->auth_model->register_account($this->input->post("activate_account"));
+                    if($this->auth_model->register_account($instant_activate,$this->input->post("user_group"),FALSE))
+                        redirect(site_url("auth_admin/manage_user_accounts"));
 		}
 		
+		// Get user groups.
+		$this->data['groups'] = $this->flexi_auth->get_groups_array();
+                
 		// Get any status message that may have been set.
 		$this->data['message'] = (! isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];		
 
-		$this->load->view('demo/admin_examples/register_view', $this->data);
+		$this->load->view('demo/admin_examples/user_account_insert_view', $this->data);
 	}
-
 }
 
 /* End of file Auth_admin.php */

@@ -91,7 +91,7 @@
 								/>
 							</li>
                                                         <li>
-                                                                <label for="new_password"><?=$lang("new_password")?>:</label>
+                                                                <label for="new_password"><?=lang("new_password")?>:</label>
                                                                 <input  type="text" id="new_password" name="new_password" value="<?php echo set_value('new_password');?>"/>
                                                         </li>
 							<li class="info_req">
