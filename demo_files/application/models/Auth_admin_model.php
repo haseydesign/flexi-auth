@@ -162,7 +162,8 @@ class Auth_admin_model extends CI_Model {
 			array('field' => 'update_group', 'label' => 'User Group', 'rules' => 'required|integer')
 		);
                 
-                if(!empty($this->input->post('new_password')))
+                $new_password = $this->input->post('new_password');
+                if(!empty($new_password))
                     $validation_rules[]=array('field' => 'new_password', 'label' => lang("new_password"), 'rules' => 'validate_password');
 
 		$this->form_validation->set_rules($validation_rules);
