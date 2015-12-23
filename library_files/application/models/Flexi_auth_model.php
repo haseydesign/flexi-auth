@@ -1612,7 +1612,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			}
 
 			// Check whether account has been activated.
-			if ($user->{$this->auth->database_config['user_acc']['columns']['active']} == 0)
+			else if ($user->{$this->auth->database_config['user_acc']['columns']['active']} == 0)
 			{
 				$this->set_error_message('account_requires_activation', 'config');
 				return FALSE;
