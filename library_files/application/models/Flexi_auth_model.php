@@ -196,12 +196,15 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 	    }
 
 		// Loop through custom data columns for the main user table set via config file.
-		foreach($this->auth->database_config['user_acc']['custom_columns'] as $column)
-		{			
-			if (array_key_exists($column, $custom_data))
-			{
-				$sql_insert[$column] = $custom_data[$column];
-				unset($custom_data[$column]);
+		if (is_array($custom_data))
+		{
+			foreach($this->auth->database_config['user_acc']['custom_columns'] as $column)
+			{			
+				if (array_key_exists($column, $custom_data))
+				{
+					$sql_insert[$column] = $custom_data[$column];
+					unset($custom_data[$column]);
+				}
 			}
 		}
 
