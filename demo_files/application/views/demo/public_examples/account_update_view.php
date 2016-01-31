@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Update Account Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title><?php echo lang("update_account_demo"); ?> | flexi auth | <?php echo lang("a_user_authentication_library"); ?></title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Public: Update Account Details</h2>
+				<h2><?php echo lang("public_update_account_details"); ?></h2>
 				<p>The data saved within user accounts typically consists of two primary types, data that is essential for user authentication and then user profile data.</p>
 				<p>The essential user authentication data consists of information like a users email address and password that are required by users to securely log into their account. In addition to this, the flexi auth library can also automatically save and manage user data like IP addresses, last login dates etc.</p>
 				<p>As for the user profile data, flexi auth allows you to save and relate whatever data you require to the users account, whether that data is all stored in the same table, or via multiple tables. The design of the database schema is up to you.</p>
@@ -38,8 +38,8 @@
 	<div class="content_wrap main_content_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Update Account Details</h2>
-				<a href="<?php echo $base_url;?>auth_public/change_password">Change Password</a>
+				<h2><?php echo lang("update_account_details"); ?></h2>
+				<a href="<?php echo $base_url;?>auth_public/change_password"><?php echo lang("change_password"); ?></a>
 
 			<?php if (! empty($message)) { ?>
 				<div id="message">
@@ -49,39 +49,39 @@
 				
 				<?php echo form_open(current_url());	?>  	
 					<fieldset>
-						<legend>Personal Details</legend>
+						<legend><?php echo lang("personal_details"); ?></legend>
 						<ul>
 							<li class="info_req">
-								<label for="first_name">First Name:</label>
+								<label for="first_name"><?php echo lang("first_name"); ?>:</label>
 								<input type="text" id="first_name" name="update_first_name" value="<?php echo set_value('update_first_name',$user['upro_first_name']);?>"/>
 							</li>
 							<li class="info_req">
-								<label for="last_name">Last Name:</label>
+								<label for="last_name"><?php echo lang("last_name"); ?>:</label>
 								<input type="text" id="last_name" name="update_last_name" value="<?php echo set_value('update_last_name',$user['upro_last_name']);?>"/>
 							</li>
 						</ul>
 					</fieldset>
 					
 					<fieldset>
-						<legend>Contact Details</legend>
+						<legend><?php echo lang("contact_details"); ?></legend>
 						<ul>
 							<li class="info_req">
-								<label for="phone_number">Phone Number:</label>
+								<label for="phone_number"><?php echo lang("phone_number"); ?>:</label>
 								<input type="text" id="phone_number" name="update_phone_number" value="<?php echo set_value('update_phone_number',$user['upro_phone']);?>"/>
 							</li>
 							<li>
 								<?php $newsletter = ($user['upro_newsletter'] == 1) ;?>
-								<label for="newsletter">Subscribe to Newsletter:</label>
+								<label for="newsletter"><?php echo lang("subscribe_to_newsletter"); ?>:</label>
 								<input type="checkbox" id="newsletter" name="update_newsletter" value="1" <?php echo set_checkbox('update_newsletter',1,$newsletter); ?>/>
 							</li>
 						</ul>
 					</fieldset>
 					
 					<fieldset>
-						<legend>Login Details</legend>
+						<legend><?php echo lang("login_details"); ?></legend>
 						<ul>
 							<li class="info_req">
-								<label>Email Address:</label>
+								<label>Email:</label>
 								<input type="text" id="email" name="update_email" value="<?php echo set_value('update_email',$user[$this->flexi_auth->db_column('user_acc', 'email')]);?>" class="tooltip_trigger"
 									title="Set an email address that can be used to login with."
 								/>
@@ -92,20 +92,20 @@
 							</li>
 							<li>
 								<hr/>
-								<label for="username">Username:</label>
+								<label for="username"><?php echo lang("username"); ?>:</label>
 								<input type="text" id="username" name="update_username" value="<?php echo set_value('update_username',$user[$this->flexi_auth->db_column('user_acc', 'username')]);?>" class="tooltip_trigger"
 									title="Set a username that can be used to login with."
 								/>
 							</li>
 							<li>
-								<label>Password:</label>
-								<a href="<?php echo $base_url;?>auth_public/change_password">Click here to change your password</a>
+								<label><?php echo lang("password"); ?>:</label>
+								<a href="<?php echo $base_url;?>auth_public/change_password"><?php echo lang("click_here_to_change_your_password"); ?></a>
 							</li>
 						</ul>
 					</fieldset>
 					
 					<fieldset>
-						<legend>Update Account</legend>
+						<legend><?php echo lang("update_account"); ?></legend>
 						<ul>
 							<li>
 								<h6>Important Note</h6>
@@ -113,8 +113,8 @@
 							</li>
 							<li>
 								<hr/>
-								<label for="submit">Update Account:</label>
-								<input type="submit" name="update_account" id="submit" value="Submit" class="link_button large"/>
+								<label for="submit"><?php echo lang("update_account"); ?>:</label>
+								<input type="submit" name="update_account" id="submit" value="<?php echo lang("submit"); ?>" class="link_button large"/>
 							</li>
 						</ul>
 					</fieldset>

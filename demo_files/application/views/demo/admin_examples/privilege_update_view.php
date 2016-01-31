@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Update Privileges Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title><?php echo lang("update_privileges_demo"); ?> | flexi auth | <?php echo lang("a_user_authentication_library"); ?></title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Admin: Update Privilege</h2>
+				<h2><?php echo lang("admin_update_privilege"); ?></h2>
 				<p>The flexi auth library allows for unlimited custom user privileges to be defined. The privileges can then be assigned to users on an individual basis.</p>
 				<p>Once privileges have been defined, access to specific pages or even specific sections of pages can be controlled by checking whether a user has permission to access a requested page.</p>
 				<p>The default setup of this demo uses user groups and privileges to restrict the example public user from accessing the admin area, and the example moderator user from inserting, updating and deleting specific data within the admin area.</p>
@@ -37,8 +37,8 @@
 	<div class="content_wrap main_content_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Update Privilege</h2>
-				<a href="<?php echo $base_url;?>auth_admin/manage_privileges">Manage Privileges</a>
+				<h2><?php echo lang("update_privilege"); ?></h2>
+				<a href="<?php echo $base_url;?>auth_admin/manage_privileges"><?php echo lang("manage_privileges"); ?></a>
 
 			<?php if (! empty($message)) { ?>
 				<div id="message">
@@ -48,16 +48,16 @@
 				
 				<?php echo form_open(current_url());	?>  	
 					<fieldset>
-						<legend>Privilege Details</legend>
+						<legend><?php echo lang("privilege_details"); ?></legend>
 						<ul>
 							<li class="info_req">
-								<label for="privilege">Privilege Name:</label>
+								<label for="privilege"><?php echo lang("privilege_name"); ?>:</label>
 								<input type="text" id="privilege" name="update_privilege_name" value="<?php echo set_value('update_privilege_name', $privilege[$this->flexi_auth->db_column('user_privileges', 'name')]);?>" class="tooltip_trigger"
 									title="The name of the privilege."
 								/>
 							</li>
 							<li>
-								<label for="description">Privilege Description:</label>
+								<label for="description"><?php echo lang("privilege_description"); ?>:</label>
 								<textarea id="description" name="update_privilege_description" class="width_400 tooltip_trigger"
 									title="A short description of the purpose of the privilege."><?php echo set_value('update_privilege_description', $privilege[$this->flexi_auth->db_column('user_privileges', 'description')]);?></textarea>
 							</li>
@@ -65,10 +65,10 @@
 					</fieldset>
 									
 					<fieldset>
-						<legend>Update Privilege Details</legend>
+						<legend><?php echo lang("update_privilege_details"); ?></legend>
 						<ul>
 							<li>
-								<label for="submit">Update Privilege:</label>
+								<label for="submit"><?php echo lang("update_privilege"); ?>:</label>
 								<input type="submit" name="update_privilege" id="submit" value="Submit" class="link_button large"/>
 							</li>
 						</ul>

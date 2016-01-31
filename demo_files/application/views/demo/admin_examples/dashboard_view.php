@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Admin Dashboard Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title><?php echo lang("admin_dashboard_demo"); ?> | flexi auth | <?php echo lang("a_user_authentication_library"); ?></title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Admin: Dashboard</h2>
+				<h2><?php echo lang("admin_dashboard"); ?></h2>
 				<p>This page acts as an example dashboard landing page for logged in admin users, demonstrating how some of the functions within the flexi auth library can be used to manage the user accounts, groups and privileges.</p>
 			</div>		
 		</div>
@@ -43,7 +43,7 @@
 			<?php } ?>
 				
 				<div class="w100 frame">							
-					<h3>User Accounts</h3>
+					<h3><?php echo lang("user_accounts"); ?></h3>
 					<p>Manage the account details of all site users.</p>
 					<p>
 						This example updates records from the required 'User Accounts' table, and from the custom 'Demo User Profile' table that in this demo is used to store a users name, phone number etc.<br/>
@@ -51,32 +51,32 @@
 					</p>
 					<ul>
 						<li>
-							<a href="<?php echo $base_url;?>auth_admin/manage_user_accounts">Manage User Accounts</a>			
+							<a href="<?php echo $base_url;?>auth_admin/manage_user_accounts"><?php echo lang("manage_user_accounts"); ?></a>			
 						</li>	
 					</ul>
 					<hr/>
 
-					<h3>User Groups</h3>
+					<h3><?php echo lang("user_groups"); ?></h3>
 					<p>Manage the user groups that users can be assigned to.</p>
 					<p>User groups are intended to be used to categorise the primary access rights of a user, if required, more specific privileges can then be assigned to a user using the 'User Privileges' below. User groups are completely customised.</p>
 					<ul>
 						<li>
-							<a href="<?php echo $base_url;?>auth_admin/manage_user_groups">Manage User Groups</a>			
+							<a href="<?php echo $base_url;?>auth_admin/manage_user_groups"><?php echo lang("manage_user_groups"); ?></a>			
 						</li>	
 					</ul>
 					<hr/>
 
-					<h3>User Privileges</h3>
+					<h3><?php echo lang("user_privileges"); ?></h3>
 					<p>Manage the specific user privileges that can be assigned to users.</p>
 					<p>User privileges are intended to verify whether a user has privileges to perfrom specific actions within the site. The specific action of each privilege is completely customised.</p>
 					<ul>
 						<li>
-							<a href="<?php echo $base_url;?>auth_admin/manage_privileges">Manage User Privileges</a>			
+							<a href="<?php echo $base_url;?>auth_admin/manage_privileges"><?php echo lang("manage_user_privileges"); ?></a>			
 						</li>	
 					</ul>
 					<hr/>
 
-					<h3>User Activity</h3>
+					<h3><?php echo lang("user_activity"); ?></h3>
 					<p>View lists of users that are currently active, inactive or who have a high number of failed logins attempts.</p>
 					<p>
 						When a user registers for an account, it is a good practice to have the user confirm their registration via email, as this helps prevent spam accounts being repeatedly setup.<br/>
@@ -84,16 +84,16 @@
 					</p>
 					<ul>
 						<li>
-							<a href="<?php echo $base_url;?>auth_admin/list_user_status/active">List all active users</a>
+							<a href="<?php echo $base_url;?>auth_admin/list_user_status/active"><?php echo lang("list_all_active_users"); ?></a>
 						</li>	
 						<li>
-							<a href="<?php echo $base_url;?>auth_admin/list_user_status/inactive">List all inactive users</a>
+							<a href="<?php echo $base_url;?>auth_admin/list_user_status/inactive"><?php echo lang("list_all_inactive_users"); ?></a>
 						</li>	
 						<li>
-							<a href="<?php echo $base_url;?>auth_admin/delete_unactivated_users">List all unactivated (Never been activated) users over 31 days old</a>
+							<a href="<?php echo $base_url;?>auth_admin/delete_unactivated_users"><?php echo lang("list_all_unactivated"); ?></a>
 						</li>	
 						<li>
-							<a href="<?php echo $base_url;?>auth_admin/failed_login_users">List users with a high number of failed login attempts</a> - Helps identify possible brute force hack attempts.			
+							<a href="<?php echo $base_url;?>auth_admin/failed_login_users"><?php echo lang("list_users_with_a_high"); ?></a> <?php echo lang("helps_identify_possible"); ?>			
 						</li>	
 					</ul>
 				</div>

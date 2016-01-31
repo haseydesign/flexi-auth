@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Insert New Privileges Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title><?php echo lang("update_privileges_demo"); ?> | flexi auth | <?php echo lang("a_user_authentication_library"); ?></title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Admin: Insert New Privilege</h2>
+				<h2><?php echo lang("admin_insert_new_privilege"); ?></h2>
 				<p>The flexi auth library allows for unlimited custom user privileges to be defined. The privileges can then be assigned to users on an individual basis.</p>
 				<p>Once privileges have been defined, access to specific pages or even specific sections of pages can be controlled by checking whether a user has permission to access a requested page.</p>
 				<p>The default setup of this demo uses user groups and privileges to restrict the example public user from accessing the admin area, and the example moderator user from inserting, updating and deleting specific data within the admin area.</p>
@@ -37,8 +37,8 @@
 	<div class="content_wrap main_content_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Insert New Privilege</h2>
-				<a href="<?php echo $base_url;?>auth_admin/manage_privileges">Manage Privileges</a>
+				<h2><?php echo lang("insert_new_privilege"); ?></h2>
+				<a href="<?php echo $base_url;?>auth_admin/manage_privileges"><?php echo lang("manage_privileges"); ?></a>
 
 			<?php if (! empty($message)) { ?>
 				<div id="message">
@@ -48,15 +48,15 @@
 				
 				<?php echo form_open(current_url());	?>  	
 					<fieldset>
-						<legend>Privilege Details</legend>
+						<legend><?php echo lang("privilege_details"); ?></legend>
 						<ul>
 							<li class="info_req">
-								<label for="privilege">Privilege Name:</label>
+								<label for="privilege"><?php echo lang("privilege_name"); ?>:</label>
 								<input type="text" id="privilege" name="insert_privilege_name" value="<?php echo set_value('insert_privilege_name');?>" class="tooltip_trigger"
 									title="The name of the privilege."/>
 							</li>
 							<li>
-								<label for="description">Privilege Description:</label>
+								<label for="description"><?php echo lang("privilege_description"); ?>:</label>
 								<textarea id="description" name="insert_privilege_description" class="width_400 tooltip_trigger"
 									title="A short description of the purpose of the privilege."><?php echo set_value('insert_privilege_description');?></textarea>
 							</li>
@@ -64,10 +64,10 @@
 					</fieldset>
 
 					<fieldset>
-						<legend>Insert New Privilege</legend>
+						<legend><?php echo lang("insert_new_privilege"); ?></legend>
 						<ul>
 							<li>
-								<label for="submit">Insert Privilege:</label>
+								<label for="submit"><?php echo lang("insert_privilege"); ?>:</label>
 								<input type="submit" name="insert_privilege" id="submit" value="Submit" class="link_button large"/>
 							</li>
 						</ul>

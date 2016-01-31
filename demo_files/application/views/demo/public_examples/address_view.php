@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Manage Addresses Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title><?php echo lang("manage_address_demo"); ?> | flexi auth | <?php echo lang("a_user_authentication_library"); ?></title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Public: Manage Address Book</h2>
+				<h2><?php echo lang("public_manage_address_book"); ?></h2>
 				<p>The flexi auth library allows multiple custom user data tables to be related to the libraries user account table.</p>
 				<p>As an example of this, this demo includes a user address book that can be used by each user to save addresses and relate them to their account.</p>
 				<p>This page lists all addresses that are related to the current logged in user.</p>
@@ -37,8 +37,8 @@
 	<div class="content_wrap main_content_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Manage Address Book</h2>
-				<a href="<?php echo $base_url;?>auth_public/insert_address">Insert New Address</a>
+				<h2><?php echo lang("manage_address_book"); ?></h2>
+				<a href="<?php echo $base_url;?>auth_public/insert_address"><?php echo lang("insert_new_address"); ?></a>
 
 			<?php if (! empty($message)) { ?>
 				<div id="message">
@@ -54,12 +54,12 @@
 									title="An alias to reference the address by.">
 									Alias
 								</th>
-								<th>Recipient</th>
-								<th>Company</th>
-								<th>Post Code</th>
+								<th><?php echo lang("recipient"); ?></th>
+								<th><?php echo lang("company"); ?></th>
+								<th><?php echo lang("postal_code"); ?></th>
 								<th class="spacer_100 align_ctr tooltip_trigger" 
 									title="If checked, the row will be deleted upon the form being updated.">
-									Delete
+									<?php echo lang("delete"); ?>
 								</th>
 							</tr>
 						</thead>
@@ -84,7 +84,7 @@
 						<tfoot>
 							<tr>
 								<td colspan="5">
-									<input type="submit" name="update_addresses" value="Delete Checked Addresses" class="link_button large"/>
+									<input type="submit" name="update_addresses" value="<?php echo lang("delete_checked_addresses"); ?>" class="link_button large"/>
 								</td>
 							</tr>
 						</tfoot>
@@ -92,7 +92,7 @@
 						<tbody>
 							<tr>
 								<td colspan="5">
-									<p>There are no addresses in your address book</p>
+									<p><?php echo lang("there_are_no_addresses"); ?></p>
 								</td>
 							</tr>
 						</tbody>

@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Manage Privileges Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title><?php echo lang("manage_privileges_demo"); ?> | flexi auth | <?php echo lang("a_user_authentication_library"); ?></title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Admin: Manage Privileges</h2>
+				<h2><?php echo lang("admin_manage_privileges"); ?></h2>
 				<p>The flexi auth library allows for unlimited custom user privileges to be defined. The privileges can then be assigned to users on an individual basis.</p>
 				<p>Once privileges have been defined, access to specific pages or even specific sections of pages can be controlled by checking whether a user has permission to access a requested page.</p>
 				<p>The default setup of this demo uses user groups and privileges to restrict the example public user from accessing the admin area, and the example moderator user from inserting, updating and deleting specific data within the admin area.</p>
@@ -37,8 +37,8 @@
 	<div class="content_wrap main_content_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Manage Privileges</h2>
-				<a href="<?php echo $base_url;?>auth_admin/insert_privilege">Insert New Privilege</a>
+				<h2><?php echo lang("manage_privileges"); ?></h2>
+				<a href="<?php echo $base_url;?>auth_admin/insert_privilege"><?php echo lang("insert_new_privilege"); ?></a>
 
 			<?php if (! empty($message)) { ?>
 				<div id="message">
@@ -52,15 +52,15 @@
 							<tr>
 								<th class="spacer_200 tooltip_trigger" 
 									title="The name of the privilege.">
-									Privilege Name
+									<?php echo lang("privilege_name"); ?>
 								</th>
 								<th class="tooltip_trigger" 
 									title="A short description of the purpose of the privilege.">
-									Description
+									<?php echo lang("description"); ?>
 								</th>
 								<th class="spacer_100 align_ctr tooltip_trigger" 
 									title="If checked, the row will be deleted upon the form being updated.">
-									Delete
+									<?php echo lang("delete"); ?>
 								</th>
 							</tr>
 						</thead>
@@ -88,7 +88,7 @@
 						<tfoot>
 							<td colspan="3">
 								<?php $disable = (! $this->flexi_auth->is_privileged('Update Privileges') && ! $this->flexi_auth->is_privileged('Delete Privileges')) ? 'disabled="disabled"' : NULL;?>
-								<input type="submit" name="submit" value="Delete Checked Privileges" class="link_button large" <?php echo $disable; ?>/>
+								<input type="submit" name="submit" value="<?php echo lang("delete_checked_privileges"); ?>" class="link_button large" <?php echo $disable; ?>/>
 							</td>
 						</tfoot>
 					</table>

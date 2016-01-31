@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Manage User Accounts Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title><?php echo lang("manage_user_accounts_demo"); ?> | flexi auth | <?php echo lang("a_user_authentication_library"); ?></title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Admin: Manage User Accounts</h2>
+				<h2><?php echo lang("admin_manage_user_account"); ?></h2>
 				<p>The flexi auth library includes functions to aid the management of user accounts by site administrators.</p>
 				<p>This page demonstrates how to display a pagninated list of all user accounts and then apply a search filter to find specific users via their email address or first and last name. In addition, the page demonstrates how to mass update or delete multiple accounts at the same time.</p>
 			</div>		
@@ -36,8 +36,8 @@
 	<div class="content_wrap main_content_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>User Accounts</h2>
-                                <a href="<?php echo $base_url; ?>auth_admin/insert_account" class="link_button">Add new account</a>
+				<h2><?php echo lang("user_accounts"); ?></h2>
+                                <a href="<?php echo $base_url; ?>auth_admin/insert_account" class="link_button"><?php echo lang("add_new_account"); ?></a>
 			<?php if (! empty($message)) { ?>
 				<div id="message">
 					<?php echo $message; ?>
@@ -46,14 +46,14 @@
 				
 				<?php echo form_open(current_url());	?>
 					<fieldset>
-						<legend>Search Filter</legend>
+						<legend><?php echo lang("search_filter"); ?></legend>
 						
-						<label for="search">Search Users:</label>
+						<label for="search"><?php echo lang("search_users"); ?>:</label>
 						<input type="text" id="search" name="search_query" value="<?php echo set_value('search_users',$search_query);?>" class="tooltip_trigger"
 							title="This example searches for users by email, first name and last name."
 						/>
 						<input type="submit" name="search_users" value="Search" class="link_button"/>
-						<a href="<?php echo $base_url; ?>auth_admin/manage_user_accounts" class="link_button grey">Reset</a>
+						<a href="<?php echo $base_url; ?>auth_admin/manage_user_accounts" class="link_button grey"><?php echo lang("reset"); ?></a>
 						
 					</fieldset>
 				<?php echo form_close();?>
@@ -63,23 +63,23 @@
 						<thead>
 							<tr>
 								<th class="spacer_200">Email</th>
-								<th>First Name</th>
-								<th>Last Name</th>
+								<th><?php echo lang("first_name"); ?></th>
+								<th><?php echo lang("last_name"); ?></th>
 								<th class="spacer_100 align_ctr tooltip_trigger"
 									title="Indicates the user group the user belongs to.">
-									User Group
+									<?php echo lang("user_group"); ?>
 								</th>
 								<th class="spacer_100 align_ctr tooltip_trigger"
 									title="Manage the access privileges of users.">
-									User Privileges
+									<?php echo lang("user_privileges"); ?>
 								</th>
 								<th class="spacer_100 align_ctr tooltip_trigger"
 									title="If checked, the users account will be locked and they will not be able to login.">
-									Account Suspended
+									<?php echo lang("account_suspended"); ?>
 								</th>
 								<th class="spacer_100 align_ctr tooltip_trigger" 
 									title="If checked, the row will be deleted upon the form being updated.">
-									Delete
+									<?php echo lang("delete"); ?>
 								</th>
 							</tr>
 						</thead>
@@ -102,7 +102,7 @@
 									<?php echo $user[$this->flexi_auth->db_column('user_group', 'name')];?>
 								</td>
 								<td class="align_ctr">
-									<a href="<?php echo $base_url.'auth_admin/update_user_privileges/'.$user[$this->flexi_auth->db_column('user_acc', 'id')];?>">Manage</a>
+									<a href="<?php echo $base_url.'auth_admin/update_user_privileges/'.$user[$this->flexi_auth->db_column('user_acc', 'id')];?>"><?php echo lang("manage"); ?></a>
 								</td>
 								<td class="align_ctr">
 									<input type="hidden" name="current_status[<?php echo $user[$this->flexi_auth->db_column('user_acc', 'id')];?>]" value="<?php echo $user[$this->flexi_auth->db_column('user_acc', 'suspend')];?>"/>
@@ -113,7 +113,7 @@
 									<input type="checkbox" name="suspend_status[<?php echo $user[$this->flexi_auth->db_column('user_acc', 'id')];?>]" value="1" <?php echo ($user[$this->flexi_auth->db_column('user_acc', 'suspend')] == 1) ? 'checked="checked"' : "";?>/>
 								<?php } else { ?>
 									<input type="checkbox" disabled="disabled"/>
-									<small>Not Privileged</small>
+									<small><?php echo lang("not_privileged"); ?></small>
 									<input type="hidden" name="suspend_status[<?php echo $user[$this->flexi_auth->db_column('user_acc', 'id')];?>]" value="0"/>
 								<?php } ?>
 								</td>
@@ -122,7 +122,7 @@
 									<input type="checkbox" name="delete_user[<?php echo $user[$this->flexi_auth->db_column('user_acc', 'id')];?>]" value="1"/>
 								<?php } else { ?>
 									<input type="checkbox" disabled="disabled"/>
-									<small>Not Privileged</small>
+									<small><?php echo lang("not_privileged"); ?></small>
 									<input type="hidden" name="delete_user[<?php echo $user[$this->flexi_auth->db_column('user_acc', 'id')];?>]" value="0"/>
 								<?php } ?>
 								</td>
