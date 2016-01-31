@@ -196,12 +196,15 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 	    }
 
 		// Loop through custom data columns for the main user table set via config file.
-		foreach($this->auth->database_config['user_acc']['custom_columns'] as $column)
-		{			
-			if (array_key_exists($column, $custom_data))
-			{
-				$sql_insert[$column] = $custom_data[$column];
-				unset($custom_data[$column]);
+		if (is_array($custom_data))
+		{
+			foreach($this->auth->database_config['user_acc']['custom_columns'] as $column)
+			{			
+				if (array_key_exists($column, $custom_data))
+				{
+					$sql_insert[$column] = $custom_data[$column];
+					unset($custom_data[$column]);
+				}
 			}
 		}
 
@@ -1612,7 +1615,7 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 			}
 
 			// Check whether account has been activated.
-			if ($user->{$this->auth->database_config['user_acc']['columns']['active']} == 0)
+			else if ($user->{$this->auth->database_config['user_acc']['columns']['active']} == 0)
 			{
 				$this->set_error_message('account_requires_activation', 'config');
 				return FALSE;
@@ -2346,14 +2349,34 @@ class Flexi_auth_model extends Flexi_auth_lite_model
 		
 		$this->load->library('email');
 		$this->email->clear();
-		$this->email->initialize(array('mailtype' => $this->auth->email_settings['email_type']));
+		//Get all config data for email initialisation
+		$email_config = array(
+			'mailtype'	=>	$this->auth->email_settings['email_type'],
+			'protocol'	=>	$this->auth->email_settings['protocol'],
+			'smtp_host'	=>	$this->auth->email_settings['smtp_host'],
+			'smtp_user'	=>	$this->auth->email_settings['smtp_user'],
+			'smtp_pass'	=>	$this->auth->email_settings['smtp_pass'],
+			'smtp_port'	=>	$this->auth->email_settings['smtp_port'],
+			'smtp_crypto'	=>	$this->auth->email_settings['smtp_crypto'],    
+			);
+		$this->email->initialize($email_config);
 		$this->email->set_newline("\r\n");
 		$this->email->from($this->auth->email_settings['reply_email'], $this->auth->email_settings['site_title']);
 		$this->email->to($email_to);
 		$this->email->subject($this->auth->email_settings['site_title'] ." ". $email_title);
 		$this->email->message($message);
 			
-		return $this->email->send();
+		// If debug optin is enabled print out the debug info
+		if($this->auth->email_settings['debug'])
+		{
+			$this->email->send();
+			echo $this->email->print_debugger();
+			return TRUE;
+		}
+		else
+		{
+			return $this->email->send();
+		}
 	}
 	
 	/**
