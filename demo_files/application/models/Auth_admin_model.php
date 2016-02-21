@@ -303,7 +303,7 @@ class Auth_admin_model extends CI_Model {
 			$data = array(
 				$this->flexi_auth->db_column('user_group', 'name') => $this->input->post('update_group_name'),
 				$this->flexi_auth->db_column('user_group', 'description') => $this->input->post('update_group_description'),
-				$this->flexi_auth->db_column('user_group', 'admin') => $this->input->post('update_group_admin')
+				$this->flexi_auth->db_column('user_group', 'admin') => ($this->input->post('update_group_admin') ? 1 : 0 )
 			);			
 
 			$this->flexi_auth->update_group($group_id, $data);
