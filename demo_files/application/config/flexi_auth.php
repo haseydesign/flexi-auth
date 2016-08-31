@@ -490,7 +490,7 @@
 	 *
  	 * Note: Only used if $config['security']['store_database_salt'] = TRUE
 	*/
-	$config['security']['database_salt_length'] = 10;
+	$config['security']['database_salt_length'] = 22;
 	
 	/**
 	 * Set the expiry time of unused 'Forgotten Password' tokens.
