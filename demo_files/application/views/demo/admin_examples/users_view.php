@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>User Management Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title><?php echo lang("user_management_demo"); ?> | flexi auth | <?php echo lang("a_user_authentication_library"); ?></title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Admin: <?php echo $page_title;?></h2>
+				<h2><?php echo lang("admin"); ?>: <?php echo $page_title;?></h2>
 				<p>The flexi auth library includes functions to return custom database queries on user account data.</p>
 			<?php if (isset($status) && $status == 'failed_login_users') { ?>
 				<p>This page demonstrates a database query to display all user accounts that have a high number of failed login attempts since the users last successful login. Such data could be used to highlight potential brute force hacking attempts on user accounts.</p>
@@ -57,20 +57,20 @@
 						<thead>
 							<tr>
 								<th class="spacer_200">Email</th>
-								<th>First Name</th>
-								<th>Last Name</th>
+								<th><?php echo lang("first_name"); ?></th>
+								<th><?php echo lang("last_name"); ?></th>
 								<th class="spacer_125 align_ctr tooltip_trigger"
 									title="Indicates the user group the user belongs to.">
-									User Group
+									<?php echo lang("user_group"); ?>
 								</th>
 							<?php if (isset($status) && $status == 'failed_login_users') { ?>
 								<th class="spacer_125 align_ctr tooltip_trigger"
 									title="The number of consecutive failed login attempts made since the user last successfully logged in.">
-									Failed Attempts</th>
+									<?php echo lang("failed_attempts"); ?></th>
 							<?php } ?>
 								<th class="spacer_125 align_ctr tooltip_trigger" 
 									title="Indicates whether the users account is currently set as 'active'.">
-									Status
+									<?php echo lang("status"); ?>
 								</th>
 							</tr>
 						</thead>
@@ -107,7 +107,7 @@
 						<tbody>
 							<tr>
 								<td colspan="<?php echo (isset($status) && $status == 'failed_login_users') ? '6' : '5'; ?>" class="highlight_red">
-									No users are available.
+									<?php echo lang("no_users_are_available"); ?>.
 								</td>
 							</tr>
 						</tbody>

@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Public Dashboard Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title><?php echo lang("public_dashboard_demo"); ?> | flexi auth | <?php echo lang("a_user_authentication_library"); ?></title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Public: Dashboard</h2>
+				<h2><?php echo lang("public_dashboard"); ?></h2>
 				<p>This page acts as an example dashboard landing page for logged in public users, demonstrating how some of the functions within the flexi auth library can be used to manage the account details of public users.</p>
 			</div>		
 		</div>
@@ -53,7 +53,7 @@
 					</ul>
 					<hr/>
 					
-					<h3>Email Address</h3>
+					<h3>Email</h3>
 					<p>Update the email address of the currently logged in user, via email verification.</p>
 					<p>
 						Using email verification to update an email address confirms the user has entered the correct new email address.<br/>
@@ -66,22 +66,22 @@
 					</ul>
 					<hr/>
 					
-					<h3>Password</h3>
+					<h3><?php echo lang("password"); ?></h3>
 					<p>Update the password of the currently logged in user.</p>
 					<p>All passwords are securely hashed using the <a href="http://www.openwall.com/phpass/" target="_blank">phpass framework</a>.</p>
 					<ul>
 						<li>
-							<a href="<?php echo $base_url;?>auth_public/change_password">Update Password</a>
+							<a href="<?php echo $base_url;?>auth_public/change_password"><?php echo lang("update_password"); ?></a>
 						</li>	
 					</ul>
 					<hr/>
 					
-					<h3>Address Book</h3>
+					<h3><?php echo lang("address_book"); ?>k</h3>
 					<p>Manage the custom address details of the currently logged in user.</p>
 					<p>This example manages records from the custom 'Demo User Address' table that in this demo is used to store a list of different addresses per user.</p>
 					<ul>
 						<li>
-							<a href="<?php echo $base_url;?>auth_public/manage_address_book">Manage Address Book</a>
+							<a href="<?php echo $base_url;?>auth_public/manage_address_book"><?php echo lang("manage_address_book"); ?></a>
 						</li>	
 					</ul>
 				</div>

@@ -1,6 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Demo_auth_admin_model extends CI_Model {
+class Auth_admin_model extends CI_Model {
 	
 	// The following method prevents an error occurring when $this->data is modified.
 	// Error Message: 'Indirect modification of overloaded property Demo_cart_admin_model::$data has no effect'.
@@ -145,7 +145,7 @@ class Demo_auth_admin_model extends CI_Model {
  	/**
 	 * update_user_account
 	 * Updates the account and profile data of a specific user.
-	 * Note: The user profile table ('demo_user_profiles') is used in this demo as an example of relating additional user data to the auth libraries account tables. 
+	 * Note: The user profile table ('demo_user_profiles') is used in this  as an example of relating additional user data to the auth libraries account tables. 
 	 */
 	function update_user_account($user_id)
 	{
@@ -161,6 +161,10 @@ class Demo_auth_admin_model extends CI_Model {
 			array('field' => 'update_username', 'label' => 'Username', 'rules' => 'min_length[4]|identity_available['.$user_id.']'),
 			array('field' => 'update_group', 'label' => 'User Group', 'rules' => 'required|integer')
 		);
+                
+                $new_password = $this->input->post('new_password');
+                if(!empty($new_password))
+                    $validation_rules[]=array('field' => 'new_password', 'label' => lang("new_password"), 'rules' => 'validate_password');
 
 		$this->form_validation->set_rules($validation_rules);
 		
@@ -180,7 +184,11 @@ class Demo_auth_admin_model extends CI_Model {
 				$this->flexi_auth->db_column('user_acc', 'email') => $this->input->post('update_email_address'),
 				$this->flexi_auth->db_column('user_acc', 'username') => $this->input->post('update_username'),
 				$this->flexi_auth->db_column('user_acc', 'group_id') => $this->input->post('update_group')
-			);			
+                                
+			);
+                        
+                        if($this->input->post('new_password') != "")
+                            $this->flexi_auth->change_password($user_id, FALSE, $this->input->post('new_password'));
 
 			// If we were only updating profile data (i.e. no email, username or group included), we could use the 'update_custom_user_data()' function instead.
 			$this->flexi_auth->update_user($user_id, $profile_data);
@@ -191,7 +199,8 @@ class Demo_auth_admin_model extends CI_Model {
 			// Redirect user.
 			redirect('auth_admin/manage_user_accounts');			
 		}
-		
+		// Set validation errors.
+		$this->data['message'] = validation_errors('<p class="error_msg">', '</p>');
 		return FALSE;
 	}
 
@@ -294,7 +303,7 @@ class Demo_auth_admin_model extends CI_Model {
 			$data = array(
 				$this->flexi_auth->db_column('user_group', 'name') => $this->input->post('update_group_name'),
 				$this->flexi_auth->db_column('user_group', 'description') => $this->input->post('update_group_description'),
-				$this->flexi_auth->db_column('user_group', 'admin') => $this->input->post('update_group_admin')
+				$this->flexi_auth->db_column('user_group', 'admin') => ($this->input->post('update_group_admin') ? 1 : 0 )
 			);			
 
 			$this->flexi_auth->update_group($group_id, $data);
@@ -472,5 +481,5 @@ class Demo_auth_admin_model extends CI_Model {
     }
 }
 
-/* End of file demo_auth_admin_model.php */
-/* Location: ./application/models/demo_auth_admin_model.php */
+/* End of file Auth_admin_model.php */
+/* Location: ./application/models/Auth_admin_model.php */

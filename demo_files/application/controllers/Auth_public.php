@@ -19,9 +19,7 @@ class Auth_public extends CI_Controller {
 		}
 		
 		// Load required CI libraries and helpers.
-		$this->load->database();
-		$this->load->library('session');
- 		$this->load->helper('url');
+ 		
  		$this->load->helper('form');
 
   		// IMPORTANT! This global must be defined BEFORE the flexi auth library is loaded! 
@@ -42,8 +40,8 @@ class Auth_public extends CI_Controller {
 		}
 		
 		// Note: This is only included to create base urls for purposes of this demo only and are not necessarily considered as 'Best practice'.
-		$this->load->vars('base_url', 'http://localhost/flexi_auth/');
-		$this->load->vars('includes_dir', 'http://localhost/flexi_auth/includes/');
+		$this->load->vars('base_url', '//'.$_SERVER['HTTP_HOST'].'/');
+		$this->load->vars('includes_dir', '//'.$_SERVER['HTTP_HOST'].'/includes/');
 		$this->load->vars('current_url', $this->uri->uri_to_assoc(1));
 		
 		// Define a global variable to store data that is then used by the end view page.
@@ -55,8 +53,8 @@ class Auth_public extends CI_Controller {
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 
 	/**
-	 * Many of the functions within this controller load a custom model called 'demo_auth_model' that has been created for the purposes of this demo.
-	 * The 'demo_auth_model' file is not part of the flexi auth library, it is included to demonstrate how some of the functions of flexi auth can be used.
+	 * Many of the functions within this controller load a custom model called 'auth_model' that has been created for the purposes of this demo.
+	 * The 'auth_model' file is not part of the flexi auth library, it is included to demonstrate how some of the functions of flexi auth can be used.
 	 *
 	 * These demos show working examples of how to implement some (most) of the functions available from the flexi auth library.
 	 * This particular controller 'auth_public', is used by users who have logged in and now wish to manage their account settings
@@ -104,8 +102,8 @@ class Auth_public extends CI_Controller {
 		// If 'Update Account' form has been submitted, update the user account details.
 		if ($this->input->post('update_account')) 
 		{
-			$this->load->model('demo_auth_model');
-			$this->demo_auth_model->update_account();
+			$this->load->model('auth_model');
+			$this->auth_model->update_account();
 		}
 		
 		// Get users current data.
@@ -129,8 +127,8 @@ class Auth_public extends CI_Controller {
 		// If 'Update Password' form has been submitted, validate and then update the users password.
 		if ($this->input->post('change_password'))
 		{
-			$this->load->model('demo_auth_model');
-			$this->demo_auth_model->change_password();
+			$this->load->model('auth_model');
+			$this->auth_model->change_password();
 		}
 				
 		// Set any returned status/error messages.
@@ -149,17 +147,17 @@ class Auth_public extends CI_Controller {
  	 */
 	function update_email($user_id = FALSE, $token = FALSE)
 	{
-		$this->load->model('demo_auth_model');
+		$this->load->model('auth_model');
 
 		// If 'Update Email' form has been submitted, send a verification email to the submitted email address.
 		if ($this->input->post('update_email'))
 		{
-			$this->demo_auth_model->send_new_email_activation();
+			$this->auth_model->send_new_email_activation();
 		}
 		// Else if page has been accessed via a link set in the verification email, then validate the activation token and update the email address.
 		else if (is_numeric($user_id) && strlen($token) == 40) // 40 characters = Email Activation Token length.
 		{
-			$this->demo_auth_model->verify_updated_email($user_id, $token);
+			$this->auth_model->verify_updated_email($user_id, $token);
 		}
 
 		// In this demo, the 'update_email' page is the only page in this controller that can be accessed without needing to be logged in.
@@ -192,8 +190,8 @@ class Auth_public extends CI_Controller {
 		// If 'Address Book' form has been submitted, then delete any checkbox checked address details.
 		if ($this->input->post('update_addresses')) 
 		{
-			$this->load->model('demo_auth_model');
-			$this->demo_auth_model->manage_address_book();
+			$this->load->model('auth_model');
+			$this->auth_model->manage_address_book();
 		}
 
 		// Get user id from session.
@@ -221,8 +219,8 @@ class Auth_public extends CI_Controller {
 		// If 'Add Address' form has been submitted, then insert the new address details to the logged in users address book.
 		if ($this->input->post('insert_address')) 
 		{		
-			$this->load->model('demo_auth_model');
-			$this->demo_auth_model->insert_address();
+			$this->load->model('auth_model');
+			$this->auth_model->insert_address();
 		}
 				
 		// Set any returned status/error messages.
@@ -246,8 +244,8 @@ class Auth_public extends CI_Controller {
 		// If 'Update Address' form has been submitted, then update the address details.
 		else if ($this->input->post('update_address')) 
 		{			
-			$this->load->model('demo_auth_model');
-			$this->demo_auth_model->update_address($address_id);
+			$this->load->model('auth_model');
+			$this->auth_model->update_address($address_id);
 		}
 		
 		// Get user id from session to use in the update function as a primary key.
@@ -262,5 +260,5 @@ class Auth_public extends CI_Controller {
 	}
 }
 	
-/* End of file auth_public.php */
-/* Location: ./application/controllers/auth_public.php */	
+/* End of file Auth_public.php */
+/* Location: ./application/controllers/Auth_public.php */	

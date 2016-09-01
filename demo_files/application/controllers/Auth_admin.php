@@ -19,9 +19,7 @@ class Auth_admin extends CI_Controller {
 		}
 		
 		// Load required CI libraries and helpers.
-		$this->load->database();
-		$this->load->library('session');
- 		$this->load->helper('url');
+ 		
  		$this->load->helper('form');
 
   		// IMPORTANT! This global must be defined BEFORE the flexi auth library is loaded! 
@@ -42,8 +40,8 @@ class Auth_admin extends CI_Controller {
 		}
 
 		// Note: This is only included to create base urls for purposes of this demo only and are not necessarily considered as 'Best practice'.
-		$this->load->vars('base_url', 'http://localhost/flexi_auth/');
-		$this->load->vars('includes_dir', 'http://localhost/flexi_auth/includes/');
+		$this->load->vars('base_url', '//'.$_SERVER['HTTP_HOST'].'/');
+		$this->load->vars('includes_dir', '//'.$_SERVER['HTTP_HOST'].'/includes/');
 		$this->load->vars('current_url', $this->uri->uri_to_assoc(1));
 		
 		// Define a global variable to store data that is then used by the end view page.
@@ -55,8 +53,8 @@ class Auth_admin extends CI_Controller {
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
 
 	/**
-	 * Many of the functions within this controller load a custom model called 'demo_auth_admin_model' that has been created for the purposes of this demo.
-	 * The 'demo_auth_admin_model' file is not part of the flexi auth library, it is included to demonstrate how some of the functions of flexi auth can be used.
+	 * Many of the functions within this controller load a custom model called 'auth_admin_model' that has been created for the purposes of this demo.
+	 * The 'auth_admin_model' file is not part of the flexi auth library, it is included to demonstrate how some of the functions of flexi auth can be used.
 	 *
 	 * These demos show working examples of how to implement some (most) of the functions available from the flexi auth library.
 	 * This particular controller 'auth_admin', is used by logged in admins to manage users and user groups.
@@ -115,7 +113,7 @@ class Auth_admin extends CI_Controller {
  	 */
     function manage_user_accounts()
     {
-		$this->load->model('demo_auth_admin_model');
+		$this->load->model('auth_admin_model');
 
 		// Check user has privileges to view user accounts, else display a message to notify the user they do not have valid privileges.
 		if (! $this->flexi_auth->is_privileged('View Users'))
@@ -137,12 +135,12 @@ class Auth_admin extends CI_Controller {
 		// If 'Manage User Accounts' form has been submitted and user has privileges to update user accounts, then update the account details.
 		else if ($this->input->post('update_users') && $this->flexi_auth->is_privileged('Update Users')) 
 		{
-			$this->demo_auth_admin_model->update_user_accounts();
+			$this->auth_admin_model->update_user_accounts();
 		}
 
 		// Get user account data for all users. 
 		// If a search has been performed, then filter the returned users.
-		$this->demo_auth_admin_model->get_user_accounts();
+		$this->auth_admin_model->get_user_accounts();
 		
 		// Set any returned status/error messages.
 		$this->data['message'] = (! isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];		
@@ -166,8 +164,8 @@ class Auth_admin extends CI_Controller {
 		// If 'Update User Account' form has been submitted, update the users account details.
 		if ($this->input->post('update_users_account')) 
 		{
-			$this->load->model('demo_auth_admin_model');
-			$this->demo_auth_admin_model->update_user_account($user_id);
+			$this->load->model('auth_admin_model');
+			$this->auth_admin_model->update_user_account($user_id);
 		}
 		
 		// Get users current data.
@@ -204,8 +202,8 @@ class Auth_admin extends CI_Controller {
 		// If 'Manage User Group' form has been submitted and user has privileges, delete user groups.
 		if ($this->input->post('delete_group') && $this->flexi_auth->is_privileged('Delete User Groups')) 
 		{
-			$this->load->model('demo_auth_admin_model');
-			$this->demo_auth_admin_model->manage_user_groups();
+			$this->load->model('auth_admin_model');
+			$this->auth_admin_model->manage_user_groups();
 		}
 
 		// Define the group data columns to use on the view page. 
@@ -241,8 +239,8 @@ class Auth_admin extends CI_Controller {
 		// If 'Add User Group' form has been submitted, insert the new user group.
 		if ($this->input->post('insert_user_group')) 
 		{
-			$this->load->model('demo_auth_admin_model');
-			$this->demo_auth_admin_model->insert_user_group();
+			$this->load->model('auth_admin_model');
+			$this->auth_admin_model->insert_user_group();
 		}
 		
 		// Set any returned status/error messages.
@@ -267,8 +265,8 @@ class Auth_admin extends CI_Controller {
 		// If 'Update User Group' form has been submitted, update the user group details.
 		if ($this->input->post('update_user_group')) 
 		{
-			$this->load->model('demo_auth_admin_model');
-			$this->demo_auth_admin_model->update_user_group($group_id);
+			$this->load->model('auth_admin_model');
+			$this->auth_admin_model->update_user_group($group_id);
 		}
 
 		// Get user groups current data.
@@ -302,8 +300,8 @@ class Auth_admin extends CI_Controller {
 		// If 'Manage Privilege' form has been submitted and the user has privileges to delete privileges.
 		if ($this->input->post('delete_privilege') && $this->flexi_auth->is_privileged('Delete Privileges')) 
 		{
-			$this->load->model('demo_auth_admin_model');
-			$this->demo_auth_admin_model->manage_privileges();
+			$this->load->model('auth_admin_model');
+			$this->auth_admin_model->manage_privileges();
 		}
 
 		// Define the privilege data columns to use on the view page. 
@@ -338,8 +336,8 @@ class Auth_admin extends CI_Controller {
 		// If 'Add Privilege' form has been submitted, insert the new privilege.
 		if ($this->input->post('insert_privilege')) 
 		{
-			$this->load->model('demo_auth_admin_model');
-			$this->demo_auth_admin_model->insert_privilege();
+			$this->load->model('auth_admin_model');
+			$this->auth_admin_model->insert_privilege();
 		}
 		
 		// Set any returned status/error messages.
@@ -364,8 +362,8 @@ class Auth_admin extends CI_Controller {
 		// If 'Update Privilege' form has been submitted, update the privilege details.
 		if ($this->input->post('update_privilege')) 
 		{
-			$this->load->model('demo_auth_admin_model');
-			$this->demo_auth_admin_model->update_privilege($privilege_id);
+			$this->load->model('auth_admin_model');
+			$this->auth_admin_model->update_privilege($privilege_id);
 		}
 		
 		// Get privileges current data.
@@ -394,8 +392,8 @@ class Auth_admin extends CI_Controller {
 		// If 'Update User Privilege' form has been submitted, update the user privileges.
 		if ($this->input->post('update_user_privilege')) 
 		{
-			$this->load->model('demo_auth_admin_model');
-			$this->demo_auth_admin_model->update_user_privileges($user_id);
+			$this->load->model('auth_admin_model');
+			$this->auth_admin_model->update_user_privileges($user_id);
 		}
 
 		// Get users profile data.
@@ -467,8 +465,8 @@ class Auth_admin extends CI_Controller {
 		// If 'Update Group Privilege' form has been submitted, update the privileges of the user group.
 		if ($this->input->post('update_group_privilege')) 
 		{
-			$this->load->model('demo_auth_admin_model');
-			$this->demo_auth_admin_model->update_group_privileges($group_id);
+			$this->load->model('auth_admin_model');
+			$this->auth_admin_model->update_group_privileges($group_id);
 		}
 		
 		// Get data for the current user group.
@@ -537,7 +535,7 @@ class Auth_admin extends CI_Controller {
 			$this->flexi_auth->db_column('user_acc', 'email'),
 			$this->flexi_auth->db_column('user_acc', 'active'),
 			$this->flexi_auth->db_column('user_group', 'name'),
-			// The following columns are located in the demo example 'demo_user_profiles' table, which is not required by the library.
+			// The following columns are located in the demo example 'user_profiles' table, which is not required by the library.
 			'upro_first_name', 
 			'upro_last_name'
 		);
@@ -572,8 +570,8 @@ class Auth_admin extends CI_Controller {
 		// If 'Delete Unactivated Users' form has been submitted and user has privileges to delete users.
 		if ($this->input->post('delete_unactivated') && $this->flexi_auth->is_privileged('Delete Users'))
 		{
-			$this->load->model('demo_auth_admin_model');
-			$this->demo_auth_admin_model->delete_users($inactive_days);
+			$this->load->model('auth_admin_model');
+			$this->auth_admin_model->delete_users($inactive_days);
 		}
 
 		// Get an array of all user accounts that have not been activated within the defined limit ($inactive_days), using the sql select and where statements defined below.
@@ -584,7 +582,7 @@ class Auth_admin extends CI_Controller {
 			$this->flexi_auth->db_column('user_acc', 'email'),
 			$this->flexi_auth->db_column('user_acc', 'active'),
 			$this->flexi_auth->db_column('user_group', 'name'),
-			// The following columns are located in the demo example 'demo_user_profiles' table, which is not required by the library.
+			// The following columns are located in the demo example 'user_profiles' table, which is not required by the library.
 			'upro_first_name',
 			'upro_last_name'
 		);
@@ -620,7 +618,7 @@ class Auth_admin extends CI_Controller {
 			$this->flexi_auth->db_column('user_acc', 'failed_logins'),
 			$this->flexi_auth->db_column('user_acc', 'active'),
 			$this->flexi_auth->db_column('user_group', 'name'),
-			// The following columns are located in the demo example 'demo_user_profiles' table, which is not required by the library.
+			// The following columns are located in the demo example 'user_profiles' table, which is not required by the library.
 			'upro_first_name',
 			'upro_last_name'
 		);
@@ -634,8 +632,35 @@ class Auth_admin extends CI_Controller {
 		
 		$this->load->view('demo/admin_examples/users_view', $this->data);
 	}
+        
+        /**
+	 * register_account
+	 * User registration page used by admin to manually add new users accounts.
+	 * Note: This page is only accessible for admin or privileged users.
+         * @dansanti
+	 */ 
+	function insert_account()
+	{		
+		// If 'Registration' form has been submitted, attempt to register their details as a new account.
+		if ($this->input->post('register_user'))
+		{
+                    $instant_activate = FALSE;
+                    if($this->input->post("activate_account"))
+                        $instant_activate = TRUE;
+                    $this->load->model('auth_model');
+                    if($this->auth_model->register_account($instant_activate,$this->input->post("user_group"),FALSE))
+                        redirect(site_url("auth_admin/manage_user_accounts"));
+		}
+		
+		// Get user groups.
+		$this->data['groups'] = $this->flexi_auth->get_groups_array();
+                
+		// Get any status message that may have been set.
+		$this->data['message'] = (! isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];		
 
+		$this->load->view('demo/admin_examples/user_account_insert_view', $this->data);
+	}
 }
 
-/* End of file auth_admin.php */
-/* Location: ./application/controllers/auth_admin.php */
+/* End of file Auth_admin.php */
+/* Location: ./application/controllers/Auth_admin.php */

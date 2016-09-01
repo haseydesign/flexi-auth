@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Update Address Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title><?php echo lang("update_address_demo"); ?> | flexi auth | <?php echo lang("a_user_authentication_library"); ?></title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
 	<?php $this->load->view('includes/head'); ?> 
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Public: Update Address</h2>
+				<h2><?php echo lang("public_update_address"); ?></h2>
 				<p>The flexi auth library allows multiple custom user data tables to be related to the libraries user account table.</p>
 				<p>As an example of this, this demo includes a user address book that can be used by each user to save addresses and relate them to their account.</p>
 				<p>This page will update a specific address within the current logged in users address book.</p>
@@ -38,7 +38,7 @@
 		<div class="content clearfix">
 			<div class="col100">
 				<h2>Update Address</h2>
-				<a href="<?php echo $base_url;?>auth_public/manage_address_book">Manage Address Book</a>
+				<a href="<?php echo $base_url;?>auth_public/manage_address_book"><?php echo lang("manage_address_book"); ?></a>
 
 			<?php if (! empty($message)) { ?>
 				<div id="message">
@@ -48,7 +48,7 @@
 				
 				<?php echo form_open(current_url());	?>  	
 					<fieldset>
-						<legend>Address Alias</legend>
+						<legend><?php echo lang("address_alias"); ?></legend>
 						<ul>
 							<li class="info_req">
 								<label for="alias">Alias:</label>
@@ -60,55 +60,55 @@
 					</fieldset>
 					
 					<fieldset>
-						<legend>Recipient Details</legend>
+						<legend><?php echo lang("recipient_details"); ?></legend>
 						<ul>
 							<li class="info_req">
-								<label for="recipient">Recipient Name:</label>
+								<label for="recipient"><?php echo lang("recipient_name"); ?>:</label>
 								<input type="text" id="recipient" name="update_recipient" value="<?php echo set_value('update_recipient',$address['uadd_recipient']);?>"/>
 							</li>
 							<li class="info_req">
-								<label for="phone_number">Phone Number:</label>
+								<label for="phone_number"><?php echo lang("phone_number"); ?>:</label>
 								<input type="text" id="phone_number" name="update_phone_number" value="<?php echo set_value('update_phone_number',$address['uadd_phone']);?>"/>
 							</li>
 						</ul>
 					</fieldset>
 					
 					<fieldset>
-						<legend>Address Details</legend>
+						<legend><?php echo lang("address_details"); ?></legend>
 						<ul>
 							<li>
-								<label for="company">Company:</label>
+								<label for="company"><?php echo lang("company"); ?>:</label>
 								<input type="text" id="company" name="update_company" value="<?php echo set_value('update_company',$address['uadd_company']);?>"/>
 							</li>
 							<li class="info_req">
-								<label for="address_01">Address 01:</label>
+								<label for="address_01"><?php echo lang("address_line_1"); ?>:</label>
 								<input type="text" id="address_01" name="update_address_01" value="<?php echo set_value('update_address_01',$address['uadd_address_01']);?>"/>
 							</li>
 							<li>
-								<label for="address_02">Address 02:</label>
+								<label for="address_02"><?php echo lang("address_line_2"); ?>:</label>
 								<input type="text" id="address_02" name="update_address_02" value="<?php echo set_value('update_address_02',$address['uadd_address_02']);?>"/>
 							</li>
 							<li class="info_req">
-								<label for="city">City / Town:</label>
+								<label for="city"><?php echo lang("city"); ?> / <?php echo lang("town"); ?>:</label>
 								<input type="text" id="city" name="update_city" value="<?php echo set_value('update_city',$address['uadd_city']);?>"/>
 							</li>
 							<li class="info_req">
-								<label for="county">State / County:</label>
+								<label for="county"><?php echo lang("state"); ?> / <?php echo lang("county"); ?>:</label>
 								<input type="text" id="county" name="update_county" value="<?php echo set_value('update_county',$address['uadd_county']);?>"/>
 							</li>
 							<li class="info_req">
-								<label for="post_code">Post Code:</label>
+								<label for="post_code"><?php echo lang("postal_code"); ?>:</label>
 								<input type="text" id="post_code" name="update_post_code" value="<?php echo set_value('update_post_code',$address['uadd_post_code']);?>"/>
 							</li>
 							<li class="info_req">
-								<label for="country">Country:</label>
+								<label for="country"><?php echo lang("country"); ?>:</label>
 								<input type="text" id="country" name="update_country" value="<?php echo set_value('update_country',$address['uadd_country']);?>"/>
 							</li>
 						</ul>
 					</fieldset>
 							
 					<fieldset>
-						<legend>Update Address Book</legend>
+						<legend><?php echo lang("update_address_book"); ?></legend>
 						<ul>
 							<li>
 								<h6>Important Note</h6>
@@ -116,8 +116,8 @@
 							</li>
 							<li>
 								<hr/>
-								<label for="submit">Update Address:</label>
-								<input type="submit" name="update_address" id="submit" value="Submit" class="link_button large"/>
+								<label for="submit"><?php echo lang("update_address"); ?>:</label>
+								<input type="submit" name="update_address" id="submit" value="<?php echo lang("submit"); ?>" class="link_button large"/>
 								<input type="hidden" name="update_address_id" value="<?php echo $address['uadd_id'];?>"/>
 							</li>
 						</ul>

@@ -464,7 +464,7 @@
 	 * Default allows alpha-numeric, dashes, underscores, periods and commas ('\.\,\-_ a-z0-9').
 	 * Note this is a regular expression.
 	*/ 
-	$config['security']['valid_password_chars'] = '\.\,\-_ a-z0-9';
+	$config['security']['valid_password_chars'] = '\.\,\-_ a-zA-Z0-9';
 
 	/**
 	 * Set the static (non-database stored) salt used for password and hash token generation.
@@ -473,8 +473,10 @@
 	 * !IMPORTANT: 
 	 *	Do NOT change this salt once users have started registering accounts as their passwords will not work without the original salt.
 	 *	CHANGE THE DEFAULT STATIC SALT SET BELOW TO YOUR OWN RANDOM SET OF CHARACTERS.
+         * !VERY IMPORTANT:
+         *      static-salt must be at least 20 characters!!
 	*/
-	$config['security']['static_salt'] = 'change-me!';
+	$config['security']['static_salt'] = 'change-me-carrefully!';
 	
 	/**
 	 * Set whether a salt is stored in the database and then used for password and hash token generation.
@@ -488,7 +490,7 @@
 	 *
  	 * Note: Only used if $config['security']['store_database_salt'] = TRUE
 	*/
-	$config['security']['database_salt_length'] = 10;
+	$config['security']['database_salt_length'] = 22;
 	
 	/**
 	 * Set the expiry time of unused 'Forgotten Password' tokens.
@@ -587,6 +589,13 @@
 	*/
 	$config['settings']['auto_increment_username'] = FALSE;
 	
+        /**
+	 * Set whether accounts are activate by default on registration / inserting user.
+	 * This option allows admins to verify account details before enabling users.
+	 * @param: bool
+	*/
+	$config['settings']['instant_activate_new_accounts'] = FALSE;
+        
 	/**
 	 * Set whether accounts are suspended by default on registration / inserting user.
 	 * This option allows admins to verify account details before enabling users.

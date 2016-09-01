@@ -6,10 +6,10 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Unactivated User Demo | flexi auth | A User Authentication Library for CodeIgniter</title>
+	<title><?php echo lang("unactivated_user_demo"); ?> | flexi auth | <?php echo lang("a_user_authentication_library"); ?></title>
 	<meta name="description" content="flexi auth, the user authentication library designed for developers."/> 
 	<meta name="keywords" content="demo, flexi auth, user authentication, codeigniter"/>
-	<?php $this->load->view('includes/head'); ?> 
+	<?php $this->load->view('includes/head'); ?>
 </head>
 
 <body id="list_users">
@@ -25,7 +25,7 @@
 	<div class="content_wrap intro_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>Admin: User Accounts Not Activated in 31 Days</h2>
+				<h2><?php echo lang("admin_user_accounts_not_activated"); ?></h2>
 				<p>The flexi auth library includes functions to return custom database queries on user account data.</p>
 				<p>The page demonstrates a function used to return all accounts that have not been activated within 31 days since registation. All accounts listed can then optionally be deleted.</p>
 			</div>		
@@ -36,7 +36,7 @@
 	<div class="content_wrap main_content_bg">
 		<div class="content clearfix">
 			<div class="col100">
-				<h2>User Accounts Not Activated in 31 Days</h2>
+				<h2><?php echo lang("user_accounts_not_activated"); ?></h2>
 
 			<?php if (! empty($message)) { ?>
 				<div id="message">
@@ -49,15 +49,15 @@
 						<thead>
 							<tr>
 								<th class="spacer_200">Email</th>
-								<th>First Name</th>
-								<th>Last Name</th>
+								<th><?php echo lang("first_name"); ?></th>
+								<th><?php echo lang("last_name"); ?></th>
 								<th class="spacer_125 align_ctr tooltip_trigger"
 									title="Indicates the user group the user belongs to.">
-									User Group
+									<?php echo lang("user_group"); ?>
 								</th>
 								<th class="spacer_125 align_ctr tooltip_trigger" 
 									title="Indicates whether the users account is currently set as 'active'.">
-									Status
+									<?php echo lang("status"); ?>
 								</th>
 							</tr>
 						</thead>
@@ -88,7 +88,7 @@
 						<tfoot>
 							<tr>
 								<td colspan="5">
-									<input type="submit" name="delete_unactivated" value="Delete Listed Users" class="link_button large"/>
+									<input type="submit" name="delete_unactivated" value="<?php echo lang("delete_listed_users"); ?>" class="link_button large"/>
 								</td>
 							</tr>
 						</tfoot>
@@ -96,7 +96,7 @@
 						<tbody>
 							<tr>
 								<td colspan="5" class="highlight_red">
-									No users are available.
+									<?php echo lang("no_users_are_available"); ?>.
 								</td>
 							</tr>
 						</tbody>

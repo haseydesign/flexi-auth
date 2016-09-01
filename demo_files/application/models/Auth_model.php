@@ -1,6 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Demo_auth_model extends CI_Model {
+class Auth_model extends CI_Model {
 	
 	// The following method prevents an error occurring when $this->data is modified.
 	// Error Message: 'Indirect modification of overloaded property Demo_cart_admin_model::$data has no effect'.
@@ -101,7 +101,7 @@ class Demo_auth_model extends CI_Model {
 	 * Create a new user account. 
 	 * Then if defined via the '$instant_activate' var, automatically log the user into their account.
 	 */
-	function register_account()
+	function register_account($instant_activate = FALSE, $user_group = FALSE, $redirect = TRUE)
 	{
 		$this->load->library('form_validation');
 
@@ -139,13 +139,13 @@ class Demo_auth_model extends CI_Model {
 			
 			// Set whether to instantly activate account.
 			// This var will be used twice, once for registration, then to check if to log the user in after registration.
-			$instant_activate = FALSE;
+			
 	
 			// The last 2 variables on the register function are optional, these variables allow you to:
 			// #1. Specify the group ID for the user to be added to (i.e. 'Moderator' / 'Public'), the default is set via the config file.
 			// #2. Set whether to automatically activate the account upon registration, default is FALSE. 
 			// Note: An account activation email will be automatically sent if auto activate is FALSE, or if an activation time limit is set by the config file.
-			$response = $this->flexi_auth->insert_user($email, $username, $password, $profile_data, 1, $instant_activate);
+			$response = $this->flexi_auth->insert_user($email, $username, $password, $profile_data, $user_group, $instant_activate);
 
 			if ($response)
 			{
@@ -163,6 +163,8 @@ class Demo_auth_model extends CI_Model {
 				
 				// This is an example of how to log the user into their account immeadiately after registering.
 				// This example would only be used if users do not have to authenticate their account via email upon registration.
+                                if(!$redirect)
+                                    return TRUE;
 				if ($instant_activate && $this->flexi_auth->login($email, $password))
 				{
 					// Redirect user to public dashboard.
@@ -477,7 +479,7 @@ class Demo_auth_model extends CI_Model {
 	/**
 	 * manage_address_book
 	 * Loops through a POST array of all address IDs that where checked, and then proceeds to delete the addresses from the users address book.
-	 * Note: The address book table ('demo_user_address') is used in this demo as an example of relating additional user data to the auth libraries account tables. 
+	 * Note: The address book table ('user_address') is used in this demo as an example of relating additional user data to the auth libraries account tables. 
 	 */
 	function manage_address_book()
 	{
@@ -488,7 +490,7 @@ class Demo_auth_model extends CI_Model {
 			{
 				// Note: As the 'delete_address' input is a checkbox, it will only be present in the $_POST data if it has been checked,
 				// therefore we don't need to check the submitted value.
-				$this->flexi_auth->delete_custom_user_data('demo_user_address', $address_id);
+				$this->flexi_auth->delete_custom_user_data('user_address', $address_id);
 			}
 		}
 
@@ -502,7 +504,7 @@ class Demo_auth_model extends CI_Model {
 	/**
 	 * insert_address
 	 * Inserts a new address to the users address book.
-	 * Note: The address book table ('demo_user_address') is used in this demo as an example of relating additional user data to the auth libraries account tables. 
+	 * Note: The address book table ('user_address') is used in this demo as an example of relating additional user data to the auth libraries account tables. 
 	 */
 	function insert_address()
 	{
@@ -565,7 +567,7 @@ class Demo_auth_model extends CI_Model {
 	/**
 	 * update_address
 	 * Updates an address from the users address book.
-	 * Note: The address book table ('demo_user_address') is used in this demo as an example of relating additional user data to the auth libraries account tables. 
+	 * Note: The address book table ('user_address') is used in this demo as an example of relating additional user data to the auth libraries account tables. 
 	 */
 	function update_address($address_id)
 	{
@@ -610,7 +612,7 @@ class Demo_auth_model extends CI_Model {
 			// For added flexibility, to identify the table and row to update, you can either submit the table name and row id via the 
 			// first 2 function arguments, or alternatively, submit the primary column name and row id value via the '$address_data' array.
 			// An example of this is commented out just below. When using the second method, the function identifies the table automatically.
-			$response = $this->flexi_auth->update_custom_user_data('demo_user_address', $address_id, $address_data);
+			$response = $this->flexi_auth->update_custom_user_data('user_address', $address_id, $address_data);
 			
 			/**
 			 *  Example of updating custom tables using just data within an array.
@@ -639,5 +641,5 @@ class Demo_auth_model extends CI_Model {
 	}
 
 }
-/* End of file demo_auth_model.php */
-/* Location: ./application/models/demo_auth_model.php */
+/* End of file Auth_model.php */
+/* Location: ./application/models/Auth_model.php */

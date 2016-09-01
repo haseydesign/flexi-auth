@@ -19,10 +19,8 @@ class User_guide extends CI_Controller {
 		}
 
 		// Load CI libraries and helpers.
-		$this->load->database();
-		$this->load->library('session');
 		$this->load->helper('text');
- 		$this->load->helper('url');
+ 		
  		$this->load->helper('form');
 
   		// IMPORTANT! This global must be defined BEFORE the flexi auth library is loaded! 
@@ -33,8 +31,8 @@ class User_guide extends CI_Controller {
 		$this->load->library('flexi_auth');	
 
 		// Note: This is only included to create base urls for purposes of this demo only and are not necessarily considered as 'Best practice'.
-		$this->load->vars('base_url', 'http://localhost/flexi_auth/');
-		$this->load->vars('includes_dir', 'http://localhost/flexi_auth/includes/');
+		$this->load->vars('base_url', '//'.$_SERVER['HTTP_HOST'].'/');
+		$this->load->vars('includes_dir', '//'.$_SERVER['HTTP_HOST'].'/includes/');
 		$this->load->vars('current_url', $this->uri->uri_to_assoc(1));
 	}
 	
